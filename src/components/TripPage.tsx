@@ -4,11 +4,12 @@ import { fmtDate, nowIn, tripStatus } from '../lib'
 import { useWeather } from '../weather'
 import { TripContext } from '../context'
 import { DayView } from './DayView'
-import { ChecklistView, FoodView, HotelCard, InfoView } from './Views'
+import { AppsView, ChecklistView, FoodView, HotelCard, InfoView } from './Views'
 
 const EXTRA = [
   { id: 'food', label: '먹을 것' },
   { id: 'todo', label: '예약·준비' },
+  { id: 'apps', label: '앱' },
   { id: 'info', label: '현지 정보' },
 ]
 
@@ -121,6 +122,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
         {day && <DayView key={day.id} day={day} today={day.date === local.date} nowMinutes={local.minutes} weather={weather[day.date]} />}
         {tab === 'food' && <FoodView />}
         {tab === 'todo' && <ChecklistView />}
+        {tab === 'apps' && <AppsView />}
         {tab === 'info' && <InfoView />}
       </main>
 

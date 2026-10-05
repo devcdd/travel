@@ -4,8 +4,9 @@
   --accent: #0a66c2; --accent-soft: #e8f1fb; --on-accent: #ffffff;
   --ok: #1d7d47; --ok-soft: #e6f4ec; --warn: #a35f00; --warn-soft: #fdf1df; --idea: #5f6771; --idea-soft: #eef0f2;
   --mrt-r: #e3002c; --mrt-bl: #0070bd; --mrt-g: #008659; --mrt-o: #f8b61c; --mrt-a: #8246af; --mrt-br: #c48c31; --on-line: #ffffff; --on-o: #2a1d00;
-  --f-sans: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "PingFang TC", "Noto Sans TC", sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --f-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "PingFang TC", "Noto Sans TC", sans-serif;
+  /* 시각·역 코드 같은 숫자는 Pretendard의 고정폭 숫자로 맞춥니다. */
+  --f-mono: var(--f-sans);
   --f-zh: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   --tile-filter: grayscale(.35) contrast(.95);
   color-scheme: light;
@@ -29,7 +30,7 @@
 
 * { box-sizing: border-box }
 html { -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px) }
-body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-sans); font-size: 15px; line-height: 1.65; word-break: keep-all; overflow-wrap: break-word }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-sans); font-size: 15px; line-height: 1.65; letter-spacing: -.005em; word-break: keep-all; overflow-wrap: break-word }
 a { color: var(--accent); text-decoration: none }
 button { font: inherit; color: inherit }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
@@ -38,7 +39,7 @@ p { margin: 0 }
 ul, ol, dl, dd { margin: 0; padding: 0; list-style: none }
 .wrap { max-width: 720px; margin-inline: auto; padding-inline: 20px }
 .zh { font-family: var(--f-zh); color: var(--faint); font-weight: 400; font-size: .86em }
-.mono, time { font-family: var(--f-mono); font-variant-numeric: tabular-nums }
+.mono, time { font-family: var(--f-mono); font-variant-numeric: tabular-nums; letter-spacing: -.01em }
 .faint { color: var(--faint) }
 .small { font-size: 12.5px }
 .eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase }
@@ -283,3 +284,13 @@ footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); borde
 .me-pin { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--accent) }
 .btn.book { background: var(--warn-soft); border-color: transparent; color: var(--warn); font-weight: 600 }
 .alt .tips { font-size: 13.5px }
+
+/* apps */
+.apps-g { margin-top: 22px }
+.apps-g > h3 { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line) }
+.apps li { padding-block: 14px; border-bottom: 1px solid var(--line) }
+.app-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px }
+.app-h strong { font-size: 16px; font-weight: 600 }
+.app-h .faint { font-size: 13px }
+.app-h .chip { align-self: center }
+.apps p { margin-top: 4px; font-size: 14px; color: var(--muted); max-width: 62ch }

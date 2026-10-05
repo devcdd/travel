@@ -64,6 +64,19 @@ export interface Day {
 export interface FoodItem { title: string; zh: string; when: string; desc: string; order?: string; place: Place; links?: Link[] }
 export interface CheckItem { id: string; title: string; desc: string; due: string }
 
+export interface AppItem {
+  name: string
+  /** 스토어에 표시되는 원래 이름이 다르면 적습니다 */
+  store?: string
+  group: string
+  desc: string
+  must?: boolean
+  /** App Store 앱 id (숫자) */
+  ios?: string
+  /** 설치 없이 웹으로 쓰는 경우 */
+  web?: string
+}
+
 export interface Hotel extends Place {
   /** 숙소 카드 보조 설명, {BL10} 같은 역 코드 사용 가능 */
   access: string
@@ -87,6 +100,7 @@ export interface Trip {
   days: Day[]
   food: FoodItem[]
   checklist: CheckItem[]
+  apps: AppItem[]
   info: [string, string][]
   emergency: { label: string; number: string }[]
   footer: string

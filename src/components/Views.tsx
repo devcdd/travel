@@ -185,3 +185,50 @@ export function InfoView() {
     </section>
   )
 }
+
+export function AppsView() {
+  const { apps } = useTrip()
+  const groups = [...new Set(apps.map((a) => a.group))]
+  return (
+    <section className="ref">
+      <h2>설치할 앱</h2>
+      <p className="lead">출발 전에 받아 두면 좋은 앱입니다. 필수 표시가 있는 것부터 받으세요. 모두 한국 App Store에서 받을 수 있습니다.</p>
+      {groups.map((g) => (
+        <div key={g} className="apps-g">
+          <h3>{g}</h3>
+          <ul className="apps">
+            {apps
+              .filter((a) => a.group === g)
+              .map((a) => (
+                <li key={a.name}>
+                  <div className="app-h">
+                    <strong>{a.name}</strong>
+                    {a.store && <span className="faint">{a.store}</span>}
+                    {a.must && <span className="chip ok">필수</span>}
+                  </div>
+                  <p>{a.desc}</p>
+                  <div className="acts compact">
+                    {a.ios && (
+                      <a className="btn" href={`https://apps.apple.com/kr/app/id${a.ios}`} target="_blank" rel="noopener">
+                        App Store
+                      </a>
+                    )}
+                    {a.ios && (
+                      <a className="btn" href={`https://play.google.com/store/search?q=${encodeURIComponent(a.name)}&c=apps`} target="_blank" rel="noopener">
+                        Google Play
+                      </a>
+                    )}
+                    {a.web && (
+                      <a className="btn" href={a.web} target="_blank" rel="noopener">
+                        웹으로 열기
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )
+}

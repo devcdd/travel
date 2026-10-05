@@ -1,4 +1,4 @@
-import type { CheckItem, Day, FoodItem, Hotel, Place, Trip } from '../types'
+import type { AppItem, CheckItem, Day, FoodItem, Hotel, Place, Trip } from '../types'
 
 // 텍스트 안의 **굵게**, {R03} 같은 MRT 역 코드는 <Rich>가 렌더링합니다.
 
@@ -396,6 +396,24 @@ const CHECKLIST: CheckItem[] = [
   { id: 'c-card', title: '이지카드 사서 충전', desc: '공항 MRT역이나 편의점에서. MRT, 버스, 편의점 결제에 씁니다.', due: '10.07' },
 ]
 
+const APPS: AppItem[] = [
+  { group: '지도 · 교통', name: 'Google 지도', must: true, ios: '585027354', desc: '대만은 MRT·버스 실시간 정보가 정확해서 길찾기는 이것 하나면 됩니다. 출발 전에 숙소를 저장하고, 타이베이 시내와 지우펀 일대를 오프라인 지도로 받아 두세요.' },
+  { group: '지도 · 교통', name: '台北捷運Go', store: '타이베이 메트로 공식 앱', ios: '997212021', desc: '노선도, 역별 출구 안내, 열차 도착 시간, 요금. 메인역처럼 출구가 많은 역에서 유용합니다. 중국어·영어 지원.' },
+  { group: '지도 · 교통', name: 'Bus+', store: 'Bus+ (公車動態)', ios: '967861325', desc: '버스 도착 예정 시간을 실시간으로 봅니다. 고궁박물원 가는 홍30(紅30)·255번 기다릴 때 씁니다.' },
+  { group: '지도 · 교통', name: 'Uber', must: true, ios: '368677368', desc: '한국 카드로 바로 택시를 부를 수 있고 목적지를 지도로 찍어 말이 필요 없습니다. 짐이 많은 공항 이동에도 씁니다.' },
+  { group: '지도 · 교통', name: '55688 台灣大車隊', store: '대만 최대 택시 호출', ios: '579255069', desc: 'Uber가 안 잡힐 때 대안입니다. 화면이 중국어라 주소는 택시 카드에서 복사해 붙여 넣으세요.' },
+  { group: '예약 · 결제', name: 'KKday', ios: '1248267356', desc: '예스폭지 투어를 KKday로 예약했다면 바우처를 앱에서 바로 보여줄 수 있습니다.' },
+  { group: '예약 · 결제', name: 'Klook', ios: '961850126', desc: '투어나 101 티켓을 Klook으로 예약했다면 이쪽입니다. 예약한 쪽 앱만 받으면 됩니다.' },
+  { group: '예약 · 결제', name: 'inline', store: '설치 불필요', web: 'https://inline.app', desc: '훠궈 예약과 원격 대기는 웹으로 됩니다. 이 페이지의 Day 3 예약 버튼을 쓰세요.' },
+  { group: '예약 · 결제', name: '트래블월렛', ios: '1460769945', desc: '대만 달러를 미리 충전해 카드 결제와 현지 ATM 인출에 씁니다. 수수료 조건은 앱에서 확인하세요.' },
+  { group: '예약 · 결제', name: '트래블로그', store: '하나머니', ios: '1038288833', desc: '하나카드 트래블로그 사용자라면 대만 달러를 이 앱에서 충전합니다.' },
+  { group: '번역 · 소통', name: '파파고', must: true, ios: '1147874819', desc: '메뉴판과 안내문을 카메라로 비추면 바로 번역됩니다. 번체 중국어 인식이 좋습니다.' },
+  { group: '번역 · 소통', name: 'Google 번역', ios: '414706506', desc: '파파고 대안. 오프라인용 중국어(번체) 언어팩을 받아 두면 데이터가 없어도 됩니다.' },
+  { group: '번역 · 소통', name: 'LINE', ios: '443904275', desc: '대만에서 가장 많이 쓰는 메신저입니다. 식당과 숙소가 LINE으로 문의를 받는 경우가 많습니다.' },
+  { group: '안전 · 날씨', name: '해외안전여행', store: '외교부', ios: '1469501110', desc: '현지 안전 공지와 영사콜센터 연결. 여권 분실 같은 상황에 대비해 받아 두세요.' },
+  { group: '안전 · 날씨', name: '中央氣象署W', store: '대만 기상청 공식', ios: '439181175', desc: '비 레이더와 태풍 경보를 가장 빨리 확인합니다. 10월은 태풍 시즌 끝자락입니다.' },
+]
+
 const HOTEL: Hotel = { ...P.hotel, access: '{BL10} 룽산쓰역 도보 3분 · 완화역 연결', nights: 3 }
 
 export const taipei2026: Trip = {
@@ -413,6 +431,7 @@ export const taipei2026: Trip = {
   days: DAYS,
   food: FOOD,
   checklist: CHECKLIST,
+  apps: APPS,
   info: [
     ['날씨', '10월 초 낮 27–30°C, 밤 22–24°C. 습하고 소나기가 잦습니다. 태풍 시즌 끝자락이라 출발 2–3일 전 예보를 확인하세요.'],
     ['교통', 'MRT가 대부분을 커버합니다. Google 지도 대중교통 경로가 정확하고, 우버와 택시도 저렴합니다.'],
