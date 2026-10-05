@@ -7,7 +7,7 @@ export function Home() {
       <header className="wrap top">
         <div className="eyebrow">Trips · {TRIPS.length}</div>
         <h1>여행</h1>
-        <p className="clock">일정을 고르면 날짜별 동선, 지도, 예약 체크리스트가 열립니다.</p>
+        <p className="clock">다녀올 여행을 골라 보세요. 날짜별 동선과 지도, 예약할 것들을 한곳에서 볼 수 있어요.</p>
       </header>
       <main className="wrap">
         <ul className="trips">

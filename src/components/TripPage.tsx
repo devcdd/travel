@@ -127,7 +127,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
       </main>
 
       <footer className="wrap">
-        {trip.footer} 날씨는 Open-Meteo, 환율은 ExchangeRate-API, 지도는 OpenStreetMap 데이터를 씁니다.
+        {trip.footer} 날씨는 Open-Meteo, 환율은 ExchangeRate-API, 지도는 Google 지도와 OpenStreetMap 정보를 사용해요.
       </footer>
     </TripContext.Provider>
   )

@@ -103,7 +103,7 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                   <span className="faint"> ({day.weather.where})</span>
                 </>
               ) : (
-                <span className="faint">예보 불러오는 중</span>
+                <span className="faint">예보를 불러오고 있어요</span>
               )}
             </dd>
           </div>
@@ -128,7 +128,7 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
         )}
         <div className="acts">
           <a className="btn primary" href={routeUrl(hotel, route)} target="_blank" rel="noopener">
-            하루 동선 Google 지도로 열기
+            Google 지도에서 하루 동선 보기
           </a>
           {day.links?.map((l) => (
             <a key={l.href} className="btn" href={l.href} target="_blank" rel="noopener">

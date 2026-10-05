@@ -30,7 +30,7 @@ export function TaxiSheet({ place, onClose }: { place: Place; onClose: () => voi
           <button
             type="button"
             className="btn"
-            onClick={async () => toast((await copyText(text)) ? '주소를 복사했어요' : '복사하지 못했어요. 길게 눌러 선택하세요')}
+            onClick={async () => toast((await copyText(text)) ? '주소를 복사했어요' : '복사하지 못했어요. 주소를 길게 눌러 복사해 주세요')}
           >
             주소 복사
           </button>

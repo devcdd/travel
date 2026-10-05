@@ -18,7 +18,7 @@ export function HotelCard() {
           <button
             type="button"
             className="addr"
-            onClick={async () => toast((await copyText(HOTEL.address!)) ? '숙소 주소를 복사했어요' : '복사하지 못했어요')}
+            onClick={async () => toast((await copyText(HOTEL.address!)) ? '숙소 주소를 복사했어요' : '복사하지 못했어요. 주소를 길게 눌러 복사해 주세요')}
             title="주소 복사"
           >
             {HOTEL.address}
@@ -47,7 +47,7 @@ export function FoodView() {
   return (
     <section className="ref">
       <h2>먹을 것</h2>
-      <p className="lead">일정에 넣은 곳과 대화에서 나온 후보입니다. 오른쪽 날짜는 배치한 날입니다.</p>
+      <p className="lead">일정에 넣은 맛집과 함께 가 볼 만한 후보를 모았어요. 오른쪽 날짜는 그 맛집을 넣어 둔 날이에요.</p>
       <ul className="food">
         {FOOD.map((f) => (
           <li key={f.title}>
@@ -58,7 +58,7 @@ export function FoodView() {
             <p>{f.desc}</p>
             {f.order && (
               <p className="order">
-                <b>주문</b>
+                <b>추천</b>
                 {f.order}
               </p>
             )}
@@ -82,7 +82,7 @@ export function ChecklistView() {
   return (
     <section className="ref">
       <h2>예약 · 준비</h2>
-      <p className="lead">체크한 항목은 이 기기에 저장됩니다.</p>
+      <p className="lead">준비를 마친 항목은 체크해 두세요. 체크한 내용은 이 기기에 저장돼요.</p>
       <div className="progress">
         <div className="bar">
           <i style={{ width: `${(n / CHECKLIST.length) * 100}%` }} />
@@ -143,7 +143,7 @@ function Currency() {
         </label>
         <span className="fx-eq">=</span>
         <output className="fx-out" htmlFor="fx-twd">
-          {krw != null ? `${krw.toLocaleString('ko-KR')}원` : '환율 정보 없음'}
+          {krw != null ? `${krw.toLocaleString('ko-KR')}원` : '환율을 불러오지 못했어요'}
         </output>
       </div>
       <div className="fx-quick">
@@ -154,7 +154,7 @@ function Currency() {
         ))}
       </div>
       <p className="faint small">
-        {rate ? `1 ${currency.symbol} ≈ ${rate.toFixed(1)}원${updated ? ` · ${updated} 기준` : ' · 저장된 값'}` : '네트워크 연결 후 환율을 불러옵니다.'}
+        {rate ? `1 ${currency.symbol} ≈ ${rate.toFixed(1)}원${updated ? ` · ${updated} 기준` : ' · 마지막으로 저장된 환율'}` : '인터넷에 연결되면 환율을 불러올게요.'}
       </p>
     </div>
   )
@@ -192,7 +192,7 @@ export function AppsView() {
   return (
     <section className="ref">
       <h2>설치할 앱</h2>
-      <p className="lead">출발 전에 받아 두면 좋은 앱입니다. 필수 표시가 있는 것부터 받으세요. 모두 한국 App Store에서 받을 수 있습니다.</p>
+      <p className="lead">출발 전에 받아 두면 여행이 훨씬 편해지는 앱들이에요. ‘필수’ 표시가 있는 앱부터 받아 두세요. 모두 한국 App Store에서 받을 수 있어요.</p>
       {groups.map((g) => (
         <div key={g} className="apps-g">
           <h3>{g}</h3>
