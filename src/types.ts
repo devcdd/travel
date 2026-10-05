@@ -66,8 +66,8 @@ export interface Day {
 }
 
 export interface FoodItem { title: string; local?: string; when: string; desc: string; order?: string; place: Place; links?: Link[] }
-export interface CheckItem { id: string; title: string; desc: string; due: string }
-export interface InfoItem { title: string; body: string }
+export interface CheckItem { id: string; title: string; desc: string; due: string; group?: string }
+export interface InfoItem { group?: string; title: string; body?: string; points?: string[] }
 
 export interface AppItem {
   name: string

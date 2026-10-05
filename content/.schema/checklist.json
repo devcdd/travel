@@ -20,6 +20,11 @@
       "due": {
         "type": "string",
         "minLength": 1
+      },
+      "group": {
+        "description": "묶음 이름 (예: 출발 전에, 짐 챙기기). 처음 나온 순서대로 보여요",
+        "type": "string",
+        "minLength": 1
       }
     },
     "required": [

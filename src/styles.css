@@ -199,7 +199,7 @@ main { padding-block: 0 48px; min-height: 60vh }
 .check .due { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 2px; white-space: nowrap }
 
 .fx { margin-top: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface) }
-.fx h3, .info h3 { font-size: 12px; font-family: var(--f-mono); font-weight: 600; letter-spacing: .06em; color: var(--muted); text-transform: uppercase }
+.fx h3 { font-size: 12px; font-family: var(--f-mono); font-weight: 600; letter-spacing: .06em; color: var(--muted); text-transform: uppercase }
 .fx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px }
 .fx-in { display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); font-family: var(--f-mono); font-weight: 600 }
 .fx-in input { width: 7ch; border: 0; background: none; font: inherit; font-size: 20px; color: var(--fg); outline: none }
@@ -209,10 +209,18 @@ main { padding-block: 0 48px; min-height: 60vh }
 .fx-quick .btn { height: 28px; font-family: var(--f-mono); font-size: 12px }
 .fx p { margin-top: 10px }
 
-.info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; margin-top: 8px }
-.info > div { padding-block: 16px; border-bottom: 1px solid var(--line); min-width: 0 }
-.info p { margin-top: 6px; font-size: 14.5px }
-.info p + p { margin-top: 2px }
+.info-g, .check-g { margin-top: 26px }
+.info-g > h3, .check-g > h3 { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--fg); padding-bottom: 8px; border-bottom: 1px solid var(--fg) }
+.check-g > h3 .mono { font-size: 12px; font-weight: 500; color: var(--muted) }
+.info > li { padding-block: 14px; border-bottom: 1px solid var(--line) }
+.info h4 { font-size: 15px; font-weight: 600 }
+.info p { margin-top: 4px; font-size: 14.5px; color: var(--muted) }
+.pts { margin-top: 6px; display: grid; gap: 6px }
+.pts li { position: relative; padding-left: 14px; font-size: 14.5px; color: var(--muted) }
+.pts li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: var(--faint) }
+.pts b, .info p b { color: var(--fg); font-weight: 600 }
+.sos li { display: flex; justify-content: space-between; gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--line); font-size: 14.5px }
+.sos a { font-weight: 600; color: var(--accent); text-decoration: none }
 
 footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); border-top: 1px solid var(--line) }
 
@@ -245,7 +253,6 @@ footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); borde
   .tl time { font-size: 13px }
   .tl time.soft { font-size: 11.5px; white-space: normal }
   .st-b { padding-left: 22px }
-  .info { grid-template-columns: minmax(0, 1fr) }
   .check label { grid-template-columns: 22px minmax(0, 1fr) }
   .check .due { grid-column: 2; padding-top: 0 }
 }

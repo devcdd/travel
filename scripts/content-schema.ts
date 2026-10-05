@@ -77,7 +77,15 @@ export const Day = z
   })
   .strict()
 
-const InfoItem = z.object({ title: text, body: text }).strict()
+const InfoItem = z
+  .object({
+    group: text.optional().describe('묶음 이름. 같은 묶음끼리 모아서 보여요 (없으면 "기타")'),
+    title: text,
+    body: text.optional().describe('짧은 설명 문장'),
+    points: z.array(text).optional().describe('하나씩 끊어 볼 내용. 항목마다 한 문장씩'),
+  })
+  .strict()
+  .refine((x) => x.body || x.points?.length, { message: 'body나 points 중 하나는 있어야 해요' })
 
 const App = z
   .object({
@@ -97,6 +105,7 @@ const CheckItem = z
     title: text,
     desc: text,
     due: text,
+    group: text.optional().describe('묶음 이름 (예: 출발 전에, 짐 챙기기). 처음 나온 순서대로 보여요'),
   })
   .strict()
 

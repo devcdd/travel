@@ -95,18 +95,31 @@
       "items": {
         "type": "object",
         "properties": {
+          "group": {
+            "description": "묶음 이름. 같은 묶음끼리 모아서 보여요 (없으면 \"기타\")",
+            "type": "string",
+            "minLength": 1
+          },
           "title": {
             "type": "string",
             "minLength": 1
           },
           "body": {
+            "description": "짧은 설명 문장",
             "type": "string",
             "minLength": 1
+          },
+          "points": {
+            "description": "하나씩 끊어 볼 내용. 항목마다 한 문장씩",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
         "required": [
-          "title",
-          "body"
+          "title"
         ],
         "additionalProperties": false
       }
@@ -196,6 +209,11 @@
             "minLength": 1
           },
           "due": {
+            "type": "string",
+            "minLength": 1
+          },
+          "group": {
+            "description": "묶음 이름 (예: 출발 전에, 짐 챙기기). 처음 나온 순서대로 보여요",
             "type": "string",
             "minLength": 1
           }

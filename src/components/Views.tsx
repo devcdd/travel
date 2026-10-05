@@ -5,6 +5,16 @@ import { Rich } from './Rich'
 import { Local } from './Local'
 import { PlaceActions } from './PlaceActions'
 
+/** 처음 나온 순서대로 묶음을 만들어요. 묶음 이름이 없으면 '기타'로 모아요. */
+function groupBy<T>(items: T[], key: (x: T) => string | undefined): [string, T[]][] {
+  const m = new Map<string, T[]>()
+  for (const x of items) {
+    const k = key(x) ?? '기타'
+    m.set(k, [...(m.get(k) ?? []), x])
+  }
+  return [...m]
+}
+
 export function HotelCard() {
   const { openTaxi, toast } = useActions()
   const { hotel: HOTEL } = useTrip()
@@ -92,20 +102,32 @@ export function ChecklistView() {
           {n} / {CHECKLIST.length}
         </span>
       </div>
-      <ul className="check">
-        {CHECKLIST.map((c) => (
-          <li key={c.id}>
-            <label htmlFor={c.id}>
-              <input id={c.id} type="checkbox" checked={!!done[c.id]} onChange={(e) => setDone((d) => ({ ...d, [c.id]: e.target.checked }))} />
-              <div>
-                <strong>{c.title}</strong>
-                <span className="d">{c.desc}</span>
-              </div>
-              <span className="due">{c.due}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
+      {groupBy(CHECKLIST, (c) => c.group).map(([g, items]) => (
+        <div key={g} className="check-g">
+          <h3>
+            {g}
+            <span className="mono">
+              {items.filter((c) => done[c.id]).length} / {items.length}
+            </span>
+          </h3>
+          <ul className="check">
+            {items.map((c) => (
+              <li key={c.id}>
+                <label htmlFor={c.id}>
+                  <input id={c.id} type="checkbox" checked={!!done[c.id]} onChange={(e) => setDone((d) => ({ ...d, [c.id]: e.target.checked }))} />
+                  <div>
+                    <strong>{c.title}</strong>
+                    <span className="d">
+                      <Rich text={c.desc} />
+                    </span>
+                  </div>
+                  <span className="due">{c.due}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </section>
   )
 }
@@ -167,21 +189,44 @@ export function InfoView() {
     <section className="ref">
       <h2>현지 정보</h2>
       <Currency />
-      <div className="info">
-        {info.map((x) => (
-          <div key={x.title}>
-            <h3>{x.title}</h3>
-            <p>{x.body}</p>
-          </div>
-        ))}
-        <div>
-          <h3>긴급 전화</h3>
-          {emergency.map((e) => (
-            <p key={e.number}>
-              {e.label} <b className="mono">{e.number}</b>
-            </p>
-          ))}
+      {groupBy(info, (x) => x.group).map(([g, items]) => (
+        <div key={g} className="info-g">
+          <h3>{g}</h3>
+          <ul className="info">
+            {items.map((x) => (
+              <li key={x.title}>
+                <h4>{x.title}</h4>
+                {x.body && (
+                  <p>
+                    <Rich text={x.body} />
+                  </p>
+                )}
+                {x.points && (
+                  <ul className="pts">
+                    {x.points.map((t) => (
+                      <li key={t}>
+                        <Rich text={t} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
+      ))}
+      <div className="info-g">
+        <h3>긴급 전화</h3>
+        <ul className="sos">
+          {emergency.map((e) => (
+            <li key={e.number}>
+              <span>{e.label}</span>
+              <a className="mono" href={`tel:${e.number.replace(/[^\d]/g, '')}`}>
+                {e.number}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
