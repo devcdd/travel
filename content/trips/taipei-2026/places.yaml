@@ -5,40 +5,40 @@ hotel:
   local: 台北凱達大飯店
   q: 台北凱達大飯店 Caesar Metro Taipei
   lat: 25.0333
-  lng: 121.5003
+  lng: 121.4996
   address: 台北市萬華區艋舺大道167號
 airport:
   name: 타오위안 국제공항
   local: 桃園國際機場
   q: 桃園國際機場
-  lat: 25.0797
-  lng: 121.2342
+  lat: 25.0793
+  lng: 121.2346
 a1:
   name: 공항철도 타이베이역 A1
   local: 機場捷運 台北車站 A1
   q: 機場捷運台北車站
-  lat: 25.0489
-  lng: 121.5146
+  lat: 25.0486
+  lng: 121.5147
 dtf101:
   name: 딘타이펑 101점
   local: 鼎泰豐 101店
   q: 鼎泰豐 101店
-  lat: 25.0336
-  lng: 121.5651
+  lat: 25.0334
+  lng: 121.5645
   address: 台北市信義區市府路45號 B1
 tp101:
   name: 타이베이 101 전망대
   local: 台北101觀景台
   q: 台北101觀景台
-  lat: 25.034
-  lng: 121.5645
+  lat: 25.0335
+  lng: 121.5648
   address: 台北市信義區信義路五段7號
 xinyi:
   name: 신이 지구
   local: 信義商圈
   q: 微風南山
-  lat: 25.0346
-  lng: 121.5668
+  lat: 25.036
+  lng: 121.5669
 xiangshan:
   name: 샹산 등산로
   local: 象山步道
@@ -56,21 +56,21 @@ huaxi:
   name: 화시제 야시장
   local: 華西街觀光夜市
   q: 華西街觀光夜市
-  lat: 25.0378
-  lng: 121.4985
+  lat: 25.0384
+  lng: 121.4984
 aychung:
   name: 아종면선
   local: 阿宗麵線 西門店
   q: 阿宗麵線 西門店
-  lat: 25.0434
+  lat: 25.0433
   lng: 121.5076
   address: 台北市萬華區峨眉街8-1號
 ximen5:
   name: 시먼역 5번 출구
   local: 捷運西門站 5號出口
   q: 捷運西門站5號出口
-  lat: 25.0423
-  lng: 121.5082
+  lat: 25.0424
+  lng: 121.5086
 tmsM3:
   name: 타이베이 메인역 M3 출구
   local: 台北車站 M3出口
@@ -81,26 +81,26 @@ yehliu:
   name: 예류지질공원
   local: 野柳地質公園
   q: 野柳地質公園
-  lat: 25.2066
-  lng: 121.6903
+  lat: 25.2113
+  lng: 121.6964
 shifenFall:
   name: 스펀폭포
   local: 十分瀑布
   q: 十分瀑布
-  lat: 25.0482
-  lng: 121.7869
+  lat: 25.049
+  lng: 121.7873
 shifen:
   name: 스펀 라오제
   local: 十分老街
   q: 十分老街
-  lat: 25.0413
-  lng: 121.7754
+  lat: 25.0438
+  lng: 121.7773
 jiufen:
   name: 지우펀 라오제
   local: 九份老街
   q: 九份老街
-  lat: 25.11
-  lng: 121.8446
+  lat: 25.1076
+  lng: 121.8437
 raohe:
   name: 라오허제 야시장
   local: 饒河街觀光夜市
@@ -111,98 +111,100 @@ npm:
   name: 국립고궁박물원
   local: 國立故宮博物院
   q: 國立故宮博物院
-  lat: 25.1024
-  lng: 121.5485
+  lat: 25.1016
+  lng: 121.5489
   address: 台北市士林區至善路二段221號
 silks:
   name: 고궁 징화
   local: 故宮晶華
   q: 故宮晶華
-  lat: 25.1015
-  lng: 121.549
+  lat: 25.1012
+  lng: 121.5478
 beitou:
   name: 베이터우 지열곡
   local: 北投地熱谷
   q: 北投地熱谷
-  lat: 25.1377
-  lng: 121.5116
+  lat: 25.138
+  lng: 121.5119
 tamsui:
   name: 단수이 라오제
   local: 淡水老街
   q: 淡水老街
-  lat: 25.1697
-  lng: 121.4405
+  lat: 25.1718
+  lng: 121.4378
 wulao:
   name: 우라오 시먼딩점
   local: 無老鍋 台北西門町店
   q: 無老鍋 台北西門町店
-  lat: 25.044
-  lng: 121.5093
+  lat: 25.0423
+  lng: 121.5089
   address: 台北市中正區中華路一段55號2樓
 wulaoZs:
   name: 우라오 중산점
   local: 無老鍋 台北中山店
   q: 無老鍋 台北中山店
-  lat: 25.056
-  lng: 121.5226
+  lat: 25.0543
+  lng: 121.5224
   address: 台北市中山區中山北路二段36-1號
 chinHuajiao:
   name: 칭화자오 중산북점
   local: 青花驕 台北中山北店
   q: 青花驕 台北中山北店
   lat: 25.0517
-  lng: 121.5222
+  lng: 121.5227
   address: 台北市中山區中山北路一段137號
 orange:
   name: 오렌지 샤부샤부 1관
   local: 橘色涮涮屋 一館
   q: 橘色涮涮屋 大安路
-  lat: 25.0383
-  lng: 121.5466
+  lat: 25.0385
+  lng: 121.5453
   address: 台北市大安區大安路一段135號B1
 longmen:
   name: 용문객잔교자관
   local: 龍門客棧餃子館
   q: 龍門客棧餃子館
-  lat: 25.0446
-  lng: 121.5228
+  lat: 25.0396
+  lng: 121.5225
+  address: 台北市中正區林森南路61巷19號
 shilinNM:
   name: 스린 야시장
   local: 士林觀光夜市
   q: 士林觀光夜市
-  lat: 25.088
-  lng: 121.5241
+  lat: 25.0883
+  lng: 121.5251
 ningxia:
   name: 닝샤 야시장
   local: 寧夏觀光夜市
   q: 寧夏觀光夜市
-  lat: 25.056
-  lng: 121.5153
+  lat: 25.0561
+  lng: 121.5152
 bopiliao:
   name: 보피랴오 역사거리
   local: 剝皮寮歷史街區
   q: 剝皮寮歷史街區
   lat: 25.0368
-  lng: 121.5018
+  lng: 121.5023
 yongkang:
   name: 융캉 우육면
   local: 永康牛肉麵
   q: 永康牛肉麵
-  lat: 25.0322
-  lng: 121.5246
+  lat: 25.0329
+  lng: 121.5281
   address: 台北市大安區金山南路二段31巷17號
 yongkangSt:
   name: 융캉제
   local: 永康街
   q: 永康街
-  lat: 25.0328
-  lng: 121.5298
+  lat: 25.0325
+  lng: 121.5297
 carrefour:
   name: 까르푸 구이린점
   local: 家樂福 桂林店
   q: 家樂福 桂林店
-  lat: 25.0377
-  lng: 121.5047
+  lat: 25.0379
+  lng: 121.5058
+  address: 台北市萬華區桂林路1號
 chiate:
   name: 치아더
   local: 佳德糕餅
@@ -211,3 +213,48 @@ pepperBun:
   name: 푸저우 세조 후추빵
   local: 福州世祖胡椒餅
   q: 福州世祖胡椒餅 饒河
+jiayan:
+  name: 자옌 중식당
+  local: 家宴中餐廳
+  q: 家宴中餐廳 凱達大飯店
+  address: 台北市萬華區艋舺大道167號3樓
+goldenLion:
+  name: 진스러우
+  local: 金獅樓
+  q: 金獅樓 西寧南路
+  lat: 25.0455
+  lng: 121.5064
+  address: 台北市萬華區西寧南路36號10樓
+timHoWan:
+  name: 팀호완 타이베이역점
+  local: 添好運 台北站前店
+  q: 添好運 台北站前店
+  lat: 25.046
+  lng: 121.5168
+  address: 台北市中正區忠孝西路一段36號1樓
+linjiang:
+  name: 린장제(통화) 야시장
+  local: 臨江街觀光夜市
+  q: 臨江街觀光夜市
+  lat: 25.0298
+  lng: 121.5557
+guangzhou:
+  name: 광저우제 야시장
+  local: 廣州街夜市
+  q: 廣州街夜市
+  lat: 25.0368
+  lng: 121.4975
+laoShandong:
+  name: 라오산둥 우육면
+  local: 老山東牛肉家常麵店
+  q: 老山東牛肉家常麵店
+  lat: 25.0434
+  lng: 121.5057
+  address: 台北市萬華區西寧南路70號B1
+liuShandong:
+  name: 류산둥 우육면
+  local: 劉山東牛肉麵
+  q: 劉山東牛肉麵
+  lat: 25.0457
+  lng: 121.5137
+  address: 台北市中正區開封街一段14巷2號

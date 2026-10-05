@@ -173,6 +173,28 @@
               "minLength": 1
             }
           },
+          "links": {
+            "description": "예약·조회 페이지 같은 외부 링크",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "href": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "label",
+                "href"
+              ],
+              "additionalProperties": false
+            }
+          },
           "alts": {
             "description": "선택지. 순서대로 A, B, C가 붙어요",
             "type": "array",

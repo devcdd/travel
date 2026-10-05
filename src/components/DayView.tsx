@@ -224,7 +224,16 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                     })}
                   </div>
                 )}
-                {s.place && !s.alts && <PlaceActions place={s.place} tour={s.tour} />}
+                {s.place && !s.alts && <PlaceActions place={s.place} tour={s.tour} links={s.links} />}
+                {!s.place && s.links && (
+                  <div className="acts">
+                    {s.links.map((l) => (
+                      <a key={l.href} className="btn book" href={l.href} target="_blank" rel="noopener">
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </li>
           ),

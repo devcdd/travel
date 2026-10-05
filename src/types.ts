@@ -41,6 +41,8 @@ export interface Stop {
   meta?: string[]
   desc?: string
   tips?: string[]
+  /** 예약·조회 페이지 같은 외부 링크 */
+  links?: Link[]
   alts?: Alt[]
   /** 투어 버스로 이동하는 곳은 길찾기 버튼을 숨깁니다 */
   tour?: boolean

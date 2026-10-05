@@ -122,6 +122,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
         meta: s.meta,
         desc: s.desc,
         tips: s.tips,
+        links: s.links,
         tour: s.tour,
         offRoute: s.offRoute,
         alts: s.alts?.map((a, j) => {

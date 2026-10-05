@@ -47,6 +47,7 @@ export const Stop = z
     meta: z.array(text).optional().describe('제목 아래 짧은 정보'),
     desc: text.optional(),
     tips: z.array(text).optional(),
+    links: z.array(Link).optional().describe('예약·조회 페이지 같은 외부 링크'),
     alts: z.array(Alt).optional().describe('선택지. 순서대로 A, B, C가 붙어요'),
     tour: z.boolean().optional().describe('투어 버스로 가는 곳이면 true (길찾기 버튼 숨김)'),
     offRoute: z.boolean().optional().describe('하루 동선 경로에서 뺄 곳이면 true'),
@@ -54,7 +55,7 @@ export const Stop = z
   .strict()
   .superRefine((s, ctx) => {
     if (s.move) {
-      for (const k of ['kind', 'title', 'place', 'alts'] as const)
+      for (const k of ['kind', 'title', 'place', 'alts', 'links'] as const)
         if (s[k] !== undefined) ctx.addIssue({ code: 'custom', path: [k], message: 'move 줄에는 쓰지 않아요' })
       return
     }
