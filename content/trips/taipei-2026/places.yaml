@@ -107,6 +107,11 @@ raohe:
   q: 饒河街觀光夜市
   lat: 25.0508
   lng: 121.5773
+ciyou:
+  name: 쑹산 자우궁
+  local: 松山慈祐宮
+  q: 松山慈祐宮
+  address: 台北市松山區八德路四段761號
 npm:
   name: 국립고궁박물원
   local: 國立故宮博物院
