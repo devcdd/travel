@@ -1,62 +1,8 @@
+import type { CheckItem, Day, FoodItem, Hotel, Place, Trip } from '../types'
+
 // 텍스트 안의 **굵게**, {R03} 같은 MRT 역 코드는 <Rich>가 렌더링합니다.
 
-export interface Place {
-  name: string
-  zh: string
-  /** Google 지도 검색어 */
-  q: string
-  lat?: number
-  lng?: number
-  /** 택시 카드에 보여줄 주소 */
-  address?: string
-}
-
-export type Kind = 'meet' | 'sight' | 'food' | 'free' | 'move'
-export type Tone = 'ok' | 'warn' | 'idea'
-
-export interface Alt {
-  tag: string
-  title: string
-  zh?: string
-  desc: string
-  place?: Place
-}
-
-export interface Stop {
-  time: string
-  /** 시각이 아닌 라벨(예: '도착')이면 true */
-  soft?: boolean
-  kind: Kind
-  kindLabel?: string
-  title?: string
-  zh?: string
-  place?: Place
-  meta?: string[]
-  desc?: string
-  tips?: string[]
-  alts?: Alt[]
-  /** 투어 버스로 이동하는 곳은 길찾기 버튼을 숨깁니다 */
-  tour?: boolean
-  /** 하루 동선(Google 지도 경로, 지도 경로선)에서 제외 */
-  offRoute?: boolean
-}
-
-export interface Day {
-  id: string
-  n: number
-  date: string
-  label: string
-  short: string
-  title: string
-  lead: string
-  chips: { tone: Tone; text: string }[]
-  facts: { k: string; v: string }[]
-  weather: { lat: number; lng: number; where: string }
-  stops: Stop[]
-  links?: { label: string; href: string }[]
-}
-
-export const P = {
+const P = {
   hotel: { name: '카이사르 메트로 타이베이', zh: '台北凱達大飯店', q: '台北凱達大飯店 Caesar Metro Taipei', lat: 25.0333, lng: 121.5003, address: '台北市萬華區艋舺大道167號' },
   airport: { name: '타오위안 국제공항', zh: '桃園國際機場', q: '桃園國際機場', lat: 25.0797, lng: 121.2342 },
   a1: { name: '공항철도 타이베이역 A1', zh: '機場捷運 台北車站 A1', q: '機場捷運台北車站', lat: 25.0489, lng: 121.5146 },
@@ -78,9 +24,10 @@ export const P = {
   silks: { name: '고궁 징화', zh: '故宮晶華', q: '故宮晶華', lat: 25.1015, lng: 121.549 },
   beitou: { name: '베이터우 지열곡', zh: '北投地熱谷', q: '北投地熱谷', lat: 25.1377, lng: 121.5116 },
   tamsui: { name: '단수이 라오제', zh: '淡水老街', q: '淡水老街', lat: 25.1697, lng: 121.4405 },
-  wulao: { name: '우라오', zh: '無老鍋', q: '無老鍋 台北' },
-  chinHuajiao: { name: '칭화자오', zh: '青花驕', q: '青花驕 台北' },
-  orange: { name: '오렌지 샤부샤부', zh: '橘色涮涮屋', q: '橘色涮涮屋' },
+  wulao: { name: '우라오 시먼딩점', zh: '無老鍋 台北西門町店', q: '無老鍋 台北西門町店', lat: 25.044, lng: 121.5093, address: '台北市中正區中華路一段55號2樓' },
+  wulaoZs: { name: '우라오 중산점', zh: '無老鍋 台北中山店', q: '無老鍋 台北中山店', lat: 25.056, lng: 121.5226, address: '台北市中山區中山北路二段36-1號' },
+  chinHuajiao: { name: '칭화자오 중산북점', zh: '青花驕 台北中山北店', q: '青花驕 台北中山北店', lat: 25.0517, lng: 121.5222, address: '台北市中山區中山北路一段137號' },
+  orange: { name: '오렌지 샤부샤부 1관', zh: '橘色涮涮屋 一館', q: '橘色涮涮屋 大安路', lat: 25.0383, lng: 121.5466, address: '台北市大安區大安路一段135號B1' },
   longmen: { name: '용문객잔교자관', zh: '龍門客棧餃子館', q: '龍門客棧餃子館', lat: 25.0446, lng: 121.5228 },
   shilinNM: { name: '스린 야시장', zh: '士林觀光夜市', q: '士林觀光夜市', lat: 25.088, lng: 121.5241 },
   ningxia: { name: '닝샤 야시장', zh: '寧夏觀光夜市', q: '寧夏觀光夜市', lat: 25.056, lng: 121.5153 },
@@ -91,9 +38,8 @@ export const P = {
   chiate: { name: '치아더', zh: '佳德糕餅', q: '佳德糕餅' },
 } satisfies Record<string, Place>
 
-export const HOTEL = P.hotel
 
-export const DAYS: Day[] = [
+const DAYS: Day[] = [
   {
     id: 'd1',
     n: 1,
@@ -306,10 +252,41 @@ export const DAYS: Day[] = [
         time: '18:30', kind: 'food', kindLabel: '저녁',
         title: '훠궈 또는 만두', zh: '火鍋 · 餃子',
         meta: ['금요일 저녁, 예약 필수'],
+        desc: '세 곳 모두 대만 예약 앱 **inline**으로 온라인 예약을 받습니다. 금요일 18:30은 인기 시간대라 지금 바로 자리를 확인하세요. 한국 번호(+82)로 예약이 되는지는 확인하지 못했습니다. 안 되면 숙소 프런트에 전화 예약을 부탁하세요.',
         alts: [
-          { tag: 'A', title: '우라오', zh: '無老鍋', place: P.wulao, desc: '탕을 마라와 백탕 반반으로 고를 수 있고, 국물에 끓여 먹는 \'아이스크림 두부\'가 명물입니다. 매운 걸 못 먹는 사람이 있으면 여기로 가세요.' },
-          { tag: 'B', title: '칭화자오', zh: '青花驕', place: P.chinHuajiao, desc: '얼얼한 산초 마라탕 전문점입니다. 맵기 단계를 조절할 수 있습니다.' },
-          { tag: 'C', title: '오렌지 샤부샤부', zh: '橘色涮涮屋', place: P.orange, desc: '1인 냄비에 고급 소고기와 해산물을 내는 곳입니다. 예약이 어렵기로 유명하니 가려면 지금 예약하세요.' },
+          {
+            tag: 'A', title: '우라오 시먼딩점 · 1순위', zh: '無老鍋 西門町店', place: P.wulao,
+            desc: '{BL11} 시먼역 4번 출구 도보 2분, 숙소까지 한 정거장이라 귀가가 가장 편합니다. 마라·백탕 반반 냄비와 국물에 끓여 먹는 **아이스크림 두부**가 명물이고, 마라는 맵기보다 한약재 향이 강한 편이라 매운 걸 못 먹어도 괜찮습니다.',
+            tips: [
+              '**예약** inline 온라인 예약. 60일 전부터 열리고 이 지점은 당일 예약도 됩니다. 온라인은 4명까지, 10분 넘게 늦으면 취소될 수 있습니다.',
+              '**가격** 1인 NT$500–1,500, 테이블당 최소 NT$650, 봉사료 10% 별도.',
+              '**현장 대기** 직접 가서 이름을 올리는 방식입니다. 금요일 저녁은 30분에서 몇 시간까지 기다리니, 예약이 안 되면 17:30쯤 먼저 가서 대기를 거세요.',
+              '단수이·베이터우에서 내려오면 레드라인 {R11} 중산역 근처 **중산점**(같은 inline 페이지, 하루 전까지 예약)도 좋습니다.',
+            ],
+            links: [
+              { label: '시먼딩점 inline 예약', href: 'https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b' },
+              { label: '중산점 inline 예약', href: 'https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LDaIMfFMryvW2keZdSe' },
+            ],
+          },
+          {
+            tag: 'B', title: '칭화자오 중산북점 · 2순위', zh: '青花驕 中山北店', place: P.chinHuajiao,
+            desc: '{R11} 중산역 도보 3분, 오후에 북쪽에 다녀오는 동선과 맞습니다. 산초가 얼얼한 마라탕 전문점이고 맵기를 소·중·대로 고릅니다.',
+            tips: [
+              '**예약** inline 온라인 예약. 약 한 달 전부터 열리고 당일 30분 전까지 됩니다. 8명까지, 보증금은 없는 것으로 보입니다.',
+              '**원격 대기** 예약이 꽉 찼으면 당일 17:00–22:00에 inline 웹 줄서기를 걸 수 있는 지점입니다. 이동하면서 순서를 기다릴 수 있습니다.',
+              '**가격** 1인 NT$700–800, 봉사료 10%. 오리 선지·언 두부는 무한 리필.',
+            ],
+            links: [{ label: '중산북점 inline 예약', href: 'https://inline.app/booking/-MaXEQcbiWaRjXyLytUu:inline-live-2/-MaXER3I3tbJ6YWZIFGu' }],
+          },
+          {
+            tag: 'C', title: '오렌지 샤부샤부', zh: '橘色涮涮屋', place: P.orange,
+            desc: '1인 냄비에 와규와 활해산물을 내는 고급 샤부샤부입니다. 국물이 다시마·가쓰오와 스키야키라 맵지 않습니다. {BL15} 중샤오푸싱역에서 걸어서 10분이라 동선에서는 가장 멉니다.',
+            tips: [
+              '**예약** inline 온라인 예약, 약 30일 전부터, **하루 전까지만** 됩니다(당일 불가). 금요일 저녁이면 10/8까지 해야 합니다.',
+              '**가격** 세트 1인 NT$1,380(오골계)부터 와규 NT$5,000 안팎, 봉사료 10%.',
+            ],
+            links: [{ label: '大安 inline 예약', href: 'https://inline.app/booking/-LL7w1Y0HNb5dvdA1v7N:inline-live-2a466/-L_j6l1gF4kY3lEjygtx' }],
+          },
           { tag: 'D', title: '용문객잔교자관', zh: '龍門客棧餃子館', place: P.longmen, desc: '{BL13} 산다오쓰역, 숙소에서 블루라인 세 정거장입니다. 진열대에서 냉채 반찬을 골라 담고 물만두를 곁들이는 노포입니다. 영업시간이 자주 바뀌니 가기 전에 확인하고 현금을 준비하세요.' },
         ],
       },
@@ -391,26 +368,26 @@ export const DAYS: Day[] = [
   },
 ]
 
-export const FOOD: { title: string; zh: string; when: string; desc: string; order?: string; place: Place }[] = [
+const FOOD: FoodItem[] = [
   { title: '딘타이펑 101점', zh: '鼎泰豐', when: '10.07', desc: '샤오롱바오의 기준점입니다. 평일 오후 3–4시가 대기가 가장 짧습니다.', order: '샤오롱바오 · 새우계란볶음밥 · 오이무침', place: P.dtf101 },
   { title: '아종면선', zh: '阿宗麵線', when: '10.08', desc: '시먼딩에서 서서 먹는 곱창 면선. 투어 미팅 전 10분 점심.', order: '대(大) 또는 소(小), 메뉴는 하나뿐', place: P.aychung },
   { title: '지우펀 간식', zh: '九份', when: '10.08', desc: '투어에 저녁 시간이 없어 지산제 먹거리로 해결합니다.', order: '아간이 타로볼 · 땅콩 아이스크림 롤 · 어묵탕', place: P.jiufen },
   { title: '푸저우 세조 후추빵', zh: '福州世祖胡椒餅', when: '10.08', desc: '라오허제 야시장 입구. 화덕 벽에 붙여 구운 고기 후추빵입니다. 속이 뜨거우니 조심하세요.', place: { name: '푸저우 세조 후추빵', zh: '福州世祖胡椒餅', q: '福州世祖胡椒餅 饒河' } },
   { title: '고궁 징화', zh: '故宮晶華', when: '10.09', desc: '고궁박물원 옆 딤섬집. 유물 모양을 본뜬 \'국보 요리\'가 있습니다.', place: P.silks },
-  { title: '우라오', zh: '無老鍋', when: '10.09', desc: '마라·백탕 반반 훠궈, 아이스크림 두부.', place: P.wulao },
-  { title: '칭화자오', zh: '青花驕', when: '10.09', desc: '산초 마라 훠궈, 맵기 조절 가능.', place: P.chinHuajiao },
-  { title: '오렌지 샤부샤부', zh: '橘色涮涮屋', when: '10.09', desc: '고급 1인 냄비 샤부샤부. 예약이 가장 어렵습니다.', place: P.orange },
+  { title: '우라오 시먼딩점', zh: '無老鍋', when: '10.09', desc: '마라·백탕 반반 훠궈, 아이스크림 두부. 숙소에서 한 정거장. 1인 NT$500–1,500.', order: '반반 냄비 · 아이스크림 두부', place: P.wulao, links: [{ label: 'inline 예약', href: 'https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b' }] },
+  { title: '칭화자오 중산북점', zh: '青花驕', when: '10.09', desc: '산초 마라 훠궈, 맵기 소·중·대. 당일 17시부터 원격 대기 가능. 1인 NT$700–800.', place: P.chinHuajiao, links: [{ label: 'inline 예약', href: 'https://inline.app/booking/-MaXEQcbiWaRjXyLytUu:inline-live-2/-MaXER3I3tbJ6YWZIFGu' }] },
+  { title: '오렌지 샤부샤부', zh: '橘色涮涮屋', when: '10.09', desc: '고급 1인 냄비 샤부샤부. 하루 전까지만 예약. 1인 NT$1,380–5,000.', place: P.orange, links: [{ label: 'inline 예약', href: 'https://inline.app/booking/-LL7w1Y0HNb5dvdA1v7N:inline-live-2a466/-L_j6l1gF4kY3lEjygtx' }] },
   { title: '용문객잔교자관', zh: '龍門客棧餃子館', when: '10.09', desc: '산다오쓰역 근처 로컬 만두집. 냉채 반찬을 골라 담는 방식입니다.', order: '물만두 · 냉채 반찬 2–3개', place: P.longmen },
   { title: '융캉 우육면', zh: '永康牛肉麵', when: '10.10', desc: '둥먼역. 오픈 직후에 가세요.', order: '홍샤오 우육면 · 분증배골', place: P.yongkang },
   { title: '화시제 야시장', zh: '華西街夜市', when: '수시', desc: '숙소 바로 옆 야시장. 늦은 밤 출출할 때 가기 좋습니다.', place: P.huaxi },
   { title: '라오허제 · 닝샤 · 스린 야시장', zh: '夜市', when: '수시', desc: '가게마다 하나씩 사서 나눠 먹으며 여러 곳을 도는 게 요령입니다.', place: P.raohe },
 ]
 
-export const CHECKLIST: { id: string; title: string; desc: string; due: string }[] = [
+const CHECKLIST: CheckItem[] = [
   { id: 'c-101', title: '101 전망대 티켓', desc: '일반 89층 / 101층 포함 / Fast Track 중 결정. 16:45 전후 입장 시간대로.', due: '10.07' },
   { id: 'c-tour', title: '예스폭지 투어 바우처 확인', desc: '1차 미팅(시먼 11:40)으로 신청됐는지, 예류 입장료 포함 여부.', due: '10.08' },
   { id: 'c-npm', title: '고궁박물원 티켓', desc: '현장 구매 가능. 101 + 고궁 묶음권을 쓴다면 날짜를 나눠 쓸 수 있는지 확인.', due: '10.09' },
-  { id: 'c-hotpot', title: '훠궈 예약', desc: '10.09 금요일 저녁. 오렌지 샤부샤부는 특히 빨리.', due: '10.09' },
+  { id: 'c-hotpot', title: '훠궈 예약', desc: 'inline에서 금 18:30 확인: 우라오 시먼딩점 → 칭화자오 중산북점 순서. 오렌지 샤부샤부는 10/8까지만 예약 가능.', due: '10.09' },
   { id: 'c-flight', title: '귀국편 시간 확인', desc: 'Day 4 일정과 공항 이동 시각을 여기에 맞춥니다.', due: '10.10' },
   { id: 'c-arrival', title: '대만 온라인 입국신고서', desc: '출발 전에 작성하면 입국 심사가 빨라집니다. 한국 여권은 90일 무비자.', due: '출발 전' },
   { id: 'c-cash', title: '대만 달러 현금', desc: '야시장, 노포, 천등은 현금만 받습니다. 동전과 NT$100 소액권을 넉넉히.', due: '출발 전' },
@@ -418,3 +395,38 @@ export const CHECKLIST: { id: string; title: string; desc: string; due: string }
   { id: 'c-rain', title: '우비 · 운동화', desc: '지우펀 계단과 샹산 등산로. 10월에도 소나기가 잦습니다.', due: '출발 전' },
   { id: 'c-card', title: '이지카드 사서 충전', desc: '공항 MRT역이나 편의점에서. MRT, 버스, 편의점 결제에 씁니다.', due: '10.07' },
 ]
+
+const HOTEL: Hotel = { ...P.hotel, access: '{BL10} 룽산쓰역 도보 3분 · 완화역 연결', nights: 3 }
+
+export const taipei2026: Trip = {
+  id: 'taipei-2026',
+  title: '타이베이 3박 4일',
+  country: '대만',
+  city: '타이베이',
+  route: 'ICN → TPE',
+  start: '2026-10-07',
+  end: '2026-10-10',
+  timeZone: 'Asia/Taipei',
+  currency: { code: 'TWD', symbol: 'NT$', quick: [50, 100, 200, 350, 600, 1000] },
+  summary: '101 야경, 예스폭지 버스투어, 고궁박물원',
+  hotel: HOTEL,
+  days: DAYS,
+  food: FOOD,
+  checklist: CHECKLIST,
+  info: [
+    ['날씨', '10월 초 낮 27–30°C, 밤 22–24°C. 습하고 소나기가 잦습니다. 태풍 시즌 끝자락이라 출발 2–3일 전 예보를 확인하세요.'],
+    ['교통', 'MRT가 대부분을 커버합니다. Google 지도 대중교통 경로가 정확하고, 우버와 택시도 저렴합니다.'],
+    ['MRT 규칙', '개찰구 안에서는 물, 껌, 음식 모두 금지이고 벌금이 큽니다. 에스컬레이터는 오른쪽에 서세요.'],
+    ['전기', '110V, 11자형 A타입 콘센트입니다. 휴대폰 충전기는 대부분 프리볼트라 어댑터만 있으면 됩니다.'],
+    ['결제', '백화점과 체인점은 카드를 받지만 야시장, 노포, 일부 택시는 현금만 받습니다. 팁 문화는 없습니다.'],
+    ['물 · 편의점', '수돗물은 끓여 마십니다. 세븐일레븐과 패밀리마트가 블록마다 있습니다.'],
+    ['10.10 쌍십절', '중화민국 국경일입니다. 총통부 일대 교통이 통제되고 관광지가 붐빕니다. 은행과 관공서는 쉽니다.'],
+    ['시차', '한국보다 1시간 늦습니다. 이 페이지의 시간은 모두 현지 시각입니다.'],
+  ],
+  emergency: [
+    { label: '경찰', number: '110' },
+    { label: '구급·소방', number: '119' },
+    { label: '관광 안내(24시간)', number: '0800-011-765' },
+  ],
+  footer: '정리 기준 2026.10.06. 가격, 영업시간, 전시 정보는 바뀔 수 있으니 방문 전 공식 채널에서 확인하세요. Day 2 시간표는 투어사 안내 기준입니다.',
+}

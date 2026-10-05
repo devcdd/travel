@@ -1,17 +1,22 @@
 import { useState } from 'react'
-import type { Place } from '../data'
-import { HOTEL } from '../data'
+import type { Link, Place } from '../types'
 import { GMAPS_KEY, dirUrl, embedPlaceUrl, mapUrl } from '../lib'
-import { useActions } from '../context'
+import { useActions, useTrip } from '../context'
 
 /** 장소마다 붙는 Google 지도 바로가기 버튼 묶음. API 키가 있으면 지도 미리보기도 펼칩니다. */
-export function PlaceActions({ place, tour, compact }: { place: Place; tour?: boolean; compact?: boolean }) {
+export function PlaceActions({ place, tour, compact, links }: { place: Place; tour?: boolean; compact?: boolean; links?: Link[] }) {
   const { openTaxi } = useActions()
+  const { hotel } = useTrip()
   const [preview, setPreview] = useState(false)
-  const isHotel = place.q === HOTEL.q
+  const isHotel = place.q === hotel.q
   return (
     <>
       <div className={`acts${compact ? ' compact' : ''}`}>
+        {links?.map((l) => (
+          <a key={l.href} className="btn book" href={l.href} target="_blank" rel="noopener">
+            {l.label}
+          </a>
+        ))}
         {!tour && (
           <a className="btn primary" href={dirUrl(place)} target="_blank" rel="noopener">
             길찾기
@@ -21,7 +26,7 @@ export function PlaceActions({ place, tour, compact }: { place: Place; tour?: bo
           지도
         </a>
         {!tour && !isHotel && !compact && (
-          <a className="btn" href={dirUrl(place, HOTEL)} target="_blank" rel="noopener">
+          <a className="btn" href={dirUrl(place, hotel)} target="_blank" rel="noopener">
             숙소에서
           </a>
         )}

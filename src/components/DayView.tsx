@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
-import type { Day, Place, Stop } from '../data'
-import { HOTEL } from '../data'
+import type { Day, Place, Stop } from '../types'
+import { useTrip } from '../context'
 import { GMAPS_KEY, embedRouteUrl, routeUrl, toMinutes } from '../lib'
 import { weatherLabel, type DayWeather } from '../weather'
 import { DayMap, type Pin } from './DayMap'
@@ -9,12 +9,12 @@ import { Rich } from './Rich'
 
 const KIND_LABEL = { meet: '집합', sight: '관광', food: '식사', free: '자유', move: '이동' } as const
 
-const isHotel = (p?: Place) => p?.q === HOTEL.q
 const hasPos = (p?: Place): p is Place & { lat: number; lng: number } => p?.lat != null && p?.lng != null
 
 /** 지도 핀과 타임라인 번호를 같은 순서로 만듭니다. */
-function buildPins(day: Day) {
-  const pins: Pin[] = [{ key: 'hotel', label: '숙', lat: HOTEL.lat, lng: HOTEL.lng, place: HOTEL, kind: 'hotel', onRoute: true }]
+function buildPins(day: Day, hotel: Place) {
+  const isHotel = (p?: Place) => p?.q === hotel.q
+  const pins: Pin[] = [{ key: 'hotel', label: '숙', lat: hotel.lat!, lng: hotel.lng!, place: hotel, kind: 'hotel', onRoute: true }]
   const labels: Record<number, { label: string; key: string }> = {}
   let n = 0
   day.stops.forEach((s, i) => {
@@ -57,7 +57,8 @@ function currentIndex(stops: Stop[], minutes: number) {
 }
 
 export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: boolean; nowMinutes: number; weather?: DayWeather }) {
-  const { pins, labels, route } = useMemo(() => buildPins(day), [day])
+  const { hotel } = useTrip()
+  const { pins, labels, route } = useMemo(() => buildPins(day, hotel), [day, hotel])
   const [focus, setFocus] = useState<{ key: string; n: number } | null>(null)
   const [mapMode, setMapMode] = useState<'pins' | 'google'>('pins')
   const mapBox = useRef<HTMLDivElement>(null)
@@ -121,12 +122,12 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
           </div>
         )}
         {mapMode === 'google' && GMAPS_KEY ? (
-          <iframe className="embed tall" title={`${day.label} 경로`} src={embedRouteUrl(route)} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+          <iframe className="embed tall" title={`${day.label} 경로`} src={embedRouteUrl(hotel, route)} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
         ) : (
           <DayMap pins={pins} focus={focus} />
         )}
         <div className="acts">
-          <a className="btn primary" href={routeUrl(route)} target="_blank" rel="noopener">
+          <a className="btn primary" href={routeUrl(hotel, route)} target="_blank" rel="noopener">
             하루 동선 Google 지도로 열기
           </a>
           {day.links?.map((l) => (
@@ -207,7 +208,16 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                           <p>
                             <Rich text={a.desc} />
                           </p>
-                          {a.place && <PlaceActions place={a.place} compact />}
+                          {a.tips && (
+                            <ul className="tips">
+                              {a.tips.map((t) => (
+                                <li key={t}>
+                                  <Rich text={t} />
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          {a.place && <PlaceActions place={a.place} compact links={a.links} />}
                         </div>
                       )
                     })}

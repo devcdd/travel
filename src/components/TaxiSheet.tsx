@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import type { Place } from '../data'
+import type { Place } from '../types'
 import { copyText, mapUrl } from '../lib'
 import { useActions } from '../context'
 

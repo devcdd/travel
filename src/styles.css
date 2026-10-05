@@ -250,3 +250,36 @@ footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); borde
   .check label { grid-template-columns: 22px minmax(0, 1fr) }
   .check .due { grid-column: 2; padding-top: 0 }
 }
+
+/* trip list (home) */
+.back { display: inline-block; margin-bottom: 14px; font-size: 13px; font-weight: 600; color: var(--muted) }
+.back:hover { color: var(--fg) }
+.clock { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px }
+.trips { margin-top: 24px; border-top: 1px solid var(--fg) }
+.trip { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 16px; align-items: start; padding: 20px 8px 20px 0; border-bottom: 1px solid var(--line); color: var(--fg) }
+.trip:hover { background: var(--surface) }
+.trip.past { opacity: .6 }
+.trip-date { display: grid; font-family: var(--f-mono); font-variant-numeric: tabular-nums }
+.trip-date .y { font-size: 12px; color: var(--faint); letter-spacing: .04em }
+.trip-date .md { font-size: 15px; font-weight: 600 }
+.trip-main { display: grid; gap: 2px; min-width: 0 }
+.trip-main strong { font-size: 19px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 2px }
+.trip-main .sub { font-size: 13.5px; color: var(--muted) }
+.trip-main .sub.faint { color: var(--faint); font-size: 12.5px }
+@media (max-width: 560px) {
+  .trip { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px }
+  .trip-date { grid-column: 1; display: flex; gap: 8px; align-items: baseline }
+  .trip-main { grid-column: 1 / -1; grid-row: 2 }
+  .trip .chip { grid-column: 2; grid-row: 1; justify-self: end }
+}
+
+/* Google 지도: 정보창 배경은 항상 흰색이라 글자색을 고정합니다. */
+.gm-style .pop { color: #14171b }
+.gm-style .pop span { color: #6b7280 }
+.gm-style .pop a { color: #0a66c2 }
+.gm-style .gm-style-iw-c { padding: 0 !important; border-radius: 8px }
+.gm-style .gm-style-iw-d { overflow: auto !important; padding: 10px 12px }
+.map-btn.gmap { top: auto; bottom: 10px; left: 10px; right: auto }
+.me-pin { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--accent) }
+.btn.book { background: var(--warn-soft); border-color: transparent; color: var(--warn); font-weight: 600 }
+.alt .tips { font-size: 13.5px }

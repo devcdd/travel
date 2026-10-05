@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { GMAPS_KEY } from '../lib'
+import { onAuthFailure } from '../gmaps'
+import { GoogleMap } from './GoogleMap'
 import L from 'leaflet'
-import type { Kind, Place } from '../data'
+import type { Kind, Place } from '../types'
 import { dirUrl, mapUrl } from '../lib'
 
 export interface Pin {
@@ -17,9 +20,40 @@ export interface Pin {
 // 다크 모드는 CSS(--tile-filter)로 타일 색을 뒤집어 맞춥니다.
 const TILE = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!)
+export const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!)
 
-export function DayMap({ pins, focus }: { pins: Pin[]; focus: { key: string; n: number } | null }) {
+export type Focus = { key: string; n: number } | null
+
+export const popupHtml = (p: Pin) =>
+  `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.zh)}</span>` +
+  `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
+  `<a href="${dirUrl(p.place)}" target="_blank" rel="noopener">길찾기</a></div></div>`
+
+/** API 키가 있으면 Google 지도, 없거나 인증에 실패하면 OpenStreetMap(Leaflet)으로 그립니다. */
+export function DayMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
+  const [failed, setFailed] = useState(false)
+  const fail = useCallback(() => setFailed(true), [])
+  useEffect(() => onAuthFailure(fail), [fail])
+  if (!GMAPS_KEY || failed) return <LeafletMap pins={pins} focus={focus} />
+  return (
+    <MapBoundary fallback={<LeafletMap pins={pins} focus={focus} />}>
+      <GoogleMap pins={pins} focus={focus} onFail={fail} />
+    </MapBoundary>
+  )
+}
+
+/** Google 지도에서 렌더링 오류가 나도 페이지 전체가 아니라 지도만 대체합니다. */
+class MapBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { error: boolean }> {
+  state = { error: false }
+  static getDerivedStateFromError() {
+    return { error: true }
+  }
+  render() {
+    return this.state.error ? this.props.fallback : this.props.children
+  }
+}
+
+function LeafletMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
   const el = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
   const markers = useRef<Record<string, L.Marker>>({})
@@ -51,12 +85,7 @@ export function DayMap({ pins, focus }: { pins: Pin[]; focus: { key: string; n: 
         popupAnchor: [0, -14],
       })
       const m = L.marker([p.lat, p.lng], { icon, zIndexOffset: p.kind === 'hotel' ? -100 : 0 }).addTo(map)
-      m.bindPopup(
-        `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.zh)}</span>` +
-          `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
-          `<a href="${dirUrl(p.place)}" target="_blank" rel="noopener">길찾기</a></div></div>`,
-        { closeButton: false },
-      )
+      m.bindPopup(popupHtml(p), { closeButton: false })
       markers.current[p.key] = m
     }
 
