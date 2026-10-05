@@ -32,6 +32,18 @@
   day: "10.08"
   desc: 라오허제 야시장 입구에 있어요. 화덕 벽에 붙여 구운 고기 후추빵인데, 속이 아주 뜨거우니 조심해서 드세요.
   place: pepperBun
+- title: 다오서
+  local: 稻舍食館
+  day: "10.09"
+  desc: 디화제의 100년 된 쌀가게 건물에 있는 대만 가정식 식당이에요. 1인 NT$400 정도이고 봉사료 10%가 붙어요. 휴일이라 전화(02-2550-6607)로 예약해 두세요.
+  order: 고기 반찬 하나에 밥과 국이 나오는 정식(客飯)을 시켜 보세요.
+  place: riceShine
+- title: 마이몐옌짜이
+  local: 賣麵炎仔
+  day: "10.09"
+  desc: 디화제 근처의 80년 된 미쉐린 빕구르망 국숫집이에요. 07:00–14:30에만 열어요. 작은 노포라 현금을 챙겨 가세요.
+  order: 비빔 국수와 완탕국에 홍사오러우를 곁들여 보세요.
+  place: noodleyeh
 - title: 고궁 징화
   day: "10.09"
   desc: 고궁박물원 옆 딤섬 레스토랑이에요. 유물 모양을 본뜬 ‘국보 요리’를 맛볼 수 있어요.
@@ -45,9 +57,21 @@
   links:
     - label: inline 예약
       href: https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b
+- title: 삼미식당
+  local: 三味食堂
+  day: "10.09"
+  desc: 시먼딩의 큼직한 연어 초밥집이에요. 예약을 받지 않아 17:10 문 열 때 이름을 올려 두고 기다려야 해요.
+  order: 연어 초밥과 연어 덮밥을 시켜 보세요.
+  place: sunway
+- title: 야러우볜
+  local: 鴨肉扁
+  day: "10.09"
+  desc: 시먼딩 입구의 거위 고기 노포예요. 국수 NT$60에 거위 고기 NT$100–200이고, 회전이 빨라요.
+  order: 거위 고기 한 접시에 쌀국수를 곁들여 보세요.
+  place: duckHouse
 - title: 칭화자오 중산북점
   local: 青花驕
-  day: "10.09"
+  day: 수시
   desc: 산초가 얼얼한 마라 훠궈집이에요. 맵기를 소·중·대로 고를 수 있고, 당일 17시부터 원격 대기도 걸 수 있어요. 1인 NT$700–800 정도예요.
   place: chinHuajiao
   links:
@@ -55,14 +79,14 @@
       href: https://inline.app/booking/-MaXEQcbiWaRjXyLytUu:inline-live-2/-MaXER3I3tbJ6YWZIFGu
 - title: 오렌지 샤부샤부
   local: 橘色涮涮屋
-  day: "10.09"
+  day: 수시
   desc: 고급 1인 냄비 샤부샤부집이에요. 하루 전까지만 예약을 받고, 1인 NT$1,380–5,000 정도예요.
   place: orange
   links:
     - label: inline 예약
       href: https://inline.app/booking/-LL7w1Y0HNb5dvdA1v7N:inline-live-2a466/-L_j6l1gF4kY3lEjygtx
 - title: 용문객잔교자관
-  day: "10.09"
+  day: 수시
   desc: 산다오쓰역 근처의 오래된 만두집이에요. 냉채 반찬을 직접 골라 담아 먹고, 저녁 17:00–23:00에만 열어요(월요일 휴무).
   order: 물만두에 냉채 반찬 두세 가지를 곁들여 보세요.
   place: longmen

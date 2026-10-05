@@ -125,6 +125,39 @@ silks:
   q: 故宮晶華
   lat: 25.1012
   lng: 121.5478
+riceShine:
+  name: 다오서
+  local: 稻舍食館 迪化店
+  q: 稻舍食館 Rice & Shine 迪化
+  address: 台北市大同區迪化街一段329號
+noodleyeh:
+  name: 마이몐옌짜이
+  local: 賣麵炎仔 金泉小吃店
+  q: 賣麵炎仔 金泉小吃店
+  address: 台北市大同區安西街106號
+dihua:
+  name: 디화제
+  local: 迪化街
+  q: 迪化街一段
+luguo:
+  name: 루궈 카페
+  local: 爐鍋咖啡 小藝埕
+  q: 爐鍋咖啡 小藝埕
+  address: 台北市大同區迪化街一段32巷1號2樓
+ximending:
+  name: 시먼딩
+  local: 西門町
+  q: 西門町
+sunway:
+  name: 삼미식당
+  local: 三味食堂
+  q: 三味食堂 西門町
+  address: 台北市萬華區貴陽街二段116號
+duckHouse:
+  name: 야러우볜
+  local: 鴨肉扁
+  q: 鴨肉扁 西門町
+  address: 台北市萬華區中華路一段98之2號
 beitou:
   name: 베이터우 지열곡
   local: 北投地熱谷
