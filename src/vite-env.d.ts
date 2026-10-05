@@ -9,6 +9,10 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
+declare module 'virtual:trips' {
+  export const TRIPS: import('./types').Trip[]
+}
+
 interface Window {
   gm_authFailure?: () => void
 }

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "description": "체크 상태 저장 키. 한번 정하면 바꾸지 마세요"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "desc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "due": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "desc",
+      "due"
+    ],
+    "additionalProperties": false
+  }
+}

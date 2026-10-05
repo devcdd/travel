@@ -1,0 +1,72 @@
+# 먹을 것 탭. day는 배치한 날(예: "10.07", 수시), place는 places.yaml의 id예요.
+- title: 딘타이펑 101점
+  local: 鼎泰豐
+  day: "10.07"
+  desc: 샤오롱바오 하면 떠오르는 바로 그 집이에요. 평일 오후 3–4시에 가면 대기가 가장 짧아요.
+  order: 샤오롱바오와 새우계란볶음밥, 오이무침을 함께 시켜 보세요.
+  place: dtf101
+- title: 아종면선
+  local: 阿宗麵線
+  day: "10.08"
+  desc: 시먼딩에서 서서 먹는 곱창 국수집이에요. 투어 미팅 전에 10분이면 점심을 해결할 수 있어요.
+  order: 메뉴가 하나뿐이라 큰 그릇(大)과 작은 그릇(小) 중에서 고르기만 하면 돼요.
+  place: aychung
+- title: 지우펀 간식
+  local: 九份
+  day: "10.08"
+  desc: 투어 중에 저녁 시간이 따로 없어서 지산제 먹거리 골목에서 간식으로 해결해요.
+  order: 아간이 타로볼, 땅콩 아이스크림 롤, 어묵탕을 드셔 보세요.
+  place: jiufen
+- title: 푸저우 세조 후추빵
+  day: "10.08"
+  desc: 라오허제 야시장 입구에 있어요. 화덕 벽에 붙여 구운 고기 후추빵인데, 속이 아주 뜨거우니 조심해서 드세요.
+  place: pepperBun
+- title: 고궁 징화
+  day: "10.09"
+  desc: 고궁박물원 옆 딤섬 레스토랑이에요. 유물 모양을 본뜬 ‘국보 요리’를 맛볼 수 있어요.
+  place: silks
+- title: 우라오 시먼딩점
+  local: 無老鍋
+  day: "10.09"
+  desc: 마라탕과 백탕을 반반으로 즐기는 훠궈집이에요. 숙소에서 한 정거장이고, 1인 NT$500–1,500 정도예요.
+  order: 반반 냄비와 아이스크림 두부는 꼭 시켜 보세요.
+  place: wulao
+  links:
+    - label: inline 예약
+      href: https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b
+- title: 칭화자오 중산북점
+  local: 青花驕
+  day: "10.09"
+  desc: 산초가 얼얼한 마라 훠궈집이에요. 맵기를 소·중·대로 고를 수 있고, 당일 17시부터 원격 대기도 걸 수 있어요. 1인 NT$700–800 정도예요.
+  place: chinHuajiao
+  links:
+    - label: inline 예약
+      href: https://inline.app/booking/-MaXEQcbiWaRjXyLytUu:inline-live-2/-MaXER3I3tbJ6YWZIFGu
+- title: 오렌지 샤부샤부
+  local: 橘色涮涮屋
+  day: "10.09"
+  desc: 고급 1인 냄비 샤부샤부집이에요. 하루 전까지만 예약을 받고, 1인 NT$1,380–5,000 정도예요.
+  place: orange
+  links:
+    - label: inline 예약
+      href: https://inline.app/booking/-LL7w1Y0HNb5dvdA1v7N:inline-live-2a466/-L_j6l1gF4kY3lEjygtx
+- title: 용문객잔교자관
+  day: "10.09"
+  desc: 산다오쓰역 근처의 오래된 만두집이에요. 냉채 반찬을 직접 골라 담아 먹어요.
+  order: 물만두에 냉채 반찬 두세 가지를 곁들여 보세요.
+  place: longmen
+- title: 융캉 우육면
+  day: "10.10"
+  desc: 둥먼역 근처의 우육면 맛집이에요. 문 여는 시간에 맞춰 가면 기다리지 않아요.
+  order: 홍샤오 우육면과 분증배골을 추천해요.
+  place: yongkang
+- title: 화시제 야시장
+  local: 華西街夜市
+  day: 수시
+  desc: 숙소 바로 옆 야시장이에요. 늦은 밤 출출할 때 가볍게 들르기 좋아요.
+  place: huaxi
+- title: 라오허제 · 닝샤 · 스린 야시장
+  local: 夜市
+  day: 수시
+  desc: 가게마다 하나씩 사서 나눠 먹으며 여러 곳을 돌아보는 게 야시장을 즐기는 요령이에요.
+  place: raohe

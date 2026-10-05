@@ -1,7 +1,6 @@
-import type { Trip } from '../types'
-import { taipei2026 } from './taipei-2026'
+import { TRIPS } from 'virtual:trips'
 
-/** 새 여행은 파일을 하나 만들고 여기에 추가합니다. 최신 여행이 위로 옵니다. */
-export const TRIPS: Trip[] = [taipei2026].sort((a, b) => b.start.localeCompare(a.start))
+/** 여행 데이터는 content/trips/에 있어요. 폴더를 추가하면 자동으로 목록에 나타나요. */
+export { TRIPS }
 
 export const findTrip = (id: string) => TRIPS.find((t) => t.id === id)

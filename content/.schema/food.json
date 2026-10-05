@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "local": {
+        "type": "string",
+        "minLength": 1
+      },
+      "day": {
+        "type": "string",
+        "minLength": 1,
+        "description": "배치한 날 (예: 10.07, 수시)"
+      },
+      "desc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "order": {
+        "description": "추천 메뉴 안내 문장",
+        "type": "string",
+        "minLength": 1
+      },
+      "place": {
+        "type": "string",
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+        "description": "places.yaml에 정의한 장소 id"
+      },
+      "links": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "href": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "label",
+            "href"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "title",
+      "day",
+      "desc",
+      "place"
+    ],
+    "additionalProperties": false
+  }
+}

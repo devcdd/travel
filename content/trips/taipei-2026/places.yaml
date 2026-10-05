@@ -1,0 +1,213 @@
+# 장소 목록. 일정·맛집 파일에서 왼쪽 id로 불러 써요.
+# local: 현지어 이름(택시 카드), q: Google 지도 검색어, lat/lng: 지도 핀 위치(없으면 핀 없이 버튼만), address: 택시 카드 주소
+hotel:
+  name: 카이사르 메트로 타이베이
+  local: 台北凱達大飯店
+  q: 台北凱達大飯店 Caesar Metro Taipei
+  lat: 25.0333
+  lng: 121.5003
+  address: 台北市萬華區艋舺大道167號
+airport:
+  name: 타오위안 국제공항
+  local: 桃園國際機場
+  q: 桃園國際機場
+  lat: 25.0797
+  lng: 121.2342
+a1:
+  name: 공항철도 타이베이역 A1
+  local: 機場捷運 台北車站 A1
+  q: 機場捷運台北車站
+  lat: 25.0489
+  lng: 121.5146
+dtf101:
+  name: 딘타이펑 101점
+  local: 鼎泰豐 101店
+  q: 鼎泰豐 101店
+  lat: 25.0336
+  lng: 121.5651
+  address: 台北市信義區市府路45號 B1
+tp101:
+  name: 타이베이 101 전망대
+  local: 台北101觀景台
+  q: 台北101觀景台
+  lat: 25.034
+  lng: 121.5645
+  address: 台北市信義區信義路五段7號
+xinyi:
+  name: 신이 지구
+  local: 信義商圈
+  q: 微風南山
+  lat: 25.0346
+  lng: 121.5668
+xiangshan:
+  name: 샹산 등산로
+  local: 象山步道
+  q: 象山步道
+  lat: 25.0273
+  lng: 121.5707
+longshan:
+  name: 룽산쓰
+  local: 艋舺龍山寺
+  q: 艋舺龍山寺
+  lat: 25.0372
+  lng: 121.4999
+  address: 台北市萬華區廣州街211號
+huaxi:
+  name: 화시제 야시장
+  local: 華西街觀光夜市
+  q: 華西街觀光夜市
+  lat: 25.0378
+  lng: 121.4985
+aychung:
+  name: 아종면선
+  local: 阿宗麵線 西門店
+  q: 阿宗麵線 西門店
+  lat: 25.0434
+  lng: 121.5076
+  address: 台北市萬華區峨眉街8-1號
+ximen5:
+  name: 시먼역 5번 출구
+  local: 捷運西門站 5號出口
+  q: 捷運西門站5號出口
+  lat: 25.0423
+  lng: 121.5082
+tmsM3:
+  name: 타이베이 메인역 M3 출구
+  local: 台北車站 M3出口
+  q: 台北車站 M3出口
+  lat: 25.0466
+  lng: 121.5165
+yehliu:
+  name: 예류지질공원
+  local: 野柳地質公園
+  q: 野柳地質公園
+  lat: 25.2066
+  lng: 121.6903
+shifenFall:
+  name: 스펀폭포
+  local: 十分瀑布
+  q: 十分瀑布
+  lat: 25.0482
+  lng: 121.7869
+shifen:
+  name: 스펀 라오제
+  local: 十分老街
+  q: 十分老街
+  lat: 25.0413
+  lng: 121.7754
+jiufen:
+  name: 지우펀 라오제
+  local: 九份老街
+  q: 九份老街
+  lat: 25.11
+  lng: 121.8446
+raohe:
+  name: 라오허제 야시장
+  local: 饒河街觀光夜市
+  q: 饒河街觀光夜市
+  lat: 25.0508
+  lng: 121.5773
+npm:
+  name: 국립고궁박물원
+  local: 國立故宮博物院
+  q: 國立故宮博物院
+  lat: 25.1024
+  lng: 121.5485
+  address: 台北市士林區至善路二段221號
+silks:
+  name: 고궁 징화
+  local: 故宮晶華
+  q: 故宮晶華
+  lat: 25.1015
+  lng: 121.549
+beitou:
+  name: 베이터우 지열곡
+  local: 北投地熱谷
+  q: 北投地熱谷
+  lat: 25.1377
+  lng: 121.5116
+tamsui:
+  name: 단수이 라오제
+  local: 淡水老街
+  q: 淡水老街
+  lat: 25.1697
+  lng: 121.4405
+wulao:
+  name: 우라오 시먼딩점
+  local: 無老鍋 台北西門町店
+  q: 無老鍋 台北西門町店
+  lat: 25.044
+  lng: 121.5093
+  address: 台北市中正區中華路一段55號2樓
+wulaoZs:
+  name: 우라오 중산점
+  local: 無老鍋 台北中山店
+  q: 無老鍋 台北中山店
+  lat: 25.056
+  lng: 121.5226
+  address: 台北市中山區中山北路二段36-1號
+chinHuajiao:
+  name: 칭화자오 중산북점
+  local: 青花驕 台北中山北店
+  q: 青花驕 台北中山北店
+  lat: 25.0517
+  lng: 121.5222
+  address: 台北市中山區中山北路一段137號
+orange:
+  name: 오렌지 샤부샤부 1관
+  local: 橘色涮涮屋 一館
+  q: 橘色涮涮屋 大安路
+  lat: 25.0383
+  lng: 121.5466
+  address: 台北市大安區大安路一段135號B1
+longmen:
+  name: 용문객잔교자관
+  local: 龍門客棧餃子館
+  q: 龍門客棧餃子館
+  lat: 25.0446
+  lng: 121.5228
+shilinNM:
+  name: 스린 야시장
+  local: 士林觀光夜市
+  q: 士林觀光夜市
+  lat: 25.088
+  lng: 121.5241
+ningxia:
+  name: 닝샤 야시장
+  local: 寧夏觀光夜市
+  q: 寧夏觀光夜市
+  lat: 25.056
+  lng: 121.5153
+bopiliao:
+  name: 보피랴오 역사거리
+  local: 剝皮寮歷史街區
+  q: 剝皮寮歷史街區
+  lat: 25.0368
+  lng: 121.5018
+yongkang:
+  name: 융캉 우육면
+  local: 永康牛肉麵
+  q: 永康牛肉麵
+  lat: 25.0322
+  lng: 121.5246
+  address: 台北市大安區金山南路二段31巷17號
+yongkangSt:
+  name: 융캉제
+  local: 永康街
+  q: 永康街
+  lat: 25.0328
+  lng: 121.5298
+carrefour:
+  name: 까르푸 구이린점
+  local: 家樂福 桂林店
+  q: 家樂福 桂林店
+  lat: 25.0377
+  lng: 121.5047
+chiate:
+  name: 치아더
+  local: 佳德糕餅
+  q: 佳德糕餅
+pepperBun:
+  name: 푸저우 세조 후추빵
+  local: 福州世祖胡椒餅
+  q: 福州世祖胡椒餅 饒河

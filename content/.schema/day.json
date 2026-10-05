@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "short": {
+      "type": "string",
+      "minLength": 1,
+      "description": "탭에 보일 짧은 이름"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lead": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chips": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tone": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "warn",
+              "idea"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "tone",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "description": "첫 번째 칩이 요약 목록에도 보여요"
+    },
+    "facts": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "weather": {
+      "description": "생략하면 숙소 기준 날씨",
+      "type": "object",
+      "properties": {
+        "place": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+          "description": "places.yaml에 정의한 장소 id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "place",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "href": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "label",
+          "href"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "stops": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "minLength": 1,
+            "description": "HH:MM, 또는 \"도착\"처럼 시각이 아닌 말"
+          },
+          "move": {
+            "description": "이동 안내 한 줄. 이 값이 있으면 이동 줄로 표시돼요",
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "description": "meet 집합 · sight 관광 · food 식사 · free 자유",
+            "type": "string",
+            "enum": [
+              "meet",
+              "sight",
+              "food",
+              "free"
+            ]
+          },
+          "label": {
+            "description": "종류 대신 보여줄 말 (예: 이른 저녁)",
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "local": {
+            "description": "생략하면 장소의 local을 써요",
+            "type": "string",
+            "minLength": 1
+          },
+          "place": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+            "description": "places.yaml에 정의한 장소 id"
+          },
+          "meta": {
+            "description": "제목 아래 짧은 정보",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "desc": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tips": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "alts": {
+            "description": "선택지. 순서대로 A, B, C가 붙어요",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "local": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "place": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                  "description": "places.yaml에 정의한 장소 id"
+                },
+                "desc": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tips": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "href": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "label",
+                      "href"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "title",
+                "desc"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "tour": {
+            "description": "투어 버스로 가는 곳이면 true (길찾기 버튼 숨김)",
+            "type": "boolean"
+          },
+          "offRoute": {
+            "description": "하루 동선 경로에서 뺄 곳이면 true",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "time"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "date",
+    "short",
+    "title",
+    "lead",
+    "chips",
+    "stops"
+  ],
+  "additionalProperties": false
+}

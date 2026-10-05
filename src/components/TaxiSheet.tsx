@@ -4,7 +4,7 @@ import { copyText, mapUrl } from '../lib'
 import { useActions } from '../context'
 
 /** 택시 기사에게 그대로 보여주는 전체 화면 카드 */
-export function TaxiSheet({ place, onClose }: { place: Place; onClose: () => void }) {
+export function TaxiSheet({ place, ask, lang, onClose }: { place: Place; ask: string; lang: string; onClose: () => void }) {
   const { toast } = useActions()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
@@ -16,15 +16,23 @@ export function TaxiSheet({ place, onClose }: { place: Place; onClose: () => voi
     }
   }, [onClose])
 
-  const text = place.address ? `${place.zh}\n${place.address}` : place.zh
+  const text = place.address ? `${place.local}\n${place.address}` : place.local
 
   return (
     <div className="sheet" role="dialog" aria-modal="true" aria-label="택시 카드" onClick={onClose}>
       <div className="sheet-card" onClick={(e) => e.stopPropagation()}>
         <p className="sheet-hint">기사님께 이 화면을 보여주세요</p>
-        <p className="sheet-ask">請帶我到</p>
-        <p className="sheet-zh">{place.zh}</p>
-        {place.address && <p className="sheet-addr">{place.address}</p>}
+        <p className="sheet-ask" lang={lang}>
+          {ask}
+        </p>
+        <p className="sheet-local" lang={lang}>
+          {place.local}
+        </p>
+        {place.address && (
+          <p className="sheet-addr" lang={lang}>
+            {place.address}
+          </p>
+        )}
         <p className="sheet-ko">{place.name}</p>
         <div className="acts">
           <button

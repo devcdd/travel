@@ -4,14 +4,18 @@ import { fmtDate, nowIn, tripStatus } from '../lib'
 import { useWeather } from '../weather'
 import { TripContext } from '../context'
 import { DayView } from './DayView'
-import { AppsView, ChecklistView, FoodView, HotelCard, InfoView } from './Views'
+import { AppsView, ChecklistView, FoodView, HotelCard, InfoView, NotesView } from './Views'
 
 const EXTRA = [
   { id: 'food', label: '먹을 것' },
   { id: 'todo', label: '예약·준비' },
   { id: 'apps', label: '앱' },
   { id: 'info', label: '현지 정보' },
+  { id: 'notes', label: '메모' },
 ]
+
+/** 메모 탭은 notes.md가 있는 여행에만 보여요. */
+const extrasFor = (trip: Trip) => EXTRA.filter((e) => e.id !== 'notes' || trip.notes)
 
 function useNow(timeZone: string) {
   const [now, setNow] = useState(() => ({ local: nowIn(timeZone), kst: nowIn('Asia/Seoul') }))
@@ -28,7 +32,7 @@ export function defaultTab(trip: Trip) {
 }
 
 export function isTab(trip: Trip, id: string) {
-  return trip.days.some((d) => d.id === id) || EXTRA.some((e) => e.id === id)
+  return trip.days.some((d) => d.id === id) || extrasFor(trip).some((e) => e.id === id)
 }
 
 export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
@@ -110,7 +114,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
               {d.short}
             </a>
           ))}
-          {EXTRA.map((x) => (
+          {extrasFor(trip).map((x) => (
             <a key={x.id} {...link(x.id)} aria-current={tab === x.id ? 'page' : undefined}>
               {x.label}
             </a>
@@ -124,6 +128,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
         {tab === 'todo' && <ChecklistView />}
         {tab === 'apps' && <AppsView />}
         {tab === 'info' && <InfoView />}
+        {tab === 'notes' && trip.notes && <NotesView />}
       </main>
 
       <footer className="wrap">

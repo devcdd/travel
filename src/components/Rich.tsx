@@ -1,13 +1,21 @@
 import { Fragment } from 'react'
+import { useTrip } from '../context'
 
-const TOKEN = /(\*\*[^*]+\*\*|\{(?:R|BL|G|O|A|BR)\d+A?\})/g
+const TOKEN = /(\*\*[^*]+\*\*|\{[A-Z]+\d+[A-Z]?\})/g
 
+/** {BL10} 같은 노선 코드 배지. 노선 색은 나라 파일(content/countries/*.yaml)의 lines에서 가져와요. */
 export function Mrt({ code }: { code: string }) {
-  const line = /^[A-Z]+/.exec(code)![0].toLowerCase()
-  return <span className={`mrt ${line}`}>{code}</span>
+  const { lines } = useTrip()
+  const line = lines[/^[A-Z]+/.exec(code)![0]]
+  if (!line) return <>{code}</>
+  return (
+    <span className="mrt" style={{ background: line.color, color: line.text ?? '#fff' }} title={line.name}>
+      {code}
+    </span>
+  )
 }
 
-/** **굵게**와 {BL10} 같은 MRT 역 코드를 렌더링합니다. */
+/** **굵게**와 {BL10} 같은 노선 코드를 렌더링합니다. */
 export function Rich({ text }: { text: string }) {
   return (
     <>

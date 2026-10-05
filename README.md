@@ -2,13 +2,34 @@
 
 Vite + React 19 정적 사이트. 배포 주소: https://blog.cdd.co.kr/travel/
 
-첫 화면에서 여행을 고르고(`#/`), 여행별 일정은 `#/<여행 id>/<탭>` 주소로 열립니다. 여행 데이터는 `src/trips/`에 여행마다 파일 하나씩 두고 `src/trips/index.ts`에 등록합니다.
+첫 화면에서 여행을 고르고(`#/`), 여행별 일정은 `#/<여행 id>/<탭>` 주소로 열립니다.
+
+## 일정 관리
+
+일정은 코드가 아니라 `content/`의 YAML 파일로 관리합니다.
+
+```
+content/
+  countries/tw.yaml          # 대만 공통: 앱, 현지 정보, 긴급 전화, 통화, 노선 색
+  trips/taipei-2026/
+    trip.yaml                # 제목, 기간, 숙소
+    places.yaml              # 장소 (id로 참조)
+    days/01.yaml … 04.yaml   # 하루 일정
+    food.yaml                # 먹을 것
+    checklist.yaml           # 예약·준비
+    notes.md                 # (선택) 메모 탭
+```
+
+새 여행은 `content/trips/`에 폴더를 하나 만들면 자동으로 목록에 나타납니다. 빌드할 때 형식과 장소 id, 노선 코드를 검사해서, 틀린 곳이 있으면 파일과 위치를 알려 주고 배포를 멈춥니다. 자세한 작성 규칙은 `CLAUDE.md`에 있습니다.
+
+VS Code에서 Red Hat YAML 확장을 설치하면 YAML 파일에서 자동완성과 검사가 됩니다.
 
 ## 실행
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
+npm run check    # content/와 타입만 빠르게 검사
 npm run build    # dist/ 생성
 ```
 

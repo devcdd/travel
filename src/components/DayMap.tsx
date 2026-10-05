@@ -25,7 +25,7 @@ export const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '
 export type Focus = { key: string; n: number } | null
 
 export const popupHtml = (p: Pin) =>
-  `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.zh)}</span>` +
+  `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.local)}</span>` +
   `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
   `<a href="${dirUrl(p.place)}" target="_blank" rel="noopener">길찾기</a></div></div>`
 

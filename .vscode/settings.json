@@ -1,0 +1,13 @@
+{
+  "yaml.schemas": {
+    "./content/.schema/country.json": "content/countries/*.yaml",
+    "./content/.schema/trip.json": "content/trips/*/trip.yaml",
+    "./content/.schema/places.json": "content/trips/*/places.yaml",
+    "./content/.schema/day.json": "content/trips/*/days/*.yaml",
+    "./content/.schema/food.json": "content/trips/*/food.yaml",
+    "./content/.schema/checklist.json": "content/trips/*/checklist.yaml"
+  },
+  "files.associations": {
+    "*.yaml": "yaml"
+  }
+}

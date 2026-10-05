@@ -56,7 +56,7 @@ export default function App() {
   return (
     <ActionsContext.Provider value={actions}>
       {trip && route.page === 'trip' ? <TripPage trip={trip} tab={route.tab} /> : <Home />}
-      {taxi && <TaxiSheet place={taxi} onClose={closeTaxi} />}
+      {taxi && trip && <TaxiSheet place={taxi} ask={trip.taxiAsk} lang={trip.lang} onClose={closeTaxi} />}
       <div className={`toast${toastMsg ? ' show' : ''}`} role="status" aria-live="polite">
         {toastMsg}
       </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { copyText, dirUrl, load, mapUrl, save } from '../lib'
 import { useActions, useTrip } from '../context'
 import { Rich } from './Rich'
+import { Local } from './Local'
 import { PlaceActions } from './PlaceActions'
 
 export function HotelCard() {
@@ -12,7 +13,7 @@ export function HotelCard() {
       <div className="hotel-txt">
         <span className="eyebrow">숙소 · {HOTEL.nights}박</span>
         <h2>
-          {HOTEL.name} <span className="zh">{HOTEL.zh}</span>
+          {HOTEL.name} <Local>{HOTEL.local}</Local>
         </h2>
         <p>
           <button
@@ -52,7 +53,7 @@ export function FoodView() {
         {FOOD.map((f) => (
           <li key={f.title}>
             <h3>
-              {f.title} <span className="zh">{f.zh}</span>
+              {f.title} <Local>{f.local}</Local>
             </h3>
             <span className="when">{f.when}</span>
             <p>{f.desc}</p>
@@ -167,10 +168,10 @@ export function InfoView() {
       <h2>현지 정보</h2>
       <Currency />
       <div className="info">
-        {info.map(([h, p]) => (
-          <div key={h}>
-            <h3>{h}</h3>
-            <p>{p}</p>
+        {info.map((x) => (
+          <div key={x.title}>
+            <h3>{x.title}</h3>
+            <p>{x.body}</p>
           </div>
         ))}
         <div>
@@ -229,6 +230,17 @@ export function AppsView() {
           </ul>
         </div>
       ))}
+    </section>
+  )
+}
+
+export function NotesView() {
+  const { notes } = useTrip()
+  return (
+    <section className="ref">
+      <h2>메모</h2>
+      {/* content/trips/<id>/notes.md를 빌드할 때 HTML로 바꾼 것 */}
+      <div className="notes" dangerouslySetInnerHTML={{ __html: notes ?? '' }} />
     </section>
   )
 }

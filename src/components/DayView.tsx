@@ -6,6 +6,7 @@ import { weatherLabel, type DayWeather } from '../weather'
 import { DayMap, type Pin } from './DayMap'
 import { PlaceActions } from './PlaceActions'
 import { Rich } from './Rich'
+import { Local } from './Local'
 
 const KIND_LABEL = { meet: '집합', sight: '관광', food: '식사', free: '자유', move: '이동' } as const
 
@@ -160,7 +161,7 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                 )}
                 <div className="st-h">
                   <h3>{s.title}</h3>
-                  {s.zh && <span className="zh">{s.zh}</span>}
+                  <Local>{s.local}</Local>
                   {i === cur && <span className="chip today">지금</span>}
                   {i === next && <span className="chip idea">다음</span>}
                 </div>
@@ -203,7 +204,7 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                               <span className="tag plain">{a.tag}</span>
                             )}
                             {a.title}
-                            {a.zh && <span className="zh">{a.zh}</span>}
+                            <Local>{a.local}</Local>
                           </h4>
                           <p>
                             <Rich text={a.desc} />
