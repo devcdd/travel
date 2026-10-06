@@ -226,6 +226,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     apps,
     info: [...trip.info, ...country.info],
     emergency: country.emergency,
+    phrases: country.phrases,
     flights: trip.flights,
     stay: trip.stay.map((x) => ({ k: x.label, v: x.value })),
     facilities: trip.facilities.map((x) => ({ k: x.label, v: x.value })),

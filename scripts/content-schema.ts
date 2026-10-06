@@ -172,6 +172,20 @@ export const Country = z
     emergency: z.array(z.object({ label: text, number: text }).strict()).default([]),
     apps: z.array(App).default([]),
     checklist: Checklist.default([]),
+    phrases: z
+      .array(
+        z
+          .object({
+            group: text.describe('상황 묶음 (예: 식당에서). 처음 나온 순서대로 보여요'),
+            ko: text.describe('한국어 뜻'),
+            local: text.describe('현지어 표현'),
+            say: text.describe('한글 발음'),
+            note: text.optional(),
+          })
+          .strict(),
+      )
+      .default([])
+      .describe('자주 쓰는 현지어 표현. 있으면 "회화" 탭이 생겨요'),
   })
   .strict()
 

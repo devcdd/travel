@@ -15,7 +15,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 ## 구조
 
 - `content/` 여행 데이터. 코드를 건드리지 않고 여기만 고쳐서 일정을 관리합니다.
-  - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화, 택시 카드 문장, 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트
+  - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화, 택시 카드 문장, 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트, 회화 표현(`phrases`, 있으면 "회화" 탭)
   - `trips/<여행 id>/` 여행 하나. 폴더 이름이 주소가 됩니다 (`#/taipei-2026/d2`).
     - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 항공편과 숙소 예약 정보(`flights`, `stay`), 숙소 시설(`facilities`), 이 여행만의 정보·앱
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조

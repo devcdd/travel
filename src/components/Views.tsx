@@ -468,6 +468,33 @@ export function AppsView() {
   )
 }
 
+export function PhrasesView() {
+  const { phrases } = useTrip()
+  return (
+    <section className="ref">
+      <h2>회화</h2>
+      <p className="lead">자주 쓰는 표현을 상황별로 모았어요. 한글 발음은 성조를 뺀 대략적인 소리라서, 잘 안 통하면 현지어 글자를 그대로 보여 주세요.</p>
+      {groupBy(phrases, (p) => p.group).map(([g, items]) => (
+        <div key={g} className="apps-g">
+          <h3>{g}</h3>
+          <ul className="phrases">
+            {items.map((p) => (
+              <li key={p.local}>
+                <span className="ko">{p.ko}</span>
+                <span className="zh">
+                  <Local>{p.local}</Local>
+                </span>
+                <span className="say">{p.say}</span>
+                {p.note && <span className="note">{p.note}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )
+}
+
 export function NotesView() {
   const { notes } = useTrip()
   return (

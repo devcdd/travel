@@ -157,6 +157,8 @@ export interface Trip {
   apps: AppItem[]
   info: InfoItem[]
   emergency: { label: string; number: string }[]
+  /** 자주 쓰는 현지어 표현과 한글 발음 */
+  phrases: { group: string; ko: string; local: string; say: string; note?: string }[]
   flights: Flight[]
   /** 숙소 예약 정보 (체크인 시간, 조식 등) */
   stay: { k: string; v: string }[]
