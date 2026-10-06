@@ -65,7 +65,17 @@ export interface Day {
   links?: Link[]
 }
 
-export interface FoodItem { title: string; local?: string; when: string; desc: string; order?: string; place: Place; links?: Link[] }
+export interface FoodItem {
+  title: string
+  local?: string
+  when: string
+  desc: string
+  order?: string
+  /** 웨이팅 하는 방법. remote는 가게에 가지 않고 대기를 걸 수 있는지, href는 대기를 걸거나 순서를 보는 페이지 */
+  wait?: { remote: boolean; href?: string; steps: string[] }
+  place: Place
+  links?: Link[]
+}
 export interface CheckItem { id: string; title: string; desc: string; due: string; group?: string }
 export interface InfoItem { group?: string; title: string; body?: string; points?: string[] }
 
@@ -132,7 +142,6 @@ export interface Trip {
   flights: Flight[]
   /** 숙소 예약 정보 (체크인 시간, 조식 등) */
   stay: { k: string; v: string }[]
-  footer: string
   /** notes.md를 HTML로 바꾼 것 (없으면 메모 탭을 숨겨요) */
   notes?: string
 }

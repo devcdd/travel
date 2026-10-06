@@ -17,7 +17,7 @@ npm run schema   # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 - `content/` 여행 데이터. 코드를 건드리지 않고 여기만 고쳐서 일정을 관리합니다.
   - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화, 택시 카드 문장, 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트
   - `trips/<여행 id>/` 여행 하나. 폴더 이름이 주소가 됩니다 (`#/taipei-2026/d2`).
-    - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 이 여행만의 정보·앱, 푸터
+    - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 항공편과 숙소 예약 정보(`flights`, `stay`), 이 여행만의 정보·앱
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조
     - `days/01.yaml …` 하루 일정. 파일 이름 순서가 Day 1, 2, 3이고 URL 탭 id는 `d1`, `d2` …
     - `food.yaml`, `checklist.yaml` (선택), `notes.md` (선택, 있으면 "메모" 탭)

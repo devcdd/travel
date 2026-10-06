@@ -159,7 +159,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
       checkTokens(raw, lines, f('food.yaml'), issues)
       food = raw.flatMap((x, i) => {
         const p = place(x.place, f('food.yaml'), `${i}.place`)
-        return p ? [{ title: x.title, local: x.local ?? p.local, when: x.day, desc: x.desc, order: x.order, place: p, links: x.links }] : []
+        return p ? [{ title: x.title, local: x.local ?? p.local, when: x.day, desc: x.desc, order: x.order, wait: x.wait, place: p, links: x.links }] : []
       })
     }
   }
@@ -208,7 +208,6 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     emergency: country.emergency,
     flights: trip.flights,
     stay: trip.stay.map((x) => ({ k: x.label, v: x.value })),
-    footer: trip.footer,
     notes,
   }
 }
@@ -263,7 +262,8 @@ export function contentPlugin(rel = 'content'): Plugin {
       if (id !== RESOLVED) return
       const { trips, files } = loadContent(dir)
       files.forEach((file) => this.addWatchFile(file))
-      return `export const TRIPS = ${JSON.stringify(trips)}`
+      // 10:45–20:30, NT$500–1,500 같은 숫자 범위가 줄 끝에서 끊기지 않게 줄표 양옆에 WORD JOINER를 넣어요.
+      return `export const TRIPS = ${JSON.stringify(trips).replace(/(\d)–(?=\d)/g, '$1\u2060–\u2060')}`
     },
     configureServer(server) {
       server.watcher.add(dir)

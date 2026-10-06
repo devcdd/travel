@@ -26,6 +26,35 @@
         "type": "string",
         "minLength": 1
       },
+      "wait": {
+        "description": "웨이팅 하는 방법. 원격 웨이팅이 되는지와 순서",
+        "type": "object",
+        "properties": {
+          "remote": {
+            "type": "boolean",
+            "description": "가게에 가지 않고 대기를 걸 수 있으면 true, 매장에서만 접수하면 false"
+          },
+          "href": {
+            "description": "대기를 걸거나 순서를 확인하는 페이지 주소",
+            "type": "string",
+            "format": "uri"
+          },
+          "steps": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "하는 순서대로 한 문장씩"
+          }
+        },
+        "required": [
+          "remote",
+          "steps"
+        ],
+        "additionalProperties": false
+      },
       "place": {
         "type": "string",
         "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",

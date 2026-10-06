@@ -101,7 +101,12 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
               {weather ? (
                 <>
                   {weatherLabel(weather.code)} <span className="mono">{weather.min}–{weather.max}°</span> · 비 {weather.pop}%
-                  <span className="faint"> ({day.weather.where})</span>
+                  <span className="src">
+                    {day.weather.where} 기준 ·{' '}
+                    <a href="https://open-meteo.com/" target="_blank" rel="noopener">
+                      Open-Meteo
+                    </a>
+                  </span>
                 </>
               ) : (
                 <span className="faint">예보를 불러오고 있어요</span>

@@ -119,6 +119,15 @@ export const Food = z.array(
       day: text.describe('배치한 날 (예: 10.07, 수시)'),
       desc: text,
       order: text.optional().describe('추천 메뉴 안내 문장'),
+      wait: z
+        .object({
+          remote: z.boolean().describe('가게에 가지 않고 대기를 걸 수 있으면 true, 매장에서만 접수하면 false'),
+          href: z.url().optional().describe('대기를 걸거나 순서를 확인하는 페이지 주소'),
+          steps: z.array(text).min(1).describe('하는 순서대로 한 문장씩'),
+        })
+        .strict()
+        .optional()
+        .describe('웨이팅 하는 방법. 원격 웨이팅이 되는지와 순서'),
       place: placeId,
       links: z.array(Link).optional(),
     })
@@ -181,7 +190,6 @@ export const Trip = z
       .array(z.object({ label: text, value: text }).strict())
       .default([])
       .describe('숙소 예약 정보 (체크인 시간, 조식 등). "항공·숙소" 탭에 숙소와 함께 보여요'),
-    footer: text,
   })
   .strict()
   .refine((t) => t.start <= t.end, { path: ['end'], message: 'end가 start보다 빠를 수 없어요' })

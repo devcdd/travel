@@ -99,7 +99,13 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
                     {d.stops.filter((s) => s.title && s.kind !== 'move').length}곳 · {d.chips[0].text}
                   </span>
                 </span>
-                <span className="wx mono">{w ? `${w.max}° · ${w.pop}%` : ''}</span>
+                <span className="wx">
+                  {w && (
+                    <>
+                      {w.max}°<small>비 {w.pop}%</small>
+                    </>
+                  )}
+                </span>
               </a>
             )
           })}
@@ -132,10 +138,6 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
         {tab === 'info' && <InfoView />}
         {tab === 'notes' && trip.notes && <NotesView />}
       </main>
-
-      <footer className="wrap">
-        {trip.footer} 날씨는 Open-Meteo, 환율은 ExchangeRate-API, 지도는 Google 지도와 OpenStreetMap 정보를 사용해요.
-      </footer>
     </TripContext.Provider>
   )
 }

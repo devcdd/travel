@@ -9,6 +9,7 @@
   /* 현지어 이름은 lang 속성에 따라 기기의 현지어 글꼴로 표시돼요. */
   --f-local: -apple-system, BlinkMacSystemFont, "PingFang TC", "Hiragino Sans", "Noto Sans CJK TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   --tile-filter: grayscale(.35) contrast(.95);
+  --ext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3.5 1.5h5v5M8.5 1.5 1.5 8.5' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E");
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -42,7 +43,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none }
 .mono, time { font-family: var(--f-mono); font-variant-numeric: tabular-nums; letter-spacing: -.01em }
 .faint { color: var(--faint) }
 .small { font-size: 12.5px }
-.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .03em; color: var(--muted); text-transform: uppercase }
 
 /* buttons */
 .acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
@@ -68,20 +69,20 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none }
 .glance .d small { display: block; font-size: 11px; font-weight: 500; color: var(--faint); letter-spacing: .04em }
 .glance .what { font-weight: 500; min-width: 0 }
 .glance .what span { display: block; font-size: 12.5px; color: var(--muted); font-weight: 400 }
-.glance .wx { font-size: 12px; color: var(--muted) }
+.glance .wx { display: grid; justify-items: end; font-family: var(--f-mono); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums }
+.glance .wx small { font-size: 11px; font-weight: 500; color: var(--faint) }
 
 .hotel { margin-top: 20px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface) }
 .hotel h2 { font-size: 17px; font-weight: 600; margin-top: 4px }
 .hotel p { margin-top: 4px; font-size: 13.5px; color: var(--muted) }
 .addr { background: none; border: 0; padding: 0; font-family: var(--f-local); color: var(--fg); cursor: copy; text-decoration: underline dotted var(--faint); text-underline-offset: 3px }
 
-/* chips & MRT badges */
-.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; white-space: nowrap; line-height: 1.7 }
-.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50% ; background: currentColor }
-.chip.ok { color: var(--ok); background: var(--ok-soft) }
-.chip.warn { color: var(--warn); background: var(--warn-soft) }
-.chip.idea { color: var(--idea); background: var(--idea-soft) }
-.chip.today { color: var(--on-accent); background: var(--accent) }
+/* 상태 라벨과 MRT 배지. 라벨은 바탕색 없이 얇은 선과 글자색으로만 구분해요. */
+.chip { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; font-size: 11.5px; font-weight: 600; line-height: 1; white-space: nowrap; border-radius: 4px; border: 1px solid color-mix(in srgb, currentColor 35%, transparent) }
+.chip.ok { color: var(--ok) }
+.chip.warn { color: var(--warn) }
+.chip.idea { color: var(--muted) }
+.chip.today { color: var(--on-accent); background: var(--accent); border-color: var(--accent) }
 .mrt { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 11px; font-weight: 600; line-height: 1; padding: 3px 5px; border-radius: 3px; vertical-align: 1px; letter-spacing: .02em; margin-inline: 1px }
 
 /* sticky tabs */
@@ -94,7 +95,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none }
 .strip a .mono { font-weight: 500; margin-right: 5px }
 .strip a.is-today .mono { color: var(--accent) }
 
-main { padding-block: 0 48px; min-height: 60vh }
+main { padding-block: 0 72px; min-height: 60vh }
 
 /* day */
 .day { padding-top: 28px }
@@ -105,8 +106,10 @@ main { padding-block: 0 48px; min-height: 60vh }
 .day-h h2 { font-size: 26px; font-weight: 700; letter-spacing: -.015em }
 .day-h .lead { color: var(--muted); max-width: 62ch }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; margin-top: 8px; padding-block: 14px; border-block: 1px solid var(--line); font-size: 13.5px }
-.facts dt { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--faint) }
+.facts dt { font-size: 11.5px; font-weight: 600; color: var(--faint) }
 .facts dd { color: var(--fg); min-width: 0 }
+.facts .src { display: block; font-size: 12px; color: var(--faint) }
+.facts .src a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px }
 
 .map-box { margin-top: 18px; scroll-margin-top: 80px }
 .map-wrap { position: relative; z-index: 0 }
@@ -167,9 +170,12 @@ main { padding-block: 0 48px; min-height: 60vh }
 .alt { margin-top: 12px; display: grid; gap: 8px }
 .alt > div { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--surface); min-width: 0 }
 .alt h4 { font-size: 14.5px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px }
-.alt .tag { font-family: var(--f-mono); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); cursor: pointer }
-.alt .tag:hover { border-color: var(--faint); color: var(--fg) }
-.alt .tag.plain { cursor: default }
+.alt .tag { display: inline-grid; place-items: center; align-self: center; min-width: 24px; height: 20px; padding: 0 5px; border: 0; border-radius: 10px; font-family: var(--f-mono); font-size: 11px; font-weight: 600; line-height: 1; background: var(--fg); color: var(--bg); cursor: pointer }
+.st.food .alt .tag { background: var(--warn); color: var(--surface) }
+.st.meet .alt .tag { background: var(--accent); color: var(--on-accent) }
+.st.free .alt .tag { background: var(--muted); color: var(--surface) }
+.alt .tag:hover { filter: brightness(1.15) }
+.alt .tag.plain, .st .alt .tag.plain { background: none; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); cursor: default; filter: none }
 .alt p { font-size: 14px; color: var(--muted); margin-top: 4px }
 
 /* reference tabs */
@@ -181,8 +187,17 @@ main { padding-block: 0 48px; min-height: 60vh }
 .food h3 { font-size: 16px; font-weight: 600 }
 .food p, .food .full { grid-column: 1 / -1; font-size: 14px; color: var(--muted) }
 .food .when { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 3px }
-.food .order { color: var(--fg); font-size: 13.5px }
-.food .order b { font-weight: 600; color: var(--warn); margin-right: 6px }
+.food .order { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; color: var(--fg); font-size: 13.5px }
+.food .order b { font-weight: 600; color: var(--warn) }
+.wait { grid-column: 1 / -1; margin-top: 8px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+.wait-h { display: flex; align-items: center; gap: 8px }
+.wait h4 { font-size: 13px; font-weight: 600 }
+.wait-h a { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; font-size: 13px; font-weight: 600; white-space: nowrap }
+.wait-h a::after { content: ""; width: 9px; height: 9px; background: currentColor; -webkit-mask: var(--ext) center / contain no-repeat; mask: var(--ext) center / contain no-repeat }
+.wait ol { margin-top: 6px; display: grid; gap: 4px; counter-reset: step }
+.wait li { position: relative; padding-left: 20px; font-size: 13.5px; color: var(--muted); counter-increment: step }
+.wait li::before { content: counter(step); position: absolute; left: 0; top: 0; font-family: var(--f-mono); font-size: 12px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums }
+.wait b { color: var(--fg); font-weight: 600 }
 
 .progress { display: flex; align-items: center; gap: 12px; margin-top: 14px; font-size: 13px; color: var(--muted) }
 .bar { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden }
@@ -199,7 +214,7 @@ main { padding-block: 0 48px; min-height: 60vh }
 .check .due { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 2px; white-space: nowrap }
 
 .fx { margin-top: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface) }
-.fx h3 { font-size: 12px; font-family: var(--f-mono); font-weight: 600; letter-spacing: .06em; color: var(--muted); text-transform: uppercase }
+.fx h3 { font-size: 12.5px; font-weight: 600; color: var(--muted) }
 .fx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px }
 .fx-in { display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); font-family: var(--f-mono); font-weight: 600 }
 .fx-in input { width: 7ch; border: 0; background: none; font: inherit; font-size: 20px; color: var(--fg); outline: none }
@@ -208,6 +223,7 @@ main { padding-block: 0 48px; min-height: 60vh }
 .fx-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px }
 .fx-quick .btn { height: 28px; font-family: var(--f-mono); font-size: 12px }
 .fx p { margin-top: 10px }
+.fx p a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px }
 
 .flights > li { padding-block: 18px; border-bottom: 1px solid var(--line) }
 .fl-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; font-size: 14.5px }
@@ -234,8 +250,6 @@ main { padding-block: 0 48px; min-height: 60vh }
 .sos li { display: flex; justify-content: space-between; gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--line); font-size: 14.5px }
 .sos a { font-weight: 600; color: var(--accent); text-decoration: none }
 
-footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); border-top: 1px solid var(--line) }
-
 /* taxi sheet */
 .sheet { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 16px; background: color-mix(in srgb, var(--fg) 45%, transparent) }
 .sheet-card { width: min(520px, 100%); max-height: 100%; overflow: auto; padding: 28px 24px 22px; border-radius: 14px; background: var(--surface); text-align: center }
@@ -259,7 +273,7 @@ footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); borde
   .top h1 { font-size: 28px }
   .glance a { grid-template-columns: 56px minmax(0, 1fr) auto; gap: 10px }
   .day-h h2 { font-size: 22px }
-  .facts { grid-template-columns: minmax(0, 1fr) }
+  .facts { gap: 12px 16px }
   .map { height: 240px }
   .tl > li { grid-template-columns: 40px minmax(0, 1fr); gap: 0 16px }
   .tl time { font-size: 13px }
@@ -299,12 +313,14 @@ footer { padding-block: 24px 48px; font-size: 12.5px; color: var(--faint); borde
 .gm-style .gm-style-iw-d { overflow: auto !important; padding: 10px 12px }
 .map-btn.gmap { top: auto; bottom: 10px; left: 10px; right: auto }
 .me-pin { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--accent) }
-.btn.book { background: var(--warn-soft); border-color: transparent; color: var(--warn); font-weight: 600 }
+.btn.book { gap: 5px; color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)) }
+.btn.book:hover { border-color: var(--accent) }
+.btn.book::after { content: ""; width: 9px; height: 9px; background: currentColor; -webkit-mask: var(--ext) center / contain no-repeat; mask: var(--ext) center / contain no-repeat }
 .alt .tips { font-size: 13.5px }
 
 /* apps */
 .apps-g { margin-top: 22px }
-.apps-g > h3 { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line) }
+.apps-g > h3 { font-size: 12.5px; font-weight: 700; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line) }
 .apps li { padding-block: 14px; border-bottom: 1px solid var(--line) }
 .app-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px }
 .app-h strong { font-size: 16px; font-weight: 600 }

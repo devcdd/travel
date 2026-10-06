@@ -119,7 +119,7 @@ export function FoodView() {
   return (
     <section className="ref">
       <h2>먹을 것</h2>
-      <p className="lead">일정에 넣은 맛집과 함께 가 볼 만한 후보를 모았어요. 오른쪽 날짜는 그 맛집을 넣어 둔 날이에요.</p>
+      <p className="lead">일정에 넣은 맛집과 함께 가 볼 만한 후보를 모았어요. 오른쪽 날짜는 그 맛집을 넣어 둔 날이에요. 줄이 긴 곳은 웨이팅 칸에 원격으로 대기를 걸 수 있는지와 하는 방법을 적어 두었어요.</p>
       <ul className="food">
         {FOOD.map((f) => (
           <li key={f.title}>
@@ -131,8 +131,28 @@ export function FoodView() {
             {f.order && (
               <p className="order">
                 <b>추천</b>
-                {f.order}
+                <span>{f.order}</span>
               </p>
+            )}
+            {f.wait && (
+              <div className="wait">
+                <div className="wait-h">
+                  <h4>웨이팅</h4>
+                  <span className={`chip ${f.wait.remote ? 'ok' : 'idea'}`}>{f.wait.remote ? '원격 가능' : '현장 접수만'}</span>
+                  {f.wait.href && (
+                    <a href={f.wait.href} target="_blank" rel="noopener">
+                      {f.wait.remote ? '대기 걸기' : '순서 보기'}
+                    </a>
+                  )}
+                </div>
+                <ol>
+                  {f.wait.steps.map((t) => (
+                    <li key={t}>
+                      <Rich text={t} />
+                    </li>
+                  ))}
+                </ol>
+              </div>
             )}
             <div className="full">
               <PlaceActions place={f.place} compact links={f.links} />
@@ -238,7 +258,10 @@ function Currency() {
         ))}
       </div>
       <p className="faint small">
-        {rate ? `1 ${currency.symbol} ≈ ${rate.toFixed(1)}원${updated ? ` · ${updated} 기준` : ' · 마지막으로 저장된 환율'}` : '인터넷에 연결되면 환율을 불러올게요.'}
+        {rate ? `1 ${currency.symbol} ≈ ${rate.toFixed(1)}원${updated ? ` · ${updated} 기준` : ' · 마지막으로 저장된 환율'}` : '인터넷에 연결되면 환율을 불러올게요.'} ·{' '}
+        <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">
+          ExchangeRate-API
+        </a>
       </p>
     </div>
   )

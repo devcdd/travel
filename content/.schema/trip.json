@@ -257,10 +257,6 @@
         ],
         "additionalProperties": false
       }
-    },
-    "footer": {
-      "type": "string",
-      "minLength": 1
     }
   },
   "required": [
@@ -271,8 +267,7 @@
     "start",
     "end",
     "summary",
-    "hotel",
-    "footer"
+    "hotel"
   ],
   "additionalProperties": false
 }
