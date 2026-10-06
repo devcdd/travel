@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { copyText, dirUrl, fmtDate, load, mapUrl, save } from '../lib'
 import { useActions, useTrip } from '../context'
 import { Rich } from './Rich'
+import { useKrwRate } from '../rate'
 import { Local } from './Local'
 import { PlaceActions } from './PlaceActions'
 
@@ -186,11 +187,15 @@ export function FoodView() {
               {f.title} <Local>{f.local}</Local>
             </h3>
             <span className="when">{f.when}</span>
-            <p>{f.desc}</p>
+            <p>
+              <Rich text={f.desc} />
+            </p>
             {f.order && (
               <p className="order">
                 <b>추천</b>
-                <span>{f.order}</span>
+                <span>
+                  <Rich text={f.order} />
+                </span>
               </p>
             )}
             {f.wait && (
@@ -320,24 +325,10 @@ export function ChecklistView() {
 
 function Currency() {
   const { currency } = useTrip()
-  const RATE_KEY = `rate-${currency.code}-KRW`
-  const [rate, setRate] = useState<number | null>(() => load<number | null>(RATE_KEY, null))
-  const [updated, setUpdated] = useState('')
+  const r = useKrwRate(currency.code)
+  const rate = r?.krw ?? null
+  const updated = r?.updated ?? ''
   const [twd, setTwd] = useState('100')
-
-  useEffect(() => {
-    fetch(`https://open.er-api.com/v6/latest/${currency.code}`)
-      .then((r) => r.json())
-      .then((j) => {
-        const krw = j?.rates?.KRW
-        if (typeof krw === 'number') {
-          setRate(krw)
-          save(RATE_KEY, krw)
-          setUpdated(new Date(j.time_last_update_unix * 1000).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' }))
-        }
-      })
-      .catch(() => {})
-  }, [RATE_KEY, currency.code])
 
   const v = parseFloat(twd)
   const krw = rate && !Number.isNaN(v) ? Math.round(v * rate) : null

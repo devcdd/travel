@@ -85,7 +85,9 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
           ))}
         </div>
         <h2 id={`${day.id}-h`}>{day.title}</h2>
-        <p className="lead">{day.lead}</p>
+        <p className="lead">
+          <Rich text={day.lead} />
+        </p>
         <dl className="facts">
           {day.facts.map((f) => (
             <div key={f.k}>
