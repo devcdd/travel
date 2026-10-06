@@ -143,6 +143,27 @@ export const Country = z
   })
   .strict()
 
+const FlightEnd = z
+  .object({
+    airport: text.describe('공항 이름 (예: 부산 김해)'),
+    time: z.string().regex(/^\d{2}:\d{2}$/, 'HH:MM 형식으로 적어 주세요').describe('현지 시각'),
+    terminal: text.optional().describe('터미널 (예: 1터미널)'),
+  })
+  .strict()
+
+const Flight = z
+  .object({
+    label: text.describe('가는 편, 오는 편처럼 짧게'),
+    date,
+    airline: text,
+    flight: text.describe('편명 (예: KE2085)'),
+    from: FlightEnd,
+    to: FlightEnd,
+    duration: text.optional().describe('비행 시간 (예: 2시간 30분)'),
+    tips: z.array(text).optional(),
+  })
+  .strict()
+
 export const Trip = z
   .object({
     title: text,
@@ -155,6 +176,11 @@ export const Trip = z
     hotel: z.object({ place: placeId, access: text, nights: z.number().int().positive() }).strict(),
     info: z.array(InfoItem).default([]).describe('이 여행에만 해당하는 현지 정보. 나라 정보보다 먼저 보여요'),
     apps: z.array(App).default([]).describe('나라 공통 앱 목록 뒤에 더할 앱'),
+    flights: z.array(Flight).default([]).describe('항공편. 있으면 "항공·숙소" 탭이 생겨요. 예약번호는 적지 마세요'),
+    stay: z
+      .array(z.object({ label: text, value: text }).strict())
+      .default([])
+      .describe('숙소 예약 정보 (체크인 시간, 조식 등). "항공·숙소" 탭에 숙소와 함께 보여요'),
     footer: text,
   })
   .strict()

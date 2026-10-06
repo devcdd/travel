@@ -88,6 +88,18 @@ export interface Hotel extends Place {
   nights: number
 }
 
+export interface FlightEnd { airport: string; time: string; terminal?: string }
+export interface Flight {
+  label: string
+  date: string
+  airline: string
+  flight: string
+  from: FlightEnd
+  to: FlightEnd
+  duration?: string
+  tips?: string[]
+}
+
 export interface Line { name: string; color: string; text?: string }
 
 export interface Trip {
@@ -117,6 +129,9 @@ export interface Trip {
   apps: AppItem[]
   info: InfoItem[]
   emergency: { label: string; number: string }[]
+  flights: Flight[]
+  /** 숙소 예약 정보 (체크인 시간, 조식 등) */
+  stay: { k: string; v: string }[]
   footer: string
   /** notes.md를 HTML로 바꾼 것 (없으면 메모 탭을 숨겨요) */
   notes?: string

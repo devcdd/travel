@@ -86,6 +86,9 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
 
   checkTokens(trip, lines, f('trip.yaml'), issues)
   const hotelPlace = place(trip.hotel.place, f('trip.yaml'), 'hotel.place')
+  trip.flights.forEach((x, i) => {
+    if (x.date < trip.start || x.date > trip.end) issues.add(f('trip.yaml'), `flights.${i}.date`, `여행 기간(${trip.start} ~ ${trip.end}) 밖의 날짜예요`)
+  })
   if (hotelPlace && (hotelPlace.lat == null || hotelPlace.lng == null)) issues.add(f('places.yaml'), trip.hotel.place, '숙소에는 lat, lng가 필요해요')
 
   // days/*.yaml — 파일 이름 순서가 곧 Day 1, 2, 3 …
@@ -203,6 +206,8 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     apps,
     info: [...trip.info, ...country.info],
     emergency: country.emergency,
+    flights: trip.flights,
+    stay: trip.stay.map((x) => ({ k: x.label, v: x.value })),
     footer: trip.footer,
     notes,
   }

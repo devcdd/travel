@@ -209,6 +209,18 @@ main { padding-block: 0 48px; min-height: 60vh }
 .fx-quick .btn { height: 28px; font-family: var(--f-mono); font-size: 12px }
 .fx p { margin-top: 10px }
 
+.flights > li { padding-block: 18px; border-bottom: 1px solid var(--line) }
+.fl-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; font-size: 14.5px }
+.fl-h strong { font-weight: 600 }
+.fl-route { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px }
+.fl-route > div { display: grid; font-size: 14px }
+.fl-route .to { text-align: right }
+.fl-route time { font-size: 26px; font-weight: 700; line-height: 1.2 }
+.fl-dur { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-size: 12.5px; white-space: nowrap; padding-inline: 8px; background: var(--bg) }
+.fl-route::before { content: ""; position: absolute; left: 30%; right: 30%; top: 19px; border-top: 1px solid var(--line) }
+.flights .pts { margin-top: 12px }
+.stay > div { display: grid; grid-template-columns: 7em minmax(0, 1fr); gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 14.5px }
+.stay dt { color: var(--muted) }
 .info-g, .check-g { margin-top: 26px }
 .info-g > h3, .check-g > h3 { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--fg); padding-bottom: 8px; border-bottom: 1px solid var(--fg) }
 .check-g > h3 .mono { font-size: 12px; font-weight: 500; color: var(--muted) }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { copyText, dirUrl, load, mapUrl, save } from '../lib'
+import { copyText, dirUrl, fmtDate, load, mapUrl, save } from '../lib'
 import { useActions, useTrip } from '../context'
 import { Rich } from './Rich'
 import { Local } from './Local'
@@ -49,6 +49,67 @@ export function HotelCard() {
           지도
         </a>
       </div>
+    </section>
+  )
+}
+
+export function FlightsView() {
+  const { flights, stay, hotel } = useTrip()
+  return (
+    <section className="ref">
+      <h2>항공 · 숙소</h2>
+      <p className="lead">예약해 둔 항공편과 숙소예요. 시각은 모두 그 공항의 현지 시각이에요.</p>
+      <ul className="flights">
+        {flights.map((f) => (
+          <li key={f.flight}>
+            <div className="fl-h">
+              <span className="eyebrow">
+                {f.label} · {fmtDate(f.date, false)}
+              </span>
+              <span>
+                <strong>{f.airline}</strong> <span className="mono">{f.flight}</span>
+              </span>
+            </div>
+            <div className="fl-route">
+              {[f.from, f.to].map((e, i) => (
+                <div key={i} className={i ? 'to' : 'from'}>
+                  <time className="mono">{e.time}</time>
+                  <span>{e.airport}</span>
+                  {e.terminal && <span className="faint">{e.terminal}</span>}
+                </div>
+              ))}
+              {f.duration && <span className="fl-dur faint">{f.duration}</span>}
+            </div>
+            {f.tips && (
+              <ul className="pts">
+                {f.tips.map((t) => (
+                  <li key={t}>
+                    <Rich text={t} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      {stay.length > 0 && (
+        <div className="info-g">
+          <h3>
+            {hotel.name}
+            <span className="mono">{hotel.nights}박</span>
+          </h3>
+          <dl className="stay">
+            {stay.map((x) => (
+              <div key={x.k}>
+                <dt>{x.k}</dt>
+                <dd>
+                  <Rich text={x.v} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
     </section>
   )
 }
