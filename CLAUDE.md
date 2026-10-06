@@ -17,7 +17,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 - `content/` 여행 데이터. 코드를 건드리지 않고 여기만 고쳐서 일정을 관리합니다.
   - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화, 택시 카드 문장, 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트
   - `trips/<여행 id>/` 여행 하나. 폴더 이름이 주소가 됩니다 (`#/taipei-2026/d2`).
-    - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 항공편과 숙소 예약 정보(`flights`, `stay`), 이 여행만의 정보·앱
+    - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 항공편과 숙소 예약 정보(`flights`, `stay`), 숙소 시설(`facilities`), 이 여행만의 정보·앱
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조
     - `days/01.yaml …` 하루 일정. 파일 이름 순서가 Day 1, 2, 3이고 URL 탭 id는 `d1`, `d2` …
     - `food.yaml`, `checklist.yaml` (선택), `notes.md` (선택, 있으면 "메모" 탭)
@@ -77,3 +77,9 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 
 - 데이터만 바꿨다면 `pnpm check`.
 - 화면을 바꿨다면 `pnpm build` 후 `pnpm exec vite preview --port 4173`, 헤드리스 Chrome으로 스크린샷을 찍어 봅니다 (Chrome 창 최소 너비가 500px이라 그보다 좁게는 안 찍힙니다).
+
+## 커밋과 배포
+
+- 파일을 고친 작업은 따로 말하지 않아도 위 확인을 마친 뒤 바로 커밋하고 `main`에 푸시합니다. 여행 중 휴대폰에서 바로 보기 위해서예요.
+- 푸시한 뒤에는 GitHub Actions 배포가 성공했는지까지 확인합니다 (`gh run watch`).
+- 확인이 실패했거나 사용자가 커밋하지 말라고 한 경우에는 푸시하지 않고 알립니다.

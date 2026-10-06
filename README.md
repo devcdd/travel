@@ -27,10 +27,10 @@ VS Code에서 Red Hat YAML 확장을 설치하면 YAML 파일에서 자동완성
 ## 실행
 
 ```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run check    # content/와 타입만 빠르게 검사
-npm run build    # dist/ 생성
+pnpm install
+pnpm dev         # http://localhost:5173
+pnpm check       # content/와 타입만 빠르게 검사
+pnpm build       # dist/ 생성
 ```
 
 ## Google 지도 키 (선택)

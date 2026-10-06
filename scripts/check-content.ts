@@ -1,4 +1,4 @@
-// 빌드하지 않고 content/만 빠르게 검사합니다: `npm run check`
+// 빌드하지 않고 content/만 빠르게 검사합니다: `pnpm check`
 import path from 'node:path'
 import { loadContent } from './content-plugin.ts'
 

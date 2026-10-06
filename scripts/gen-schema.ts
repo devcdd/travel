@@ -1,4 +1,4 @@
-// VS Code 자동완성용 JSON 스키마를 content/.schema/에 만듭니다. content-schema.ts를 고친 뒤 `npm run schema`로 다시 만드세요.
+// VS Code 자동완성용 JSON 스키마를 content/.schema/에 만듭니다. content-schema.ts를 고친 뒤 `pnpm schema`로 다시 만드세요.
 import fs from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
