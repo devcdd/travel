@@ -235,6 +235,11 @@ main { padding-block: 0 72px; min-height: 60vh }
 .fl-dur { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-size: 12.5px; white-space: nowrap; padding-inline: 8px; background: var(--bg) }
 .fl-route::before { content: ""; position: absolute; left: 30%; right: 30%; top: 19px; border-top: 1px solid var(--line) }
 .flights .pts { margin-top: 12px }
+.tickets > li { padding-block: 18px; border-bottom: 1px solid var(--line) }
+.tk-h { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+.tickets h3 { margin-top: 4px; font-size: 17px; font-weight: 600 }
+.tickets .stay { margin-top: 8px; border-top: 1px solid var(--line) }
+.tickets .pts { margin-top: 10px }
 .stay > div { display: grid; grid-template-columns: 7em minmax(0, 1fr); gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 14.5px }
 .stay dt { color: var(--muted) }
 .info-g, .check-g { margin-top: 26px }

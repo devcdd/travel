@@ -110,6 +110,16 @@ export interface Flight {
   tips?: string[]
 }
 
+export interface Ticket {
+  title: string
+  date: string
+  status: string
+  /** 미리 끝낸 일이면 true, 현장에서 할 일이면 false */
+  done: boolean
+  facts: { k: string; v: string }[]
+  points?: string[]
+}
+
 export interface Line { name: string; color: string; text?: string }
 
 export interface Trip {
@@ -142,6 +152,7 @@ export interface Trip {
   flights: Flight[]
   /** 숙소 예약 정보 (체크인 시간, 조식 등) */
   stay: { k: string; v: string }[]
+  tickets: Ticket[]
   /** notes.md를 HTML로 바꾼 것 (없으면 메모 탭을 숨겨요) */
   notes?: string
 }

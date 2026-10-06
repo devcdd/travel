@@ -114,6 +114,50 @@ export function FlightsView() {
   )
 }
 
+export function TicketsView() {
+  const { tickets } = useTrip()
+  return (
+    <section className="ref">
+      <h2>예매</h2>
+      <p className="lead">미리 사 두거나 끝내 둔 것들이에요. 날짜 순서대로 모았어요.</p>
+      <ul className="tickets">
+        {[...tickets]
+          .sort((a, b) => a.date.localeCompare(b.date))
+          .map((t) => (
+            <li key={t.title}>
+              <div className="tk-h">
+                <span className="eyebrow">{fmtDate(t.date, false)}</span>
+                <span className={`chip ${t.done ? 'ok' : 'idea'}`}>{t.status}</span>
+              </div>
+              <h3>{t.title}</h3>
+              {t.facts.length > 0 && (
+                <dl className="stay">
+                  {t.facts.map((x) => (
+                    <div key={x.k}>
+                      <dt>{x.k}</dt>
+                      <dd>
+                        <Rich text={x.v} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {t.points && (
+                <ul className="pts">
+                  {t.points.map((p) => (
+                    <li key={p}>
+                      <Rich text={p} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+      </ul>
+    </section>
+  )
+}
+
 export function FoodView() {
   const { food: FOOD } = useTrip()
   return (

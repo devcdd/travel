@@ -257,6 +257,69 @@
         ],
         "additionalProperties": false
       }
+    },
+    "tickets": {
+      "default": [],
+      "description": "예매해 둔 티켓과 미리 끝낸 일. 있으면 \"예매\" 탭이 생겨요",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1,
+            "description": "예: 예매 완료, 작성 완료, 현장 결제"
+          },
+          "done": {
+            "type": "boolean",
+            "description": "미리 끝낸 일이면 true, 현장에서 할 일이면 false"
+          },
+          "facts": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "label",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "title",
+          "date",
+          "status",
+          "done"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [

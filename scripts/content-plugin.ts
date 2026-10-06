@@ -86,6 +86,9 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
 
   checkTokens(trip, lines, f('trip.yaml'), issues)
   const hotelPlace = place(trip.hotel.place, f('trip.yaml'), 'hotel.place')
+  trip.tickets.forEach((x, i) => {
+    if (x.date < trip.start || x.date > trip.end) issues.add(f('trip.yaml'), `tickets.${i}.date`, `여행 기간(${trip.start} ~ ${trip.end}) 밖의 날짜예요`)
+  })
   trip.flights.forEach((x, i) => {
     if (x.date < trip.start || x.date > trip.end) issues.add(f('trip.yaml'), `flights.${i}.date`, `여행 기간(${trip.start} ~ ${trip.end}) 밖의 날짜예요`)
   })
@@ -208,6 +211,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     emergency: country.emergency,
     flights: trip.flights,
     stay: trip.stay.map((x) => ({ k: x.label, v: x.value })),
+    tickets: trip.tickets.map((x) => ({ ...x, facts: x.facts.map((f) => ({ k: f.label, v: f.value })) })),
     notes,
   }
 }

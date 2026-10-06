@@ -190,6 +190,21 @@ export const Trip = z
       .array(z.object({ label: text, value: text }).strict())
       .default([])
       .describe('숙소 예약 정보 (체크인 시간, 조식 등). "항공·숙소" 탭에 숙소와 함께 보여요'),
+    tickets: z
+      .array(
+        z
+          .object({
+            title: text,
+            date,
+            status: text.describe('예: 예매 완료, 작성 완료, 현장 결제'),
+            done: z.boolean().describe('미리 끝낸 일이면 true, 현장에서 할 일이면 false'),
+            facts: z.array(z.object({ label: text, value: text }).strict()).default([]),
+            points: z.array(text).optional(),
+          })
+          .strict(),
+      )
+      .default([])
+      .describe('예매해 둔 티켓과 미리 끝낸 일. 있으면 "예매" 탭이 생겨요'),
   })
   .strict()
   .refine((t) => t.start <= t.end, { path: ['end'], message: 'end가 start보다 빠를 수 없어요' })

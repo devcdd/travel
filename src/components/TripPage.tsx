@@ -4,10 +4,11 @@ import { fmtDate, nowIn, tripStatus } from '../lib'
 import { useWeather } from '../weather'
 import { TripContext } from '../context'
 import { DayView } from './DayView'
-import { AppsView, ChecklistView, FlightsView, FoodView, HotelCard, InfoView, NotesView } from './Views'
+import { AppsView, ChecklistView, FlightsView, TicketsView, FoodView, HotelCard, InfoView, NotesView } from './Views'
 
 const EXTRA = [
   { id: 'flights', label: '항공·숙소' },
+  { id: 'tickets', label: '예매' },
   { id: 'food', label: '먹을 것' },
   { id: 'todo', label: '예약·준비' },
   { id: 'apps', label: '앱' },
@@ -15,8 +16,9 @@ const EXTRA = [
   { id: 'notes', label: '메모' },
 ]
 
-/** 메모 탭은 notes.md가 있는 여행에만, 항공·숙소 탭은 항공편을 적은 여행에만 보여요. */
-const extrasFor = (trip: Trip) => EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'flights' || trip.flights.length))
+/** 메모, 항공·숙소, 예매 탭은 내용이 있는 여행에만 보여요. */
+const extrasFor = (trip: Trip) =>
+  EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'flights' || trip.flights.length) && (e.id !== 'tickets' || trip.tickets.length))
 
 function useNow(timeZone: string) {
   const [now, setNow] = useState(() => ({ local: nowIn(timeZone), kst: nowIn('Asia/Seoul') }))
@@ -132,6 +134,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
       <main className="wrap">
         {day && <DayView key={day.id} day={day} today={day.date === local.date} nowMinutes={local.minutes} weather={weather[day.date]} />}
         {tab === 'flights' && <FlightsView />}
+        {tab === 'tickets' && <TicketsView />}
         {tab === 'food' && <FoodView />}
         {tab === 'todo' && <ChecklistView />}
         {tab === 'apps' && <AppsView />}
