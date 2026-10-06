@@ -208,6 +208,52 @@ export function FoodView() {
   )
 }
 
+export function DishesView() {
+  const { dishes } = useTrip()
+  return (
+    <section className="ref">
+      <h2>대표 음식</h2>
+      <p className="lead">대만에 오면 꼭 먹어 볼 음식과 종류별 대표 맛집이에요. 오른쪽에는 그 집이 있는 동네를 적어 두었으니 일정과 가까운 곳부터 골라 보세요.</p>
+      <nav className="dish-nav" aria-label="음식 종류">
+        {dishes.map((d, i) => (
+          <button key={d.name} type="button" className="btn" onClick={() => document.getElementById(`dish-${i}`)?.scrollIntoView({ behavior: 'smooth' })}>
+            {d.name}
+          </button>
+        ))}
+      </nav>
+      {dishes.map((d, i) => (
+        <div key={d.name} id={`dish-${i}`} className="dish">
+          <h3>
+            <span>
+              {d.name} <Local>{d.local}</Local>
+            </span>
+            <span className="mono">{d.spots.length}곳</span>
+          </h3>
+          <p className="dish-d">
+            <Rich text={d.desc} />
+          </p>
+          <ul className="food">
+            {d.spots.map((s) => (
+              <li key={s.place.q}>
+                <h4>
+                  {s.place.name} <Local>{s.place.local}</Local>
+                </h4>
+                {s.area && <span className="when">{s.area}</span>}
+                <p>
+                  <Rich text={s.note} />
+                </p>
+                <div className="full">
+                  <PlaceActions place={s.place} compact links={s.links} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )
+}
+
 export function ChecklistView() {
   const { id, checklist: CHECKLIST } = useTrip()
   const CHECK_KEY = `${id}-checklist`

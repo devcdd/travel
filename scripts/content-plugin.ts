@@ -7,7 +7,7 @@ import { marked } from 'marked'
 import type { z } from 'zod'
 import type { Plugin } from 'vite'
 import * as S from './content-schema.ts'
-import type { AppItem, CheckItem, Day, FoodItem, Place, Stop, Trip } from '../src/types.ts'
+import type { AppItem, CheckItem, Day, Dish, FoodItem, Place, Stop, Trip } from '../src/types.ts'
 
 const VIRTUAL = 'virtual:trips'
 const RESOLVED = '\0' + VIRTUAL
@@ -167,6 +167,22 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     }
   }
 
+  let dishes: Dish[] = []
+  if (fs.existsSync(f('dishes.yaml'))) {
+    files.push(f('dishes.yaml'))
+    const raw = readYaml(f('dishes.yaml'), S.Dishes, issues)
+    if (raw) {
+      checkTokens(raw, lines, f('dishes.yaml'), issues)
+      dishes = raw.map((d, i) => ({
+        ...d,
+        spots: d.spots.flatMap((s, j) => {
+          const p = place(s.place, f('dishes.yaml'), `${i}.spots.${j}.place`)
+          return p ? [{ ...s, place: p }] : []
+        }),
+      }))
+    }
+  }
+
   let tripChecklist: CheckItem[] = []
   if (fs.existsSync(f('checklist.yaml'))) {
     files.push(f('checklist.yaml'))
@@ -205,6 +221,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     hotel: { ...hotelPlace, access: trip.hotel.access, nights: trip.hotel.nights },
     days: days.sort((a, b) => a.date.localeCompare(b.date)),
     food,
+    dishes,
     checklist,
     apps,
     info: [...trip.info, ...country.info],

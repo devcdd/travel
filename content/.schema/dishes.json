@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "음식 이름 (예: 샤오롱바오)"
+      },
+      "local": {
+        "type": "string",
+        "minLength": 1
+      },
+      "desc": {
+        "type": "string",
+        "minLength": 1,
+        "description": "어떤 음식인지와 먹는 요령"
+      },
+      "spots": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "place": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+              "description": "places.yaml에 정의한 장소 id"
+            },
+            "area": {
+              "description": "오른쪽에 작게 보일 동네나 일정 (예: 시먼딩, 10.09 저녁)",
+              "type": "string",
+              "minLength": 1
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "href": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "label",
+                  "href"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "place",
+            "note"
+          ],
+          "additionalProperties": false
+        },
+        "description": "대표 맛집. 이름과 현지어 이름은 장소에서 가져와요"
+      }
+    },
+    "required": [
+      "name",
+      "desc",
+      "spots"
+    ],
+    "additionalProperties": false
+  }
+}

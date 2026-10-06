@@ -247,6 +247,7 @@ chiate:
   name: 치아더
   local: 佳德糕餅
   q: 佳德糕餅
+  address: 台北市松山區南京東路五段88號
 pepperBun:
   name: 푸저우 세조 후추빵
   local: 福州世祖胡椒餅
@@ -296,3 +297,187 @@ liuShandong:
   lat: 25.0457
   lng: 121.5137
   address: 台北市中正區開封街一段14巷2號
+dtfXinsheng:
+  name: 딘타이펑 신생점
+  local: 鼎泰豐 新生店
+  q: 鼎泰豐 新生店
+  address: 台北市信義路二段277號
+hangzhouXlb:
+  name: 항저우 샤오롱탕바오
+  local: 杭州小籠湯包
+  q: 杭州小籠湯包 杭州南路
+  address: 台北市大安區杭州南路二段17及19號
+jinDinRou:
+  name: 징딩러우
+  local: 京鼎樓
+  q: 京鼎樓 長春路
+  address: 台北市中山區長春路47號
+dianShuiLou:
+  name: 뎬수이러우 화이닝점
+  local: 點水樓 懷寧店
+  q: 點水樓 懷寧店
+  address: 台北市中正區懷寧街64號
+jinJiYuan:
+  name: 하오궁다오 진지위안
+  local: 好公道金雞園
+  q: 好公道金雞園 永康街
+  address: 台北市大安區永康街28-1號
+fuhong:
+  name: 푸홍 우육면
+  local: 富宏牛肉麵
+  q: 富宏牛肉麵 洛陽街
+  address: 台北市萬華區洛陽街67號
+niuDian:
+  name: 니우뎬 우육면
+  local: 牛店精燉牛肉麵
+  q: 牛店精燉牛肉麵 昆明街
+  address: 台北市萬華區昆明街91號
+linDongFang:
+  name: 린동팡 우육면
+  local: 林東芳牛肉麵
+  q: 林東芳牛肉麵 八德路
+  address: 台北市中山區八德路二段322號
+tianxia:
+  name: 천하삼절
+  local: 天下三絕
+  q: 天下三絕 牛肉麵 仁愛路
+  address: 台北市大安區仁愛路四段27巷3號
+dingWang:
+  name: 딩왕 마라훠궈 시먼딩점
+  local: 鼎王麻辣鍋 台北西門町成都店
+  q: 鼎王麻辣鍋 台北西門町成都店
+  address: 台北市萬華區中華路一段152號2樓
+zhanji:
+  name: 잔지 마라훠궈 시먼점
+  local: 詹記麻辣火鍋 西門大世界
+  q: 詹記麻辣火鍋 西門大世界
+  address: 台北市萬華區成都路81號B1
+mala:
+  name: 마라 훠궈 시먼점
+  local: 馬辣頂級麻辣鴛鴦火鍋 西門店
+  q: 馬辣頂級麻辣鴛鴦火鍋 西門店
+haidilao:
+  name: 하이디라오 시먼점
+  local: 海底撈 西門桂林家樂福店
+  q: 海底撈 西門桂林家樂福店
+  address: 台北市萬華區桂林路1號4樓
+xiaoWang:
+  name: 샤오왕주과
+  local: 小王煮瓜
+  q: 小王煮瓜 華西街
+  address: 台北市萬華區華西街17之4號
+tiantianli:
+  name: 톈톈리
+  local: 天天利美食坊
+  q: 天天利美食坊 漢中街
+  address: 台北市萬華區漢中街32巷1號
+fengyuan:
+  name: 펑위안 갈비국수
+  local: 豐原排骨麵
+  q: 豐原排骨麵 廣州街
+  address: 台北市萬華區廣州街180號
+jinfeng:
+  name: 진펑 루러우판
+  local: 金峰魯肉飯
+  q: 金峰魯肉飯 羅斯福路
+  address: 台北市中正區羅斯福路一段10號
+sanyuan:
+  name: 싼위안하오
+  local: 三元號
+  q: 三元號 重慶北路
+  address: 台北市大同區重慶北路二段11號
+dadaochengLrf:
+  name: 다다오청 루러우판
+  local: 大稻埕魯肉飯
+  q: 大稻埕魯肉飯 建成市場
+  address: 台北市大同區長安西路220巷17號
+huangji:
+  name: 황지 루러우판
+  local: 黃記魯肉飯
+  q: 黃記魯肉飯 中山北路二段183巷
+  address: 台北市中山區中山北路二段183巷28號
+sanxiongmei:
+  name: 삼형제빙수
+  local: 三兄妹雪花冰
+  q: 三兄妹雪花冰 西門町
+  address: 台北市萬華區漢中街23號
+yangjiIce:
+  name: 양지 땅콩옥수수빙수
+  local: 楊記花生玉米冰
+  q: 楊記花生玉米冰 漢口街
+  address: 台北市萬華區漢口街二段38號
+longduIce:
+  name: 룽두 빙수
+  local: 龍都冰菓專業家
+  q: 龍都冰菓專業家 和平西路
+  address: 台北市萬華區和平西路三段192號
+bingzan:
+  name: 빙찬
+  local: 冰讚
+  q: 冰讚 雙連街
+  address: 臺北市大同區雙連街2號
+smoothieHouse:
+  name: 스무시 하우스
+  local: 思慕昔 15號本館
+  q: 思慕昔 永康街
+  address: 台北市大安區永康街15號
+xinfating:
+  name: 신파팅
+  local: 辛發亭冰品名店
+  q: 辛發亭 士林夜市
+  address: 台北市士林區安平街1號
+agangyi:
+  name: 아간이 타로볼
+  local: 阿柑姨芋圓
+  q: 阿柑姨芋圓 九份
+  address: 新北市瑞芳區豎崎路5號
+chunshuitang:
+  name: 춘수당 역전점
+  local: 春水堂 站前店
+  q: 春水堂 新光三越站前店
+  address: 台北市中正區忠孝西路一段66號B2
+xingfutang:
+  name: 싱푸탕 시먼딩점
+  local: 幸福堂 西門町全球旗艦店
+  q: 幸福堂 西門町全球旗艦店
+  address: 台北市萬華區漢中街101號
+milksha:
+  name: 밀크샤 시먼딩점
+  local: 迷客夏 西門町店
+  q: 迷客夏 西門町店 漢中街
+  address: 台北市萬華區漢中街126號
+kebuke:
+  name: 커부커 룽산쓰점
+  local: 可不可熟成紅茶 龍山寺店
+  q: 可不可熟成紅茶 龍山寺店
+  address: 台北市萬華區康定路195號
+napTea:
+  name: 냅티 닝샤점
+  local: 再睡5分鐘 寧夏店
+  q: 再睡5分鐘 寧夏店
+  address: 台北市大同區民生西路212號
+truedan:
+  name: 쩐주단 스린다베이점
+  local: 珍煮丹 士林大北店
+  q: 珍煮丹 士林大北店
+  address: 台北市士林區大北路54號
+sunnyhills:
+  name: 써니힐즈 민성공원점
+  local: 微熱山丘 台北民生公園門市
+  q: 微熱山丘 台北民生公園
+  address: 台北市松山區民生東路五段36巷4弄1號1樓
+vigor:
+  name: 웨이거 시먼 우창점
+  local: 維格餅家 西門武昌門市
+  q: 維格餅家 武昌門市
+  address: 台北市萬華區武昌街二段8號
+sugarSpice:
+  name: 탕춘 시먼딩점
+  local: 糖村 西門町店
+  q: 糖村 西門町店
+  address: 台北市萬華區武昌街二段5號1樓
+kuoYuanYe:
+  name: 궈위안이 스린점
+  local: 郭元益 士林店
+  q: 郭元益 士林文林路
+  address: 台北市士林區文林路546號

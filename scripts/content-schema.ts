@@ -134,6 +134,29 @@ export const Food = z.array(
     .strict(),
 )
 
+export const Dishes = z.array(
+  z
+    .object({
+      name: text.describe('음식 이름 (예: 샤오롱바오)'),
+      local: text.optional(),
+      desc: text.describe('어떤 음식인지와 먹는 요령'),
+      spots: z
+        .array(
+          z
+            .object({
+              place: placeId,
+              area: text.optional().describe('오른쪽에 작게 보일 동네나 일정 (예: 시먼딩, 10.09 저녁)'),
+              note: text,
+              links: z.array(Link).optional(),
+            })
+            .strict(),
+        )
+        .min(1)
+        .describe('대표 맛집. 이름과 현지어 이름은 장소에서 가져와요'),
+    })
+    .strict(),
+)
+
 export const Country = z
   .object({
     name: text,
@@ -210,4 +233,4 @@ export const Trip = z
   .refine((t) => t.start <= t.end, { path: ['end'], message: 'end가 start보다 빠를 수 없어요' })
 
 /** JSON 스키마로 내보낼 파일 종류 */
-export const SCHEMAS = { country: Country, trip: Trip, places: Places, day: Day, food: Food, checklist: Checklist }
+export const SCHEMAS = { country: Country, trip: Trip, places: Places, day: Day, food: Food, dishes: Dishes, checklist: Checklist }

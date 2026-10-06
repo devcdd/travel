@@ -76,6 +76,12 @@ export interface FoodItem {
   place: Place
   links?: Link[]
 }
+export interface Dish {
+  name: string
+  local?: string
+  desc: string
+  spots: { place: Place; area?: string; note: string; links?: Link[] }[]
+}
 export interface CheckItem { id: string; title: string; desc: string; due: string; group?: string }
 export interface InfoItem { group?: string; title: string; body?: string; points?: string[] }
 
@@ -145,6 +151,8 @@ export interface Trip {
   hotel: Hotel
   days: Day[]
   food: FoodItem[]
+  /** 대표 음식과 종류별 맛집 (dishes.yaml이 없으면 빈 배열, 탭도 숨겨요) */
+  dishes: Dish[]
   checklist: CheckItem[]
   apps: AppItem[]
   info: InfoItem[]
