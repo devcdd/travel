@@ -6,10 +6,10 @@
 ## 명령
 
 ```bash
-npm run dev      # 개발 서버 (content/를 고치면 자동 새로고침)
-npm run check    # 타입 검사 + content/만 빠르게 검사
-npm run build    # 타입 검사 + content 검사 + 빌드
-npm run schema   # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스키마 다시 만들기
+pnpm dev         # 개발 서버 (content/를 고치면 자동 새로고침)
+pnpm check       # 타입 검사 + content/만 빠르게 검사
+pnpm build       # 타입 검사 + content 검사 + 빌드
+pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스키마 다시 만들기
 ```
 
 ## 구조
@@ -21,7 +21,7 @@ npm run schema   # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조
     - `days/01.yaml …` 하루 일정. 파일 이름 순서가 Day 1, 2, 3이고 URL 탭 id는 `d1`, `d2` …
     - `food.yaml`, `checklist.yaml` (선택), `notes.md` (선택, 있으면 "메모" 탭)
-  - `.schema/` `npm run schema`로 만든 JSON 스키마. `.vscode/settings.json`이 YAML 파일에 연결해 자동완성·검사를 해 줍니다 (Red Hat YAML 확장).
+  - `.schema/` `pnpm schema`로 만든 JSON 스키마. `.vscode/settings.json`이 YAML 파일에 연결해 자동완성·검사를 해 줍니다 (Red Hat YAML 확장).
 - `scripts/content-schema.ts` YAML 형식(zod). 에러 메시지는 한국어.
 - `scripts/content-plugin.ts` 빌드할 때 content/를 읽고 검사·조립해 `virtual:trips` 모듈로 넘깁니다. 장소 id, 노선 코드, 날짜 범위, 체크리스트 id 중복까지 검사하고 문제가 있으면 파일 경로와 위치를 모아 빌드를 멈춥니다.
 - `src/types.ts` 화면이 읽는 조립된 데이터 모양. `src/components/`가 화면.
@@ -30,7 +30,7 @@ npm run schema   # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 
 1. 처음 가는 나라면 `content/countries/<코드>.yaml`을 만듭니다 (`tw.yaml` 참고).
 2. `content/trips/<영문-소문자-id>/`에 `trip.yaml`, `places.yaml`, `days/01.yaml …`을 만듭니다. 목록에는 자동으로 나타나고, 최신 여행이 위로 옵니다.
-3. `npm run check`로 확인합니다.
+3. `pnpm check`로 확인합니다.
 
 ## content 작성 규칙
 
@@ -74,5 +74,5 @@ npm run schema   # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 
 ## 확인 방법
 
-- 데이터만 바꿨다면 `npm run check`.
-- 화면을 바꿨다면 `npm run build` 후 `npx vite preview --port 4173`, 헤드리스 Chrome으로 스크린샷을 찍어 봅니다 (Chrome 창 최소 너비가 500px이라 그보다 좁게는 안 찍힙니다).
+- 데이터만 바꿨다면 `pnpm check`.
+- 화면을 바꿨다면 `pnpm build` 후 `pnpm exec vite preview --port 4173`, 헤드리스 Chrome으로 스크린샷을 찍어 봅니다 (Chrome 창 최소 너비가 500px이라 그보다 좁게는 안 찍힙니다).
