@@ -481,3 +481,48 @@ kuoYuanYe:
   local: 郭元益 士林店
   q: 郭元益 士林文林路
   address: 台北市士林區文林路546號
+dongdaemun:
+  name: 동대문 시먼점
+  local: 東大門韓國特色料理 西門店
+  q: 東大門韓國特色料理 西門店
+  address: 台北市萬華區昆明街92之1號4樓
+gangneung:
+  name: 강릉할매 시먼점
+  local: 江陵阿嬤韓鍋料理吃到飽 西門店
+  q: 江陵阿嬤 韓鍋料理吃到飽 西門店
+  address: 台北市萬華區西寧南路123號4樓
+bokjjim:
+  name: 볶찜 시먼점
+  local: 甩鍋雞 韓式炒雞吃到飽 西門店
+  q: 甩鍋雞 韓式炒雞吃到飽 西門店
+  address: 台北市萬華區西寧南路123號4樓
+busanSundubu:
+  name: 부산 순두부
+  local: 釜山順豆腐 西門店
+  q: 釜山順豆腐 西門店
+  address: 台北市萬華區武昌街二段25之1號
+meatStorage:
+  name: 고기창고
+  local: 肉倉韓式烤肉
+  q: 肉倉韓式烤肉 西門
+  address: 台北市萬華區昆明街92-1號3樓
+ajeoma:
+  name: 아저마 타이베이역점
+  local: 阿豬媽韓式烤肉吃到飽 微風台北車站
+  q: 阿豬媽韓式烤肉吃到飽 微風台北車站
+  address: 台北市中正區北平西路3號2樓
+samiBibimbap:
+  name: 사미 돌솥비빔밥
+  local: 四米大石鍋拌飯專賣
+  q: 四米大石鍋拌飯專賣 中山
+  address: 台北市中山區中山北路二段20巷23號2樓
+meatLove:
+  name: 고기사랑
+  local: Meat Love 橡木炭火韓式烤肉
+  q: Meat Love 橡木炭火韓式烤肉 信義路
+  address: 台北市信義區信義路四段468號1-2樓
+sinchon:
+  name: 신촌 서서갈비
+  local: 新村站著吃烤肉
+  q: 新村站著吃烤肉 忠孝東路
+  address: 台北市信義區忠孝東路五段159號
