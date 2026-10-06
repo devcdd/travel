@@ -258,6 +258,29 @@
         "additionalProperties": false
       }
     },
+    "facilities": {
+      "default": [],
+      "description": "숙소 시설과 이용 안내 (수영장, 짐 보관 등). \"항공·숙소\" 탭 맨 아래에 보여요",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
     "tickets": {
       "default": [],
       "description": "예매해 둔 티켓과 미리 끝낸 일. 있으면 \"예매\" 탭이 생겨요",

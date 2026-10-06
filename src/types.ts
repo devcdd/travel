@@ -160,6 +160,8 @@ export interface Trip {
   flights: Flight[]
   /** 숙소 예약 정보 (체크인 시간, 조식 등) */
   stay: { k: string; v: string }[]
+  /** 숙소 시설과 이용 안내 (수영장, 짐 보관 등) */
+  facilities: { k: string; v: string }[]
   tickets: Ticket[]
   /** notes.md를 HTML로 바꾼 것 (없으면 메모 탭을 숨겨요) */
   notes?: string

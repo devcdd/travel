@@ -1,4 +1,4 @@
-// content/ 아래 YAML 파일의 형식. 빌드할 때 이 규칙으로 검사하고, `npm run schema`로 VS Code 자동완성용 JSON 스키마를 만듭니다.
+// content/ 아래 YAML 파일의 형식. 빌드할 때 이 규칙으로 검사하고, `pnpm schema`로 VS Code 자동완성용 JSON 스키마를 만듭니다.
 import { z } from 'zod'
 
 z.config(z.locales.ko())
@@ -213,6 +213,10 @@ export const Trip = z
       .array(z.object({ label: text, value: text }).strict())
       .default([])
       .describe('숙소 예약 정보 (체크인 시간, 조식 등). "항공·숙소" 탭에 숙소와 함께 보여요'),
+    facilities: z
+      .array(z.object({ label: text, value: text }).strict())
+      .default([])
+      .describe('숙소 시설과 이용 안내 (수영장, 짐 보관 등). "항공·숙소" 탭 맨 아래에 보여요'),
     tickets: z
       .array(
         z

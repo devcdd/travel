@@ -54,7 +54,7 @@ export function HotelCard() {
 }
 
 export function FlightsView() {
-  const { flights, stay, hotel } = useTrip()
+  const { flights, stay, facilities, hotel } = useTrip()
   return (
     <section className="ref">
       <h2>항공 · 숙소</h2>
@@ -100,6 +100,21 @@ export function FlightsView() {
           </h3>
           <dl className="stay">
             {stay.map((x) => (
+              <div key={x.k}>
+                <dt>{x.k}</dt>
+                <dd>
+                  <Rich text={x.v} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+      {facilities.length > 0 && (
+        <div className="info-g">
+          <h3>숙소 시설</h3>
+          <dl className="stay">
+            {facilities.map((x) => (
               <div key={x.k}>
                 <dt>{x.k}</dt>
                 <dd>
