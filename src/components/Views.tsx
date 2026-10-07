@@ -3,6 +3,7 @@ import { copyText, dirUrl, fmtDate, load, mapUrl, save } from '../lib'
 import { useActions, useTrip } from '../context'
 import { Rich } from './Rich'
 import { useKrwRate } from '../rate'
+import { byDistance, distance, fmtDistance, useGeo, type Geo } from '../geo'
 import { Local } from './Local'
 import { PlaceActions } from './PlaceActions'
 
@@ -174,19 +175,46 @@ export function TicketsView() {
   )
 }
 
+/** 가까운 순 정렬 켜기. 켠 상태는 이 기기에 기억해요. */
+function useNear() {
+  const [on, setOn] = useState(() => load('near-sort', false))
+  useEffect(() => save('near-sort', on), [on])
+  const geo = useGeo(on)
+  return { on, setOn, geo, pos: on ? geo.pos : null }
+}
+
+function NearBar({ on, setOn, geo }: { on: boolean; setOn: (v: boolean) => void; geo: Geo }) {
+  return (
+    <div className="near">
+      <button type="button" className={`btn${on ? ' primary' : ''}`} aria-pressed={on} onClick={() => setOn(!on)}>
+        가까운 순
+      </button>
+      <span className="faint">
+        {!on ? '현재 위치에서 가까운 곳부터 보여 줘요' : (geo.error ?? (geo.pos ? '직선거리예요. 움직이면 다시 계산해요' : '위치를 찾는 중이에요'))}
+      </span>
+    </div>
+  )
+}
+
 export function FoodView() {
-  const { food: FOOD } = useTrip()
+  const { food } = useTrip()
+  const near = useNear()
+  const FOOD = byDistance(food, near.pos, (f) => f.place)
   return (
     <section className="ref">
       <h2>먹을 것</h2>
       <p className="lead">일정에 넣은 맛집과 함께 가 볼 만한 후보를 모았어요. 오른쪽 날짜는 그 맛집을 넣어 둔 날이에요. 줄이 긴 곳은 웨이팅 칸에 원격으로 대기를 걸 수 있는지와 하는 방법을 적어 두었어요.</p>
+      <NearBar {...near} />
       <ul className="food">
         {FOOD.map((f) => (
           <li key={f.title}>
             <h3>
               {f.title} <Local>{f.local}</Local>
             </h3>
-            <span className="when">{f.when}</span>
+            <span className="when">
+              {near.pos && <b className="dist">{fmtDistance(distance(near.pos, f.place))}</b>}
+              {f.when}
+            </span>
             <p>
               <Rich text={f.desc} />
             </p>
@@ -230,6 +258,7 @@ export function FoodView() {
 
 export function DishesView() {
   const { dishes } = useTrip()
+  const near = useNear()
   return (
     <section className="ref">
       <h2>대표 음식</h2>
@@ -241,6 +270,7 @@ export function DishesView() {
           </button>
         ))}
       </nav>
+      <NearBar {...near} />
       {dishes.map((d, i) => (
         <div key={d.name} id={`dish-${i}`} className="dish">
           <h3>
@@ -253,12 +283,15 @@ export function DishesView() {
             <Rich text={d.desc} />
           </p>
           <ul className="food">
-            {d.spots.map((s) => (
+            {byDistance(d.spots, near.pos, (s) => s.place).map((s) => (
               <li key={s.place.q}>
                 <h4>
                   {s.place.name} <Local>{s.place.local}</Local>
                 </h4>
-                {s.area && <span className="when">{s.area}</span>}
+                <span className="when">
+                  {near.pos && <b className="dist">{fmtDistance(distance(near.pos, s.place))}</b>}
+                  {s.area}
+                </span>
                 <p>
                   <Rich text={s.note} />
                 </p>

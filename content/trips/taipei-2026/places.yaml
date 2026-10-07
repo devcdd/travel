@@ -111,6 +111,8 @@ ciyou:
   name: 쑹산 자우궁
   local: 松山慈祐宮
   q: 松山慈祐宮
+  lat: 25.05129
+  lng: 121.57764
   address: 台北市松山區八德路四段761號
 npm:
   name: 국립고궁박물원
@@ -129,16 +131,22 @@ riceShine:
   name: 다오서
   local: 稻舍食館 迪化店
   q: 稻舍食館 Rice & Shine 迪化
+  lat: 25.06251
+  lng: 121.5093
   address: 台北市大同區迪化街一段329號
 noodleyeh:
   name: 마이몐옌짜이
   local: 賣麵炎仔 金泉小吃店
   q: 賣麵炎仔 金泉小吃店
+  lat: 25.06099
+  lng: 121.50981
   address: 台北市大同區安西街106號
 dihua:
   name: 디화제
   local: 迪化街
   q: 迪化街一段
+  lat: 25.05687
+  lng: 121.51125
 luguo:
   name: 루궈 카페
   local: 爐鍋咖啡 小藝埕
@@ -148,15 +156,21 @@ ximending:
   name: 시먼딩
   local: 西門町
   q: 西門町
+  lat: 25.04347
+  lng: 121.50719
 sunway:
   name: 삼미식당
   local: 三味食堂
   q: 三味食堂 西門町
+  lat: 25.03988
+  lng: 121.50272
   address: 台北市萬華區貴陽街二段116號
 duckHouse:
   name: 야러우볜
   local: 鴨肉扁
   q: 鴨肉扁 西門町
+  lat: 25.04426
+  lng: 121.50844
   address: 台北市萬華區中華路一段98之2號
 beitou:
   name: 베이터우 지열곡
@@ -247,15 +261,21 @@ chiate:
   name: 치아더
   local: 佳德糕餅
   q: 佳德糕餅
+  lat: 25.05123
+  lng: 121.56168
   address: 台北市松山區南京東路五段88號
 pepperBun:
   name: 푸저우 세조 후추빵
   local: 福州世祖胡椒餅
   q: 福州世祖胡椒餅 饒河
+  lat: 25.051
+  lng: 121.57747
 jiayan:
   name: 자옌 중식당
   local: 家宴中餐廳
   q: 家宴中餐廳 凱達大飯店
+  lat: 25.0333
+  lng: 121.4996
   address: 台北市萬華區艋舺大道167號3樓
 goldenLion:
   name: 진스러우
@@ -301,51 +321,71 @@ dtfXinsheng:
   name: 딘타이펑 신생점
   local: 鼎泰豐 新生店
   q: 鼎泰豐 新生店
+  lat: 25.03384
+  lng: 121.53206
   address: 台北市信義路二段277號
 hangzhouXlb:
   name: 항저우 샤오롱탕바오
   local: 杭州小籠湯包
   q: 杭州小籠湯包 杭州南路
+  lat: 25.03408
+  lng: 121.52375
   address: 台北市大安區杭州南路二段17及19號
 jinDinRou:
   name: 징딩러우
   local: 京鼎樓
   q: 京鼎樓 長春路
+  lat: 25.05502
+  lng: 121.5261
   address: 台北市中山區長春路47號
 dianShuiLou:
   name: 뎬수이러우 화이닝점
   local: 點水樓 懷寧店
   q: 點水樓 懷寧店
+  lat: 25.04388
+  lng: 121.51404
   address: 台北市中正區懷寧街64號
 jinJiYuan:
   name: 하오궁다오 진지위안
   local: 好公道金雞園
   q: 好公道金雞園 永康街
+  lat: 25.03065
+  lng: 121.52945
   address: 台北市大安區永康街28-1號
 fuhong:
   name: 푸홍 우육면
   local: 富宏牛肉麵
   q: 富宏牛肉麵 洛陽街
+  lat: 25.04759
+  lng: 121.50771
   address: 台北市萬華區洛陽街67號
 niuDian:
   name: 니우뎬 우육면
   local: 牛店精燉牛肉麵
   q: 牛店精燉牛肉麵 昆明街
+  lat: 25.04257
+  lng: 121.50482
   address: 台北市萬華區昆明街91號
 linDongFang:
   name: 린동팡 우육면
   local: 林東芳牛肉麵
   q: 林東芳牛肉麵 八德路
+  lat: 25.04722
+  lng: 121.54305
   address: 台北市中山區八德路二段322號
 tianxia:
   name: 천하삼절
   local: 天下三絕
   q: 天下三絕 牛肉麵 仁愛路
+  lat: 25.03875
+  lng: 121.54527
   address: 台北市大安區仁愛路四段27巷3號
 dingWang:
   name: 딩왕 마라훠궈 시먼딩점
   local: 鼎王麻辣鍋 台北西門町成都店
   q: 鼎王麻辣鍋 台北西門町成都店
+  lat: 25.04267
+  lng: 121.50799
   address: 台北市萬華區中華路一段152號2樓
 zhanji:
   name: 잔지 마라훠궈 시먼점
@@ -360,61 +400,85 @@ haidilao:
   name: 하이디라오 시먼점
   local: 海底撈 西門桂林家樂福店
   q: 海底撈 西門桂林家樂福店
+  lat: 25.0379
+  lng: 121.5058
   address: 台北市萬華區桂林路1號4樓
 xiaoWang:
   name: 샤오왕주과
   local: 小王煮瓜
   q: 小王煮瓜 華西街
+  lat: 25.03929
+  lng: 121.4986
   address: 台北市萬華區華西街17之4號
 tiantianli:
   name: 톈톈리
   local: 天天利美食坊
   q: 天天利美食坊 漢中街
+  lat: 25.04494
+  lng: 121.50759
   address: 台北市萬華區漢中街32巷1號
 fengyuan:
   name: 펑위안 갈비국수
   local: 豐原排骨麵
   q: 豐原排骨麵 廣州街
+  lat: 25.03666
+  lng: 121.49877
   address: 台北市萬華區廣州街180號
 jinfeng:
   name: 진펑 루러우판
   local: 金峰魯肉飯
   q: 金峰魯肉飯 羅斯福路
+  lat: 25.03203
+  lng: 121.51851
   address: 台北市中正區羅斯福路一段10號
 sanyuan:
   name: 싼위안하오
   local: 三元號
   q: 三元號 重慶北路
+  lat: 25.05455
+  lng: 121.51452
   address: 台北市大同區重慶北路二段11號
 dadaochengLrf:
   name: 다다오청 루러우판
   local: 大稻埕魯肉飯
   q: 大稻埕魯肉飯 建成市場
+  lat: 25.05096
+  lng: 121.51469
   address: 台北市大同區長安西路220巷17號
 huangji:
   name: 황지 루러우판
   local: 黃記魯肉飯
   q: 黃記魯肉飯 中山北路二段183巷
+  lat: 25.06362
+  lng: 121.52416
   address: 台北市中山區中山北路二段183巷28號
 sanxiongmei:
   name: 삼형제빙수
   local: 三兄妹雪花冰
   q: 三兄妹雪花冰 西門町
+  lat: 25.04512
+  lng: 121.50779
   address: 台北市萬華區漢中街23號
 yangjiIce:
   name: 양지 땅콩옥수수빙수
   local: 楊記花生玉米冰
   q: 楊記花生玉米冰 漢口街
+  lat: 25.04546
+  lng: 121.50724
   address: 台北市萬華區漢口街二段38號
 longduIce:
   name: 룽두 빙수
   local: 龍都冰菓專業家
   q: 龍都冰菓專業家 和平西路
+  lat: 25.03519
+  lng: 121.49727
   address: 台北市萬華區和平西路三段192號
 bingzan:
   name: 빙찬
   local: 冰讚
   q: 冰讚 雙連街
+  lat: 25.0576
+  lng: 121.51911
   address: 臺北市大同區雙連街2號
 smoothieHouse:
   name: 스무시 하우스
@@ -425,21 +489,29 @@ xinfating:
   name: 신파팅
   local: 辛發亭冰品名店
   q: 辛發亭 士林夜市
+  lat: 25.08841
+  lng: 121.52574
   address: 台北市士林區安平街1號
 agangyi:
   name: 아간이 타로볼
   local: 阿柑姨芋圓
   q: 阿柑姨芋圓 九份
+  lat: 25.10774
+  lng: 121.84365
   address: 新北市瑞芳區豎崎路5號
 chunshuitang:
   name: 춘수당 역전점
   local: 春水堂 站前店
   q: 春水堂 新光三越站前店
+  lat: 25.04616
+  lng: 121.51521
   address: 台北市中正區忠孝西路一段66號B2
 xingfutang:
   name: 싱푸탕 시먼딩점
   local: 幸福堂 西門町全球旗艦店
   q: 幸福堂 西門町全球旗艦店
+  lat: 25.04335
+  lng: 121.50734
   address: 台北市萬華區漢中街101號
 milksha:
   name: 밀크샤 시먼딩점
@@ -455,6 +527,8 @@ napTea:
   name: 냅티 닝샤점
   local: 再睡5分鐘 寧夏店
   q: 再睡5分鐘 寧夏店
+  lat: 25.05687
+  lng: 121.51504
   address: 台北市大同區民生西路212號
 truedan:
   name: 쩐주단 스린다베이점
@@ -465,21 +539,29 @@ sunnyhills:
   name: 써니힐즈 민성공원점
   local: 微熱山丘 台北民生公園門市
   q: 微熱山丘 台北民生公園
+  lat: 25.0578
+  lng: 121.55719
   address: 台北市松山區民生東路五段36巷4弄1號1樓
 vigor:
   name: 웨이거 시먼 우창점
   local: 維格餅家 西門武昌門市
   q: 維格餅家 武昌門市
+  lat: 25.04433
+  lng: 121.50826
   address: 台北市萬華區武昌街二段8號
 sugarSpice:
   name: 탕춘 시먼딩점
   local: 糖村 西門町店
   q: 糖村 西門町店
+  lat: 25.04447
+  lng: 121.50834
   address: 台北市萬華區武昌街二段5號1樓
 kuoYuanYe:
   name: 궈위안이 스린점
   local: 郭元益 士林店
   q: 郭元益 士林文林路
+  lat: 25.09745
+  lng: 121.52415
   address: 台北市士林區文林路546號
 dongdaemun:
   name: 동대문 시먼점
@@ -490,16 +572,22 @@ gangneung:
   name: 강릉할매 시먼점
   local: 江陵阿嬤韓鍋料理吃到飽 西門店
   q: 江陵阿嬤 韓鍋料理吃到飽 西門店
+  lat: 25.0445
+  lng: 121.50682
   address: 台北市萬華區西寧南路123號4樓
 bokjjim:
   name: 볶찜 시먼점
   local: 甩鍋雞 韓式炒雞吃到飽 西門店
   q: 甩鍋雞 韓式炒雞吃到飽 西門店
+  lat: 25.0445
+  lng: 121.50682
   address: 台北市萬華區西寧南路123號4樓
 busanSundubu:
   name: 부산 순두부
   local: 釜山順豆腐 西門店
   q: 釜山順豆腐 西門店
+  lat: 25.04456
+  lng: 121.50796
   address: 台北市萬華區武昌街二段25之1號
 meatStorage:
   name: 고기창고
@@ -510,11 +598,15 @@ ajeoma:
   name: 아저마 타이베이역점
   local: 阿豬媽韓式烤肉吃到飽 微風台北車站
   q: 阿豬媽韓式烤肉吃到飽 微風台北車站
+  lat: 25.04774
+  lng: 121.5171
   address: 台北市中正區北平西路3號2樓
 samiBibimbap:
   name: 사미 돌솥비빔밥
   local: 四米大石鍋拌飯專賣
   q: 四米大石鍋拌飯專賣 中山
+  lat: 25.05371
+  lng: 121.52086
   address: 台北市中山區中山北路二段20巷23號2樓
 meatLove:
   name: 고기사랑
@@ -525,9 +617,64 @@ sinchon:
   name: 신촌 서서갈비
   local: 新村站著吃烤肉
   q: 新村站著吃烤肉 忠孝東路
+  lat: 25.04125
+  lng: 121.56857
   address: 台北市信義區忠孝東路五段159號
 aYi:
   name: 아이 루러우판
   local: 阿義魯肉飯
   q: 阿義魯肉飯 華西街
+  lat: 25.03927
+  lng: 121.49856
   address: 台北市萬華區華西街19號
+twTreasureCd:
+  name: 대만지보 명차 시먼 청두점
+  local: 臺灣之寶茗茶 成都店
+  q: 臺灣之寶茗茶 西門町成都門市
+  address: 台北市萬華區成都路31號
+twTreasureHk:
+  name: 대만지보 명차 시먼 한커우점
+  local: 臺灣之寶茗茶 漢口店
+  q: 臺灣之寶茗茶 西門町漢口門市
+  address: 台北市萬華區漢口街二段46號
+fulldone:
+  name: 푸다퉁 차장
+  local: 福大同茶莊
+  q: 福大同茶莊 貴陽街
+  address: 台北市萬華區貴陽街二段196號
+liuyu:
+  name: 류위 찻집
+  local: 柳隅茶舍
+  q: 柳隅茶舍 龍山寺地下街
+  address: 台北市萬華區西園路一段145號B1
+dongxian:
+  name: 둥셴탕
+  local: 冬仙堂
+  q: 冬仙堂 貴陽街
+  address: 台北市萬華區貴陽街二段115-17號
+yaoyang101:
+  name: 야오양 차행 101점
+  local: 嶢陽茶行 台北101店
+  q: 嶢陽茶行 台北101
+  lat: 25.0335
+  lng: 121.5648
+  address: 台北市信義區市府路45號B1
+halfday:
+  name: 디화 반일 찻집
+  local: 迪化半日
+  q: 迪化半日 Dihua Halfday Tea House
+  address: 台北市大同區迪化街一段133號
+stopBy:
+  name: 스톱바이 찻집
+  local: 串門子茶館
+  q: 串門子茶館 Stop By Tea House
+  lat: 25.03023
+  lng: 121.52935
+  address: 台北市大安區麗水街13巷9之1號
+qingtian:
+  name: 칭톈 찻집
+  local: 青田茶館
+  q: 青田茶館
+  lat: 25.02752
+  lng: 121.53093
+  address: 台北市大安區青田街8巷12號
