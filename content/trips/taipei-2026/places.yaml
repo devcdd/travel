@@ -711,3 +711,66 @@ qingtian:
   lat: 25.02752
   lng: 121.53093
   address: 台北市大安區青田街8巷12號
+shuanglianCake:
+  name: 솽롄 카스테라
+  local: 双連現烤蛋糕
+  q: 双連現烤蛋糕 民生西路
+  lat: 25.05739
+  lng: 121.51733
+  address: 台北市大同區民生西路169-1號
+yuanyuanCake:
+  name: 위안위안 카스테라 시먼점
+  local: 圓圓古早味現烤蛋糕 西門店
+  q: 圓圓古早味現烤蛋糕 西門店
+  lat: 25.04484
+  lng: 121.50606
+  address: 台北市萬華區武昌街二段78號
+shuangheCake:
+  name: 솽허 카스테라
+  local: 雙和古早味現烤蛋糕
+  q: 雙和古早味現烤蛋糕
+  lat: 25.02792
+  lng: 121.50196
+  address: 台北市萬華區雙和街58號
+aileCake:
+  name: 아이러 카스테라 101점
+  local: 艾樂蛋糕 101店
+  q: 艾樂蛋糕101店
+  lat: 25.02654
+  lng: 121.56814
+  address: 台北市信義區莊敬路474號1樓
+jimeiCake:
+  name: 지메이 카스테라
+  local: 台灣吉美現烤古早味蛋糕
+  q: 台灣吉美現烤古早味蛋糕
+  lat: 25.03144
+  lng: 121.5189
+  address: 台北市中正區寧波西街2號
+bingfeng:
+  name: 빙펑셴궈
+  local: 冰封仙果
+  q: 冰封仙果 中華路
+  lat: 25.0439
+  lng: 121.50755
+  address: 台北市萬華區中華路一段114巷18號1樓
+youzai:
+  name: 유자이 빙수
+  local: 悠哉悠齋 悠哉呷冰
+  q: 悠哉悠齋 迪化街
+  lat: 25.05393
+  lng: 121.51011
+  address: 台北市大同區迪化街一段6號
+huoshi:
+  name: 훠스 디저트
+  local: 貨室甜品
+  q: 貨室甜品 赤峰街
+  lat: 25.05655
+  lng: 121.52045
+  address: 台北市大同區赤峰街71巷34號
+chunmei:
+  name: 춘메이 빙과실
+  local: 春美冰菓室 慶城本店
+  q: 春美冰菓室 慶城本店
+  lat: 25.054
+  lng: 121.54666
+  address: 台北市松山區敦化北路120巷54號
