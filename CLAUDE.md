@@ -41,7 +41,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 - `local`(현지어 이름)을 생략하면 장소의 `local`을 씁니다.
 - 체크리스트 `id`는 체크 상태를 저장하는 키라서 한번 정하면 바꾸지 않습니다.
 - 모르는 좌표를 지어내지 않습니다. 확실하지 않으면 `lat`/`lng`를 빼세요 (지도 핀만 빠지고 버튼은 동작).
-- 좌표는 OpenStreetMap Nominatim에서 가게 이름으로 찾고, 결과 주소의 길 이름이 `address`와 맞을 때만 씁니다. 좌표가 없는 곳은 "가까운 순" 정렬에서 맨 뒤로 가요.
+- 좌표는 Google Places API(New) Text Search로 `q`를 조회해 넣고, 결과 주소의 길 이름이 `address`와 맞는지 확인합니다. 키는 `.env`의 `GOOGLE_PLACES_KEY`(IP 제한, 커밋하지 않음)이고, 없으면 OpenStreetMap Nominatim을 씁니다. 넓은 관광지는 기존 핀을 유지해요. 좌표가 없는 곳은 "가까운 순" 정렬에서 맨 뒤로 가요.
 - 가격, 영업시간, 예약 규칙은 출처를 확인하고 씁니다. 확인하지 못한 내용은 본문에 "확인하지 못했어요"라고 분명히 적습니다.
 - App Store 앱 id는 `https://itunes.apple.com/lookup?id=<id>&country=kr`로 한국 스토어에 있는지 확인합니다.
 
