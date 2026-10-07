@@ -21,7 +21,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조
     - `days/01.yaml …` 하루 일정. 파일 이름 순서가 Day 1, 2, 3이고 URL 탭 id는 `d1`, `d2` …
     - `food.yaml`, `checklist.yaml` (선택), `notes.md` (선택, 있으면 "메모" 탭)
-    - `dishes.yaml` (선택, 있으면 "대표 음식" 탭) 음식 종류마다 설명과 대표 맛집. 맛집은 `places.yaml` id로 넣고 `area`에 동네나 겹치는 일정을 적어요
+    - `dishes.yaml` (선택) 음식 종류마다 설명과 대표 맛집. "먹을 것" 탭에서 `food.yaml`의 일정 맛집 아래에 보여요. 맛집은 `places.yaml` id로 넣고 `area`에 동네나 겹치는 일정을 적어요
   - `.schema/` `pnpm schema`로 만든 JSON 스키마. `.vscode/settings.json`이 YAML 파일에 연결해 자동완성·검사를 해 줍니다 (Red Hat YAML 확장).
 - `scripts/content-schema.ts` YAML 형식(zod). 에러 메시지는 한국어.
 - `scripts/content-plugin.ts` 빌드할 때 content/를 읽고 검사·조립해 `virtual:trips` 모듈로 넘깁니다. 장소 id, 노선 코드, 날짜 범위, 체크리스트 id 중복까지 검사하고 문제가 있으면 파일 경로와 위치를 모아 빌드를 멈춥니다.

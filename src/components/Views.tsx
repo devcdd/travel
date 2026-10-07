@@ -197,80 +197,81 @@ function NearBar({ on, setOn, geo }: { on: boolean; setOn: (v: boolean) => void;
 }
 
 export function FoodView() {
-  const { food } = useTrip()
+  const { food, dishes } = useTrip()
   const near = useNear()
-  const FOOD = byDistance(food, near.pos, (f) => f.place)
+  const jump = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   return (
     <section className="ref">
       <h2>먹을 것</h2>
-      <p className="lead">일정에 넣은 맛집과 함께 가 볼 만한 후보를 모았어요. 오른쪽 날짜는 그 맛집을 넣어 둔 날이에요. 줄이 긴 곳은 웨이팅 칸에 원격으로 대기를 걸 수 있는지와 하는 방법을 적어 두었어요.</p>
-      <NearBar {...near} />
-      <ul className="food">
-        {FOOD.map((f) => (
-          <li key={f.title}>
-            <h3>
-              {f.title} <Local>{f.local}</Local>
-            </h3>
-            <span className="when">
-              {near.pos && <b className="dist">{fmtDistance(distance(near.pos, f.place))}</b>}
-              {f.when}
-            </span>
-            <p>
-              <Rich text={f.desc} />
-            </p>
-            {f.order && (
-              <p className="order">
-                <b>추천</b>
-                <span>
-                  <Rich text={f.order} />
-                </span>
-              </p>
-            )}
-            {f.wait && (
-              <div className="wait">
-                <div className="wait-h">
-                  <h4>웨이팅</h4>
-                  <span className={`chip ${f.wait.remote ? 'ok' : 'idea'}`}>{f.wait.remote ? '원격 가능' : '현장 접수만'}</span>
-                  {f.wait.href && (
-                    <a href={f.wait.href} target="_blank" rel="noopener">
-                      {f.wait.remote ? '대기 걸기' : '순서 보기'}
-                    </a>
-                  )}
-                </div>
-                <ol>
-                  {f.wait.steps.map((t) => (
-                    <li key={t}>
-                      <Rich text={t} />
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-            <div className="full">
-              <PlaceActions place={f.place} compact links={f.links} />
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-export function DishesView() {
-  const { dishes } = useTrip()
-  const near = useNear()
-  return (
-    <section className="ref">
-      <h2>대표 음식</h2>
-      <p className="lead">대만에 오면 꼭 먹어 볼 음식과 종류별 대표 맛집이에요. 오른쪽에는 그 집이 있는 동네를 적어 두었으니 일정과 가까운 곳부터 골라 보세요.</p>
+      <p className="lead">일정에 넣어 둔 맛집을 먼저 두고, 그 아래에 대만에서 먹어 볼 음식을 종류별로 모았어요. 오른쪽에는 넣어 둔 날짜나 동네를 적었고, 줄이 긴 곳은 웨이팅 칸에 대기 거는 방법을 적어 두었어요.</p>
       <nav className="dish-nav" aria-label="음식 종류">
+        {food.length > 0 && (
+          <button type="button" className="btn" onClick={() => jump('dish-plan')}>
+            일정 맛집
+          </button>
+        )}
         {dishes.map((d, i) => (
-          <button key={d.name} type="button" className="btn" onClick={() => document.getElementById(`dish-${i}`)?.scrollIntoView({ behavior: 'smooth' })}>
+          <button key={d.name} type="button" className="btn" onClick={() => jump(`dish-${i}`)}>
             {d.name}
           </button>
         ))}
       </nav>
       <NearBar {...near} />
+      {food.length > 0 && (
+        <div id="dish-plan" className="dish">
+          <h3>
+            <span>일정에 넣은 맛집</span>
+            <span className="mono">{food.length}곳</span>
+          </h3>
+          <ul className="food">
+            {byDistance(food, near.pos, (f) => f.place).map((f) => (
+              <li key={f.title}>
+                <h4>
+                  {f.title} <Local>{f.local}</Local>
+                </h4>
+                <span className="when">
+                  {near.pos && <b className="dist">{fmtDistance(distance(near.pos, f.place))}</b>}
+                  {f.when}
+                </span>
+                <p>
+                  <Rich text={f.desc} />
+                </p>
+                {f.order && (
+                  <p className="order">
+                    <b>추천</b>
+                    <span>
+                      <Rich text={f.order} />
+                    </span>
+                  </p>
+                )}
+                {f.wait && (
+                  <div className="wait">
+                    <div className="wait-h">
+                      <h4>웨이팅</h4>
+                      <span className={`chip ${f.wait.remote ? 'ok' : 'idea'}`}>{f.wait.remote ? '원격 가능' : '현장 접수만'}</span>
+                      {f.wait.href && (
+                        <a href={f.wait.href} target="_blank" rel="noopener">
+                          {f.wait.remote ? '대기 걸기' : '순서 보기'}
+                        </a>
+                      )}
+                    </div>
+                    <ol>
+                      {f.wait.steps.map((t) => (
+                        <li key={t}>
+                          <Rich text={t} />
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+                <div className="full">
+                  <PlaceActions place={f.place} compact links={f.links} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {dishes.map((d, i) => (
         <div key={d.name} id={`dish-${i}`} className="dish">
           <h3>
