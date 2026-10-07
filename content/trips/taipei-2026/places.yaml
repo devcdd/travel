@@ -774,3 +774,52 @@ chunmei:
   lat: 25.054
   lng: 121.54666
   address: 台北市松山區敦化北路120巷54號
+yuanfang:
+  name: 위안팡 꽈바오
+  local: 源芳刈包
+  q: 源芳刈包 華西街
+  lat: 25.03941
+  lng: 121.49858
+  address: 台北市萬華區華西街17-2號
+redBao:
+  name: 훙주 꽈바오
+  local: 紅朱 Red Bao House
+  q: 紅朱 Red Bao House 內江街
+  lat: 25.04177
+  lng: 121.50612
+  address: 台北市萬華區內江街29之1號
+siliang:
+  name: 쓰량 꽈바오
+  local: 四兩刈包 台北創始總店
+  q: 四兩刈包 寧波西街
+  lat: 25.03068
+  lng: 121.51725
+  address: 台北市中正區寧波西街63號
+fuGuabao:
+  name: 푸 꽈바오
+  local: 福刈包
+  q: 福刈包 長安東路一段
+  lat: 25.04967
+  lng: 121.5266
+  address: 台北市中山區長安東路一段53巷16號
+trueBao:
+  name: 유칭추바오쒀
+  local: 有情出包所 True Bao Maker
+  q: 有情出包所 林森北路
+  lat: 25.05032
+  lng: 121.52531
+  address: 台北市中山區林森北路107巷4號
+lanjia:
+  name: 란자 꽈바오
+  local: 藍家割包
+  q: 藍家割包 羅斯福路三段
+  lat: 25.01574
+  lng: 121.53258
+  address: 台北市中正區羅斯福路三段316巷8弄3號
+shijiaLinjiang:
+  name: 스자 꽈바오 린장제점
+  local: 石家割包 臨江街
+  q: 石家割包 臨江街104號
+  lat: 25.02997
+  lng: 121.55494
+  address: 台北市大安區臨江街104號
