@@ -46,12 +46,12 @@
   order: 아간이 타로볼, 땅콩 아이스크림 롤, 어묵탕을 드셔 보세요.
   place: jiufen
 - title: 푸저우 세조 후추빵
-  day: "10.08"
+  day: 수시
   desc: 라오허제 야시장 입구에 있어요. 화덕 벽에 붙여 구운 고기 후추빵인데, 속이 아주 뜨거우니 조심해서 드세요.
   place: pepperBun
 - title: 다오서
   local: 稻舍食館
-  day: "10.09"
+  day: 수시
   desc: 디화제의 100년 된 쌀가게 건물에 있는 대만 가정식 식당이에요. 1인 NT$400 정도이고 봉사료 10%가 붙어요. 휴일이라 inline이나 전화(02-2550-6607)로 예약해 두세요. inline은 당일에도 1시간 전까지 예약할 수 있어요.
   order: 고기 반찬 하나에 밥과 국이 나오는 정식(客飯)을 시켜 보세요.
   place: riceShine
@@ -60,7 +60,7 @@
       href: https://inline.app/booking/-LMGeAj-quteyNDB4Yxe:inline-live-2a466/-LMGeAk3oEwO59n2RpXq
 - title: 마이몐옌짜이
   local: 賣麵炎仔
-  day: "10.09"
+  day: 수시
   desc: 디화제 근처의 80년 된 미쉐린 빕구르망 국숫집이에요. 07:00–14:30에만 열어요. 작은 노포라 현금을 챙겨 가세요.
   order: 비빔 국수와 완탕국에 홍사오러우를 곁들여 보세요.
   place: noodleyeh
@@ -88,7 +88,7 @@
       href: https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b
 - title: 삼미식당
   local: 三味食堂
-  day: "10.09"
+  day: 수시
   desc: 시먼딩의 큼직한 연어 초밥집이에요. 예약을 받지 않고, 저녁은 17:10에 문을 열어요.
   order: 연어 초밥과 연어 덮밥을 시켜 보세요.
   wait:
@@ -100,7 +100,7 @@
   place: sunway
 - title: 야러우볜
   local: 鴨肉扁
-  day: "10.09"
+  day: 수시
   desc: 시먼딩 입구의 거위 고기 노포예요. 국수 NT$60에 거위 고기 NT$100–200이고, 회전이 빨라요.
   order: 거위 고기 한 접시에 쌀국수를 곁들여 보세요.
   place: duckHouse
