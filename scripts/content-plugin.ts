@@ -7,7 +7,7 @@ import { marked } from 'marked'
 import type { z } from 'zod'
 import type { Plugin } from 'vite'
 import * as S from './content-schema.ts'
-import type { AppItem, CheckItem, Day, Dish, FoodItem, Place, Stop, Trip } from '../src/types.ts'
+import type { AppItem, CheckItem, Day, Dish, FoodItem, GuideItem, Place, Stop, Trip } from '../src/types.ts'
 
 const VIRTUAL = 'virtual:trips'
 const RESOLVED = '\0' + VIRTUAL
@@ -183,6 +183,19 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     }
   }
 
+  let guide: GuideItem[] = []
+  if (fs.existsSync(f('guide.yaml'))) {
+    files.push(f('guide.yaml'))
+    const raw = readYaml(f('guide.yaml'), S.Guide, issues)
+    if (raw) {
+      checkTokens(raw, lines, f('guide.yaml'), issues)
+      guide = raw.flatMap((g, i) => {
+        const p = place(g.place, f('guide.yaml'), `${i}.place`)
+        return p ? [{ day: g.day, title: g.title ?? p.name, place: p, body: g.body, points: g.points }] : []
+      })
+    }
+  }
+
   let tripChecklist: CheckItem[] = []
   if (fs.existsSync(f('checklist.yaml'))) {
     files.push(f('checklist.yaml'))
@@ -222,6 +235,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     days: days.sort((a, b) => a.date.localeCompare(b.date)),
     food,
     dishes,
+    guide,
     checklist,
     apps,
     info: [...trip.info, ...country.info],

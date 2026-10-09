@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "place": {
+        "type": "string",
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+        "description": "places.yaml에 정의한 장소 id"
+      },
+      "day": {
+        "type": "string",
+        "minLength": 1,
+        "description": "가는 날 (예: 10.07). 같은 날끼리 묶여요"
+      },
+      "title": {
+        "description": "생략하면 장소 이름을 써요",
+        "type": "string",
+        "minLength": 1
+      },
+      "body": {
+        "type": "string",
+        "minLength": 1,
+        "description": "유래와 간단한 설명"
+      },
+      "points": {
+        "description": "알아 두면 재미있는 이야기. 한 문장씩",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "required": [
+      "place",
+      "day",
+      "body"
+    ],
+    "additionalProperties": false
+  }
+}

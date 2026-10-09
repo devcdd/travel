@@ -253,7 +253,7 @@ main { padding-block: 0 72px; min-height: 60vh }
 .stay dt { color: var(--muted) }
 .info-g, .check-g { margin-top: 26px }
 .info-g > h3, .check-g > h3 { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--fg); padding-bottom: 8px; border-bottom: 1px solid var(--fg) }
-.check-g > h3 .mono { font-size: 12px; font-weight: 500; color: var(--muted) }
+.check-g > h3 .mono, .info-g > h3 .mono { font-size: 12px; font-weight: 500; color: var(--muted) }
 .info > li { padding-block: 14px; border-bottom: 1px solid var(--line) }
 .info h4 { font-size: 15px; font-weight: 600 }
 .info p { margin-top: 4px; font-size: 14.5px; color: var(--muted) }

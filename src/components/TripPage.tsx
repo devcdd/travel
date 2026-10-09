@@ -4,11 +4,12 @@ import { fmtDate, nowIn, tripStatus } from '../lib'
 import { useWeather } from '../weather'
 import { TripContext } from '../context'
 import { DayView } from './DayView'
-import { AppsView, ChecklistView, FlightsView, TicketsView, FoodView, HotelCard, InfoView, NotesView, PhrasesView } from './Views'
+import { AppsView, ChecklistView, FlightsView, TicketsView, FoodView, HotelCard, InfoView, NotesView, PhrasesView, GuideView } from './Views'
 
 const EXTRA = [
   { id: 'flights', label: '항공·숙소' },
   { id: 'tickets', label: '예매' },
+  { id: 'guide', label: '명소 이야기' },
   { id: 'food', label: '먹을 것' },
   { id: 'todo', label: '예약·준비' },
   { id: 'apps', label: '앱' },
@@ -17,9 +18,9 @@ const EXTRA = [
   { id: 'notes', label: '메모' },
 ]
 
-/** 메모, 항공·숙소, 예매, 회화 탭은 내용이 있는 여행에만 보여요. */
+/** 메모, 항공·숙소, 예매, 명소 이야기, 회화 탭은 내용이 있는 여행에만 보여요. */
 const extrasFor = (trip: Trip) =>
-  EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'flights' || trip.flights.length) && (e.id !== 'tickets' || trip.tickets.length) && (e.id !== 'phrases' || trip.phrases.length))
+  EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'flights' || trip.flights.length) && (e.id !== 'tickets' || trip.tickets.length) && (e.id !== 'phrases' || trip.phrases.length) && (e.id !== 'guide' || trip.guide.length))
 
 function useNow(timeZone: string) {
   const [now, setNow] = useState(() => ({ local: nowIn(timeZone), kst: nowIn('Asia/Seoul') }))
@@ -136,6 +137,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
         {day && <DayView key={day.id} day={day} today={day.date === local.date} nowMinutes={local.minutes} weather={weather[day.date]} />}
         {tab === 'flights' && <FlightsView />}
         {tab === 'tickets' && <TicketsView />}
+        {tab === 'guide' && <GuideView />}
         {tab === 'food' && <FoodView />}
         {tab === 'todo' && <ChecklistView />}
         {tab === 'apps' && <AppsView />}

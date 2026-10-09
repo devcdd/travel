@@ -6,6 +6,7 @@
     "./content/.schema/day.json": "content/trips/*/days/*.yaml",
     "./content/.schema/food.json": "content/trips/*/food.yaml",
     "./content/.schema/dishes.json": "content/trips/*/dishes.yaml",
+    "./content/.schema/guide.json": "content/trips/*/guide.yaml",
     "./content/.schema/checklist.json": "content/trips/*/checklist.yaml"
   },
   "files.associations": {

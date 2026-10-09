@@ -196,6 +196,46 @@ function NearBar({ on, setOn, geo }: { on: boolean; setOn: (v: boolean) => void;
   )
 }
 
+export function GuideView() {
+  const { guide, days } = useTrip()
+  const dayName = (d: string) => days.find((x) => x.label.startsWith(d))?.short
+  return (
+    <section className="ref">
+      <h2>명소 이야기</h2>
+      <p className="lead">이번에 가는 곳들이 어떻게 생겨났는지, 가서 무엇을 보면 좋은지 짧게 모았어요. 이동하면서 가볍게 읽어 보세요.</p>
+      {groupBy(guide, (g) => g.day).map(([d, items]) => (
+        <div key={d} className="info-g">
+          <h3>
+            {d}
+            {dayName(d) && <span className="mono">{dayName(d)}</span>}
+          </h3>
+          <ul className="info">
+            {items.map((g) => (
+              <li key={g.title}>
+                <h4>
+                  {g.title} <Local>{g.place.local}</Local>
+                </h4>
+                <p>
+                  <Rich text={g.body} />
+                </p>
+                {g.points && (
+                  <ul className="pts">
+                    {g.points.map((t) => (
+                      <li key={t}>
+                        <Rich text={t} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )
+}
+
 export function FoodView() {
   const { food, dishes } = useTrip()
   const near = useNear()

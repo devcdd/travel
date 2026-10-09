@@ -157,6 +157,18 @@ export const Dishes = z.array(
     .strict(),
 )
 
+export const Guide = z.array(
+  z
+    .object({
+      place: placeId,
+      day: text.describe('가는 날 (예: 10.07). 같은 날끼리 묶여요'),
+      title: text.optional().describe('생략하면 장소 이름을 써요'),
+      body: text.describe('유래와 간단한 설명'),
+      points: z.array(text).optional().describe('알아 두면 재미있는 이야기. 한 문장씩'),
+    })
+    .strict(),
+)
+
 export const Country = z
   .object({
     name: text,
@@ -251,4 +263,4 @@ export const Trip = z
   .refine((t) => t.start <= t.end, { path: ['end'], message: 'end가 start보다 빠를 수 없어요' })
 
 /** JSON 스키마로 내보낼 파일 종류 */
-export const SCHEMAS = { country: Country, trip: Trip, places: Places, day: Day, food: Food, dishes: Dishes, checklist: Checklist }
+export const SCHEMAS = { country: Country, trip: Trip, places: Places, day: Day, food: Food, dishes: Dishes, guide: Guide, checklist: Checklist }
