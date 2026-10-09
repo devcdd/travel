@@ -823,3 +823,38 @@ shijiaLinjiang:
   lat: 25.02997
   lng: 121.55494
   address: 台北市大安區臨江街104號
+xiashu:
+  name: 샤수 티엔핀
+  local: 夏樹甜品
+  q: 夏樹甜品 迪化街
+  lat: 25.05997
+  lng: 121.50928
+  address: 台北市大同區迪化街一段240號
+hexing:
+  name: 허싱 1947
+  local: 合興壹玖肆柒
+  q: 合興壹玖肆柒 迪化街
+  lat: 25.05986
+  lng: 121.50951
+  address: 台北市大同區迪化街一段223號
+fudao:
+  name: 푸다오 과실
+  local: 芙稻菓室
+  q: 芙稻菓室 延平北路
+  lat: 25.05467
+  lng: 121.51185
+  address: 台北市大同區延平北路二段25號1樓
+bopomoo:
+  name: 보포무 카페
+  local: 波波畝 BOPOMOO
+  q: BOPOMOO 波波畝 café
+  lat: 25.05382
+  lng: 121.50988
+  address: 台北市大同區南京西路239巷4號
+pallas:
+  name: 팔라스 카페
+  local: 幻猻家珈琲 Pallas Cafe
+  q: 幻猻家珈琲 Pallas Cafe & Roaster
+  lat: 25.05416
+  lng: 121.50973
+  address: 台北市大同區迪化街一段14巷14號
