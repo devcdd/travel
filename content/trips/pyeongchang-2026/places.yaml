@@ -136,3 +136,36 @@ coffeeM:
   lat: 37.6441168
   lng: 128.6792728
   address: 강원 평창군 대관령면 올림픽로 715
+restGwangjuW:
+  name: 경기광주휴게소 원주방향
+  q: 경기광주휴게소 원주방향
+  lat: 37.378517
+  lng: 127.43609
+  address: 경기 광주시 곤지암읍 만삼로 270
+restHoengseongE:
+  name: 횡성휴게소 강릉방향
+  q: 횡성휴게소 강릉방향
+  lat: 37.462832
+  lng: 128.133997
+restPyeongchangE:
+  name: 평창휴게소 강릉방향
+  q: 평창휴게소 강릉방향
+  lat: 37.605585
+  lng: 128.452686
+  address: 강원 평창군 용평면 경강로 2159-58
+restPyeongchangW:
+  name: 평창휴게소 인천방향
+  q: 평창휴게소 인천방향
+  lat: 37.610869
+  lng: 128.463357
+restHoengseongW:
+  name: 횡성휴게소 인천방향
+  q: 횡성휴게소 인천방향
+  lat: 37.465264
+  lng: 128.135347
+restGwangjuS:
+  name: 경기광주휴게소 서울방향
+  q: 경기광주휴게소 서울방향
+  lat: 37.380495
+  lng: 127.425386
+  address: 경기 광주시 곤지암읍 만삼로 211
