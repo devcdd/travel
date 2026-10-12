@@ -29,6 +29,8 @@ jobs:
         env:
           # Settings → Secrets and variables → Actions 에 VITE_GOOGLE_MAPS_API_KEY 등록 (없으면 임베드 없이 빌드)
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          # 국내 여행 지도용 카카오 JavaScript 키 (없으면 OpenStreetMap으로 빌드)
+          VITE_KAKAO_MAP_KEY: ${{ secrets.VITE_KAKAO_MAP_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

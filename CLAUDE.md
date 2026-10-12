@@ -68,7 +68,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 
 - 해외 여행은 Google 지도, 국내 여행(`country: kr`)은 카카오맵으로 지도·길찾기·하루 동선 링크를 엽니다 (`src/lib.ts`의 `mapLinks`, 화면에서는 `useMaps()`).
 - 카카오맵 길찾기는 좌표가 있어야 해서 `lat`/`lng`가 없는 장소는 검색 결과로 열려요. 하루 동선은 대중교통이 경유지를 받지 않아 자동차 경로로 열고, 경유지는 5곳까지예요.
-- 국내 여행의 화면 지도는 OpenStreetMap(Leaflet)을 쓰고, Google 지도 미리보기와 경로 탭은 숨깁니다. `kr.yaml`에는 통화와 택시 카드가 없어서 환율 계산과 택시 카드 버튼도 숨겨져요.
+- 국내 여행의 화면 지도와 장소 미리보기는 카카오 지도 JavaScript SDK(`KakaoMap`)로 그리고, Google 경로 탭은 숨깁니다. 키는 `.env`와 GitHub Actions secret의 `VITE_KAKAO_MAP_KEY`(카카오 JavaScript 키)이고, Kakao Developers에 `https://blog.cdd.co.kr`과 로컬 주소(`http://localhost:5173`, `http://localhost:4173`)를 Web 도메인으로 등록해야 해요. 키가 없거나 도메인이 막히면(SDK 401) OpenStreetMap으로 대신 그려요. `kr.yaml`에는 통화와 택시 카드가 없어서 환율 계산과 택시 카드 버튼도 숨겨져요.
 
 ## Google 지도
 

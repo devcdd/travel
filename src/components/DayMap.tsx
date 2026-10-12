@@ -2,6 +2,7 @@ import { Component, useCallback, useEffect, useRef, useState, type ReactNode } f
 import { onAuthFailure } from '../gmaps'
 import { useMaps } from '../context'
 import { GoogleMap } from './GoogleMap'
+import { KakaoMap } from './KakaoMap'
 import L from 'leaflet'
 import type { Kind, Place } from '../types'
 import type { mapLinks } from '../lib'
@@ -31,12 +32,18 @@ export const popupHtml = (p: Pin, { mapUrl, dirUrl }: Links) =>
   `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
   `<a href="${dirUrl(p.place)}" target="_blank" rel="noopener">길찾기</a></div></div>`
 
-/** 해외 여행이고 API 키가 있으면 Google 지도, 국내 여행이거나 키가 없거나 인증에 실패하면 OpenStreetMap(Leaflet)으로 그립니다. */
+/** 해외는 Google 지도, 국내는 카카오 지도로 그리고, 키가 없거나 불러오지 못하면 OpenStreetMap(Leaflet)으로 대신합니다. */
 export function DayMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
   const links = useMaps()
   const [failed, setFailed] = useState(false)
   const fail = useCallback(() => setFailed(true), [])
   useEffect(() => onAuthFailure(fail), [fail])
+  if (links.kmaps && !failed)
+    return (
+      <MapBoundary fallback={<LeafletMap pins={pins} focus={focus} links={links} />}>
+        <KakaoMap pins={pins} focus={focus} onFail={fail} links={links} />
+      </MapBoundary>
+    )
   if (!links.gmaps || failed) return <LeafletMap pins={pins} focus={focus} links={links} />
   return (
     <MapBoundary fallback={<LeafletMap pins={pins} focus={focus} links={links} />}>
@@ -45,7 +52,7 @@ export function DayMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
   )
 }
 
-/** Google 지도에서 렌더링 오류가 나도 페이지 전체가 아니라 지도만 대체합니다. */
+/** 지도 SDK에서 렌더링 오류가 나도 페이지 전체가 아니라 지도만 대체합니다. */
 class MapBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { error: boolean }> {
   state = { error: false }
   static getDerivedStateFromError() {

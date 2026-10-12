@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo } from 'react'
 import type { Place, Trip } from './types'
-import { GMAPS_KEY, mapLinks } from './lib'
+import { GMAPS_KEY, KAKAO_KEY, mapLinks } from './lib'
 
 export interface Actions {
   openTaxi: (p: Place) => void
@@ -17,8 +17,8 @@ export function useTrip() {
   return t
 }
 
-/** 여행 나라에 맞는 지도 링크. Google 지도 임베드는 maps가 google일 때만 써요. */
+/** 여행 나라에 맞는 지도 링크와, 페이지 안에 띄울 지도(gmaps, kmaps)를 쓸 수 있는지 */
 export function useMaps() {
   const { maps } = useTrip()
-  return useMemo(() => ({ ...mapLinks(maps), gmaps: maps === 'google' && !!GMAPS_KEY }), [maps])
+  return useMemo(() => ({ ...mapLinks(maps), gmaps: maps === 'google' && !!GMAPS_KEY, kmaps: maps === 'kakao' && !!KAKAO_KEY }), [maps])
 }

@@ -320,6 +320,8 @@ main { padding-block: 0 72px; min-height: 60vh }
 }
 
 /* Google 지도: 정보창 배경은 항상 흰색이라 글자색을 고정합니다. */
+.kpop { margin-bottom: 18px; padding: 8px 10px; font-size: 13px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 8px }
+.embed-map { margin-top: 10px }
 .gm-style .pop { color: #14171b }
 .gm-style .pop span { color: #6b7280 }
 .gm-style .pop a { color: #0a66c2 }

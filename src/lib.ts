@@ -87,6 +87,9 @@ export async function copyText(text: string) {
 /** .env의 VITE_GOOGLE_MAPS_API_KEY. 비어 있으면 Google 임베드 기능을 숨깁니다. */
 export const GMAPS_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '').trim()
 
+/** .env의 VITE_KAKAO_MAP_KEY (카카오 JavaScript 키). 비어 있으면 국내 여행 지도는 OpenStreetMap으로 그려요. */
+export const KAKAO_KEY = (import.meta.env.VITE_KAKAO_MAP_KEY ?? '').trim()
+
 const EMBED = 'https://www.google.com/maps/embed/v1'
 
 export const embedPlaceUrl = (p: Place) => `${EMBED}/place?key=${enc(GMAPS_KEY)}&q=${enc(p.q)}&language=ko`
