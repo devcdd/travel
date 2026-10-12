@@ -170,9 +170,16 @@ main { padding-block: 0 72px; min-height: 60vh }
 .mv time { padding-top: 6px }
 .alt { margin-top: 12px; display: grid; gap: 8px }
 .alt > div { position: relative; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--surface); min-width: 0 }
-.alt > div.picked { border-color: var(--accent) }
-.alt-pick { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 36px; height: 36px; cursor: pointer }
-.alt-pick input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); cursor: pointer }
+.alt > div.picked { border-color: var(--ok) }
+.alt-pick { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 40px; height: 40px; cursor: pointer }
+.alt-pick input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer }
+.alt-pick svg { width: 24px; height: 24px; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .15s }
+.alt-pick .ring { stroke: var(--line) }
+.alt-pick .tick { stroke: var(--faint); opacity: .35 }
+.alt-pick:hover .tick { opacity: .7 }
+.alt-pick input:checked + svg { transform: scale(1.08) }
+.alt-pick input:checked + svg path { stroke: var(--ok); opacity: 1 }
+.alt-pick input:focus-visible + svg { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 50% }
 .alt-pick + h4 { padding-right: 32px }
 .alt h4 { font-size: 14.5px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px }
 .alt .tag { display: inline-grid; place-items: center; align-self: center; min-width: 24px; height: 20px; padding: 0 5px; border: 0; border-radius: 10px; font-family: var(--f-mono); font-size: 11px; font-weight: 600; line-height: 1; background: var(--fg); color: var(--bg); cursor: pointer }

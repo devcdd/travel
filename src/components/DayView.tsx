@@ -215,6 +215,10 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                           {a.place && hasPos(a.place) && (
                             <label className="alt-pick" title="체크한 선택지만 지도에 표시">
                               <input type="checkbox" checked={picks[i]?.includes(a.tag) ?? false} onChange={() => togglePick(i, a.tag)} aria-label={`${a.title}만 지도에 표시`} />
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path className="ring" d="M19.5 7.5A9 9 0 1 0 21 12" />
+                                <path className="tick" d="M7.5 11.5l4 4L21 5.5" />
+                              </svg>
                             </label>
                           )}
                           <h4>
