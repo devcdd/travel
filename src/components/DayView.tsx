@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import type { Day, Place, Stop } from '../types'
 import { useMaps, useTrip } from '../context'
-import { embedRouteUrl, toMinutes } from '../lib'
+import { embedRouteUrl, load, save, toMinutes } from '../lib'
 import { weatherLabel, type DayWeather } from '../weather'
 import { DayMap, type Pin } from './DayMap'
 import { PlaceActions } from './PlaceActions'
@@ -12,8 +12,8 @@ const KIND_LABEL = { meet: '집합', sight: '관광', food: '식사', free: '자
 
 const hasPos = (p?: Place): p is Place & { lat: number; lng: number } => p?.lat != null && p?.lng != null
 
-/** 지도 핀과 타임라인 번호를 같은 순서로 만듭니다. */
-function buildPins(day: Day, hotel: Place) {
+/** 지도 핀과 타임라인 번호를 같은 순서로 만듭니다. picks에 체크한 선택지가 있으면 그 줄은 체크한 것만 핀으로 그려요. */
+function buildPins(day: Day, hotel: Place, picks: Record<number, string[]>) {
   const isHotel = (p?: Place) => p?.q === hotel.q
   const pins: Pin[] = [{ key: 'hotel', label: '숙', lat: hotel.lat!, lng: hotel.lng!, place: hotel, kind: 'hotel', onRoute: true }]
   const labels: Record<number, { label: string; key: string }> = {}
@@ -21,7 +21,8 @@ function buildPins(day: Day, hotel: Place) {
   day.stops.forEach((s, i) => {
     if (s.kind === 'move') return
     if (s.alts) {
-      const altPins = s.alts.filter((a) => hasPos(a.place) && !isHotel(a.place))
+      const picked = picks[i]?.length ? picks[i] : null
+      const altPins = s.alts.filter((a) => hasPos(a.place) && !isHotel(a.place) && (!picked || picked.includes(a.tag)))
       if (!altPins.length) return
       n++
       labels[i] = { label: String(n), key: `s${i}${altPins[0].tag}` }
@@ -58,9 +59,18 @@ function currentIndex(stops: Stop[], minutes: number) {
 }
 
 export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: boolean; nowMinutes: number; weather?: DayWeather }) {
-  const { hotel } = useTrip()
+  const { hotel, id: tripId } = useTrip()
   const { routeUrl, mapName, gmaps } = useMaps()
-  const { pins, labels, route } = useMemo(() => buildPins(day, hotel), [day, hotel])
+  const picksKey = `picks-${tripId}-${day.id}`
+  const [picks, setPicks] = useState<Record<number, string[]>>(() => load(picksKey, {}))
+  const togglePick = (i: number, tag: string) =>
+    setPicks((prev) => {
+      const cur = prev[i] ?? []
+      const next = { ...prev, [i]: cur.includes(tag) ? cur.filter((t) => t !== tag) : [...cur, tag] }
+      save(picksKey, next)
+      return next
+    })
+  const { pins, labels, route } = useMemo(() => buildPins(day, hotel, picks), [day, hotel, picks])
   const [focus, setFocus] = useState<{ key: string; n: number } | null>(null)
   const [mapMode, setMapMode] = useState<'pins' | 'google'>('pins')
   const mapBox = useRef<HTMLDivElement>(null)
@@ -201,7 +211,12 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
                       const pinKey = `s${i}${a.tag}`
                       const pinned = pins.some((p) => p.key === pinKey)
                       return (
-                        <div key={a.tag}>
+                        <div key={a.tag} className={picks[i]?.includes(a.tag) ? 'picked' : ''}>
+                          {a.place && hasPos(a.place) && (
+                            <label className="alt-pick" title="체크한 선택지만 지도에 표시">
+                              <input type="checkbox" checked={picks[i]?.includes(a.tag) ?? false} onChange={() => togglePick(i, a.tag)} aria-label={`${a.title}만 지도에 표시`} />
+                            </label>
+                          )}
                           <h4>
                             {pinned ? (
                               <button type="button" className="tag" onClick={() => show(pinKey)} aria-label={`지도에서 ${a.title} 보기`}>

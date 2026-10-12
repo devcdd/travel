@@ -61,6 +61,8 @@ export function KakaoMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: F
       .then((kakao) => {
         if (!alive || !el.current) return
         kRef.current = kakao
+        // 핀이 바뀌면 지도를 새로 만들어서, 이전 지도가 남긴 DOM을 먼저 비워요.
+        el.current.innerHTML = ''
         const map = new kakao.maps.Map(el.current, { center: new kakao.maps.LatLng(37.5665, 126.978), level: 8, draggable: !touch, scrollwheel: false })
         mapRef.current = map
         map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.BOTTOMRIGHT)
