@@ -410,6 +410,13 @@ haidilao:
   lat: 25.03799
   lng: 121.50574
   address: 台北市萬華區桂林路1號4樓
+kingFood:
+  name: 황자디궈 마라훠궈
+  local: 皇家帝國麻辣火鍋
+  q: 皇家帝國麻辣火鍋 西門
+  lat: 25.03877
+  lng: 121.50689
+  address: 台北市萬華區中華路一段192號1樓
 xiaoWang:
   name: 샤오왕주과
   local: 小王煮瓜

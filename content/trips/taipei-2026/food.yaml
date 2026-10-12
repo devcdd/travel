@@ -1,7 +1,7 @@
 # 먹을 것 탭. day는 배치한 날(예: "10.07", 수시), place는 places.yaml의 id예요.
 - title: 자옌 (숙소 3층)
   local: 家宴
-  day: "10.07"
+  day: 수시
   desc: 숙소 3층의 광둥·상하이 요리 식당이에요. 홍콩식 딤섬으로 이름났고, 점심은 11:30–14:30이에요. TableCheck나 전화(02-2383-6798)로 예약할 수 있고, 10월 6일에 봤을 때는 7일 점심 자리가 남아 있었어요.
   order: 캐비아 사오마이와 새우 두부피말이를 시켜 보세요.
   wait:
@@ -15,6 +15,12 @@
   links:
     - label: TableCheck 예약
       href: https://www.tablecheck.com/ko/caesar-metro-jiayan/reserve/landing
+- title: 샤오왕주과
+  local: 小王煮瓜
+  day: "10.07"
+  desc: 화시제 야시장 안의 미쉐린 빕구르망 루러우판 집이에요(영어 이름 Wang's Broth). 작은 그릇이 NT$35이고 현금만 받아요.
+  order: 루러우판에 배추 조림과 맑은 국을 곁들여 보세요.
+  place: xiaoWang
 - title: 딘타이펑 101점
   local: 鼎泰豐
   day: "10.07"
@@ -35,7 +41,7 @@
   place: linjiang
 - title: 아종면선
   local: 阿宗麵線
-  day: "10.08"
+  day: 수시
   desc: 시먼딩에서 서서 먹는 곱창 국수집이에요. 투어 미팅 전에 10분이면 점심을 해결할 수 있어요.
   order: 메뉴가 하나뿐이라 큰 그릇(大)과 작은 그릇(小) 중에서 고르기만 하면 돼요.
   place: aychung
@@ -65,7 +71,7 @@
   order: 비빔 국수와 완탕국에 홍사오러우를 곁들여 보세요.
   place: noodleyeh
 - title: 고궁 징화
-  day: "10.09"
+  day: 수시
   desc: 고궁박물원 옆 딤섬 레스토랑이에요. 유물 모양을 본뜬 ‘국보 요리’를 맛볼 수 있어요. inline으로 예약할 수 있는데 당일 예약은 온라인으로 안 되니 전날까지 잡아 두세요. 월요일은 쉬어요.
   place: silks
   links:
@@ -73,7 +79,7 @@
       href: https://inline.app/booking/-LYdzdRWT7Clg_8acfml:inline-live-2a466/-LYdzdUCWblCSv-GYaLn
 - title: 우라오 시먼딩점
   local: 無老鍋
-  day: "10.09"
+  day: 수시
   desc: 마라탕과 백탕을 반반으로 즐기는 훠궈집이에요. 숙소에서 한 정거장이고, 1인 NT$500–1,500 정도예요. 휴일 저녁이라 inline으로 예약해 두는 게 가장 확실해요.
   order: 반반 냄비와 아이스크림 두부는 꼭 시켜 보세요.
   wait:
@@ -86,6 +92,11 @@
   links:
     - label: inline 예약
       href: https://inline.app/booking/-LDaH7X_NGlrM_Vr0Kj9/-LVCMCC4w-HLsDWli57b
+- title: 황자디궈 마라훠궈
+  local: 皇家帝國麻辣火鍋
+  day: "10.09"
+  desc: 셋째 날 저녁에 간 시먼딩 마라훠궈집이에요. 구글 평점 4.9이고 목요일에 쉬어요.
+  place: kingFood
 - title: 삼미식당
   local: 三味食堂
   day: 수시
