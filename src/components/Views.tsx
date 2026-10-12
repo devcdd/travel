@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { copyText, dirUrl, fmtDate, load, mapUrl, save } from '../lib'
-import { useActions, useTrip } from '../context'
+import { copyText, fmtDate, load, save } from '../lib'
+import { useActions, useMaps, useTrip } from '../context'
 import { Rich } from './Rich'
 import { useKrwRate } from '../rate'
 import { byDistance, distance, fmtDistance, useGeo, type Geo } from '../geo'
 import { Local } from './Local'
 import { PlaceActions } from './PlaceActions'
+import type { Trip } from '../types'
 
 /** 처음 나온 순서대로 묶음을 만들어요. 묶음 이름이 없으면 '기타'로 모아요. */
 function groupBy<T>(items: T[], key: (x: T) => string | undefined): [string, T[]][] {
@@ -19,7 +20,8 @@ function groupBy<T>(items: T[], key: (x: T) => string | undefined): [string, T[]
 
 export function HotelCard() {
   const { openTaxi, toast } = useActions()
-  const { hotel: HOTEL } = useTrip()
+  const { hotel: HOTEL, taxiAsk } = useTrip()
+  const { mapUrl, dirUrl } = useMaps()
   return (
     <section className="hotel" aria-label="숙소">
       <div className="hotel-txt">
@@ -44,9 +46,11 @@ export function HotelCard() {
         <a className="btn primary" href={dirUrl(HOTEL)} target="_blank" rel="noopener">
           숙소로 돌아가기
         </a>
-        <button type="button" className="btn" onClick={() => openTaxi(HOTEL)}>
-          택시 카드
-        </button>
+        {taxiAsk && (
+          <button type="button" className="btn" onClick={() => openTaxi(HOTEL)}>
+            택시 카드
+          </button>
+        )}
         <a className="btn" href={mapUrl(HOTEL)} target="_blank" rel="noopener">
           지도
         </a>
@@ -397,8 +401,7 @@ export function ChecklistView() {
   )
 }
 
-function Currency() {
-  const { currency } = useTrip()
+function Currency({ currency }: { currency: NonNullable<Trip['currency']> }) {
   const r = useKrwRate(currency.code)
   const rate = r?.krw ?? null
   const updated = r?.updated ?? ''
@@ -438,11 +441,11 @@ function Currency() {
 }
 
 export function InfoView() {
-  const { info, emergency } = useTrip()
+  const { info, emergency, currency } = useTrip()
   return (
     <section className="ref">
       <h2>현지 정보</h2>
-      <Currency />
+      {currency && <Currency currency={currency} />}
       {groupBy(info, (x) => x.group).map(([g, items]) => (
         <div key={g} className="info-g">
           <h3>{g}</h3>

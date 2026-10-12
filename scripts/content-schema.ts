@@ -14,8 +14,8 @@ export const Link = z.object({ label: text, href: z.url() }).strict()
 export const Place = z
   .object({
     name: text.describe('한국어 이름'),
-    local: text.describe('현지어 이름. 택시 카드에 크게 표시돼요'),
-    q: text.describe('Google 지도 검색어'),
+    local: text.optional().describe('현지어 이름. 택시 카드에 크게 표시돼요. 생략하면 name을 써요'),
+    q: text.describe('지도 검색어'),
     lat: z.number().optional(),
     lng: z.number().optional(),
     address: text.optional().describe('현지어 주소. 택시 카드와 주소 복사에 쓰여요'),
@@ -174,8 +174,16 @@ export const Country = z
     name: text,
     timeZone: text.describe('IANA 시간대 (예: Asia/Taipei)'),
     lang: text.describe('현지어 BCP 47 코드 (예: zh-TW). 현지어 글꼴 선택에 쓰여요'),
-    currency: z.object({ code: z.string().length(3), symbol: text, quick: z.array(z.number().positive()).min(1) }).strict(),
-    taxi: z.object({ ask: text.describe('택시 카드 위에 보일 "여기로 가 주세요" 현지어 문장') }).strict(),
+    currency: z
+      .object({ code: z.string().length(3), symbol: text, quick: z.array(z.number().positive()).min(1) })
+      .strict()
+      .optional()
+      .describe('생략하면 환율 계산과 원화 환산을 숨겨요'),
+    taxi: z
+      .object({ ask: text.describe('택시 카드 위에 보일 "여기로 가 주세요" 현지어 문장') })
+      .strict()
+      .optional()
+      .describe('생략하면 택시 카드 버튼을 숨겨요'),
     lines: z
       .record(z.string().regex(/^[A-Z]+$/), z.object({ name: text, color: hex, text: hex.optional() }).strict())
       .default({})

@@ -5,7 +5,7 @@ export interface Place {
   name: string
   /** 현지어 이름 */
   local: string
-  /** Google 지도 검색어 */
+  /** 지도 검색어 */
   q: string
   lat?: number
   lng?: number
@@ -46,7 +46,7 @@ export interface Stop {
   alts?: Alt[]
   /** 투어 버스로 이동하는 곳은 길찾기 버튼을 숨깁니다 */
   tour?: boolean
-  /** 하루 동선(Google 지도 경로, 지도 경로선)에서 제외 */
+  /** 하루 동선(지도 앱 경로, 지도 경로선)에서 제외 */
   offRoute?: boolean
 }
 
@@ -143,9 +143,12 @@ export interface Trip {
   timeZone: string
   /** 현지어 BCP 47 코드 (예: zh-TW) */
   lang: string
-  currency: { code: string; symbol: string; quick: number[] }
-  /** 택시 카드의 "여기로 가 주세요" 현지어 문장 */
-  taxiAsk: string
+  /** 지도·길찾기 링크를 여는 서비스. 국내(kr)는 kakao */
+  maps: 'google' | 'kakao'
+  /** 없으면 환율 계산과 원화 환산을 숨겨요 (국내 여행) */
+  currency?: { code: string; symbol: string; quick: number[] }
+  /** 택시 카드의 "여기로 가 주세요" 현지어 문장. 없으면 택시 카드를 숨겨요 */
+  taxiAsk?: string
   /** 본문의 {BL10} 같은 노선 코드 → 노선 이름과 색 */
   lines: Record<string, Line>
   summary: string

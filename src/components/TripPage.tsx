@@ -83,7 +83,7 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
           <span className={`chip ${st.kind === 'now' ? 'today' : st.kind === 'upcoming' ? 'ok' : 'idea'}`}>{st.label}</span>
           <span>
             현지 <b className="mono">{local.hm}</b>
-            <span className="faint"> · 한국 {kst.hm}</span>
+            {trip.timeZone !== 'Asia/Seoul' && <span className="faint"> · 한국 {kst.hm}</span>}
           </span>
         </p>
         <nav className="glance" aria-label="날짜별 요약">

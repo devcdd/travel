@@ -66,7 +66,8 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
   if (!need('trip.yaml') || !need('places.yaml')) return null
 
   const trip = readYaml(f('trip.yaml'), S.Trip, issues)
-  const places = readYaml(f('places.yaml'), S.Places, issues)
+  const rawPlaces = readYaml(f('places.yaml'), S.Places, issues)
+  const places: Record<string, Place> | null = rawPlaces && Object.fromEntries(Object.entries(rawPlaces).map(([k, p]) => [k, { ...p, local: p.local ?? p.name }]))
   files.push(f('trip.yaml'), f('places.yaml'))
   if (!trip || !places) return null
 
@@ -227,8 +228,10 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     end: trip.end,
     timeZone: country.timeZone,
     lang: country.lang,
+    // 해외는 Google 지도, 국내는 카카오맵
+    maps: trip.country === 'kr' ? 'kakao' : 'google',
     currency: country.currency,
-    taxiAsk: country.taxi.ask,
+    taxiAsk: country.taxi?.ask,
     lines,
     summary: trip.summary,
     hotel: { ...hotelPlace, access: trip.hotel.access, nights: trip.hotel.nights },

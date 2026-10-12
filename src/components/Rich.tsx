@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { useTrip } from '../context'
+import type { Trip } from '../types'
 import { toKrw, useKrwRate } from '../rate'
 
 const TOKEN = /(\*\*[^*]+\*\*|\{[A-Z]+\d+[A-Z]?\})/g
@@ -19,6 +20,11 @@ export function Mrt({ code }: { code: string }) {
 /** 금액 뒤에 원화 환산을 붙여요. 빌드할 때 숫자 범위의 줄표 양옆에 WORD JOINER가 들어가 있어요. */
 function Money({ text }: { text: string }) {
   const { currency } = useTrip()
+  if (!currency) return <>{text}</>
+  return <MoneyIn text={text} currency={currency} />
+}
+
+function MoneyIn({ text, currency }: { text: string; currency: NonNullable<Trip['currency']> }) {
   const rate = useKrwRate(currency.code)
   const sym = currency.symbol.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const re = new RegExp(`(${sym}[\\d,.]*\\d(?:\u2060?–\u2060?[\\d,.]*\\d)?)`, 'g')

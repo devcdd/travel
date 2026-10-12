@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { GMAPS_MAP_ID, loadGoogleMaps } from '../gmaps'
-import { esc, popupHtml, type Focus, type Pin } from './DayMap'
+import { esc, popupHtml, type Focus, type Links, type Pin } from './DayMap'
 
 const cssVar = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#14171b'
 
-export function GoogleMap({ pins, focus, onFail }: { pins: Pin[]; focus: Focus; onFail: () => void }) {
+export function GoogleMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: Focus; onFail: () => void; links: Links }) {
   const el = useRef<HTMLDivElement>(null)
   const mapRef = useRef<google.maps.Map | null>(null)
   const info = useRef<google.maps.InfoWindow | null>(null)
@@ -59,7 +59,7 @@ export function GoogleMap({ pins, focus, onFail }: { pins: Pin[]; focus: Focus; 
             gmpClickable: true,
           })
           m.addEventListener('gmp-click', () => {
-            info.current?.setContent(popupHtml(p))
+            info.current?.setContent(popupHtml(p, links))
             info.current?.open({ map, anchor: m })
           })
           markers.current[p.key] = m
@@ -90,7 +90,7 @@ export function GoogleMap({ pins, focus, onFail }: { pins: Pin[]; focus: Focus; 
       markers.current = {}
       mapRef.current = null
     }
-  }, [pins, onFail])
+  }, [pins, onFail, links])
 
   useEffect(() => {
     const map = mapRef.current
@@ -100,9 +100,9 @@ export function GoogleMap({ pins, focus, onFail }: { pins: Pin[]; focus: Focus; 
     if (!m || !p) return
     map.panTo({ lat: p.lat, lng: p.lng })
     if ((map.getZoom() ?? 0) < 14) map.setZoom(14)
-    info.current?.setContent(popupHtml(p))
+    info.current?.setContent(popupHtml(p, links))
     info.current?.open({ map, anchor: m })
-  }, [focus, ready, pins])
+  }, [focus, ready, pins, links])
 
   const locate = () => {
     const map = mapRef.current

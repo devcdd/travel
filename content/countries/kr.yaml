@@ -1,0 +1,20 @@
+# 국내 여행 공통 정보. trip.yaml에 country: kr 로 연결하면 지도와 길찾기가 카카오맵으로 열려요.
+# 환율 계산(currency)과 택시 카드(taxi)는 국내에서 필요 없어서 넣지 않았어요. places.yaml의 local도 생략하면 이름을 그대로 써요.
+name: 대한민국
+timeZone: Asia/Seoul
+lang: ko
+
+emergency:
+  - { label: 경찰, number: "112" }
+  - { label: 구급차·소방, number: "119" }
+
+apps:
+  - group: 지도 · 교통
+    name: 카카오맵
+    must: true
+    ios: "304608425"
+    desc: 이 페이지의 지도, 길찾기, 하루 동선 버튼이 모두 카카오맵으로 열려요. 미리 받아서 로그인해 두세요.
+  - group: 지도 · 교통
+    name: 카카오 T
+    ios: "981110422"
+    desc: 택시를 부를 때 써요. 출발지와 도착지를 지도에서 찍으면 돼요.

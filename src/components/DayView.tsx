@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import type { Day, Place, Stop } from '../types'
-import { useTrip } from '../context'
-import { GMAPS_KEY, embedRouteUrl, routeUrl, toMinutes } from '../lib'
+import { useMaps, useTrip } from '../context'
+import { embedRouteUrl, toMinutes } from '../lib'
 import { weatherLabel, type DayWeather } from '../weather'
 import { DayMap, type Pin } from './DayMap'
 import { PlaceActions } from './PlaceActions'
@@ -59,6 +59,7 @@ function currentIndex(stops: Stop[], minutes: number) {
 
 export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: boolean; nowMinutes: number; weather?: DayWeather }) {
   const { hotel } = useTrip()
+  const { routeUrl, mapName, gmaps } = useMaps()
   const { pins, labels, route } = useMemo(() => buildPins(day, hotel), [day, hotel])
   const [focus, setFocus] = useState<{ key: string; n: number } | null>(null)
   const [mapMode, setMapMode] = useState<'pins' | 'google'>('pins')
@@ -119,7 +120,7 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
       </header>
 
       <div ref={mapBox} className="map-box">
-        {GMAPS_KEY && (
+        {gmaps && (
           <div className="seg" role="tablist" aria-label="지도 종류">
             <button type="button" role="tab" aria-selected={mapMode === 'pins'} onClick={() => setMapMode('pins')}>
               번호 지도
@@ -129,14 +130,14 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
             </button>
           </div>
         )}
-        {mapMode === 'google' && GMAPS_KEY ? (
+        {mapMode === 'google' && gmaps ? (
           <iframe className="embed tall" title={`${day.label} 경로`} src={embedRouteUrl(hotel, route)} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
         ) : (
           <DayMap pins={pins} focus={focus} />
         )}
         <div className="acts">
           <a className="btn primary" href={routeUrl(hotel, route)} target="_blank" rel="noopener">
-            Google 지도에서 하루 동선 보기
+            {mapName}에서 하루 동선 보기
           </a>
           {day.links?.map((l) => (
             <a key={l.href} className="btn" href={l.href} target="_blank" rel="noopener">

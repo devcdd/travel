@@ -15,7 +15,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 ## 구조
 
 - `content/` 여행 데이터. 코드를 건드리지 않고 여기만 고쳐서 일정을 관리합니다.
-  - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화, 택시 카드 문장, 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트, 회화 표현(`phrases`, 있으면 "회화" 탭)
+  - `countries/<코드>.yaml` 나라 공통 정보: 시간대, 현지어(lang), 통화(선택), 택시 카드 문장(선택), 노선 코드 색(`lines`), 현지 정보, 긴급 전화, 앱, 공통 체크리스트, 회화 표현(`phrases`, 있으면 "회화" 탭)
   - `trips/<여행 id>/` 여행 하나. 폴더 이름이 주소가 됩니다 (`#/taipei-2026/d2`).
     - `trip.yaml` 제목, 기간, 나라 코드, 숙소, 항공편과 숙소 예약 정보(`flights`, `stay`), 숙소 시설(`facilities`), 이 여행만의 정보·앱
     - `places.yaml` 장소 목록. 다른 파일에서 id로 참조
@@ -63,6 +63,12 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 - 색은 전부 `src/styles.css` 맨 위 토큰으로 정의하고 라이트·다크 두 테마를 함께 맞춥니다.
 - 글꼴은 Pretendard (npm `pretendard`, 번들에 포함). 현지어 이름은 `<Local>` 컴포넌트가 `lang` 속성을 붙여 기기의 현지어 글꼴로 보여줍니다.
 - 플랫한 스타일: 얇은 선, 그림자 없음. 720px 한 단, 휴대폰 우선.
+
+## 지도 앱
+
+- 해외 여행은 Google 지도, 국내 여행(`country: kr`)은 카카오맵으로 지도·길찾기·하루 동선 링크를 엽니다 (`src/lib.ts`의 `mapLinks`, 화면에서는 `useMaps()`).
+- 카카오맵 길찾기는 좌표가 있어야 해서 `lat`/`lng`가 없는 장소는 검색 결과로 열려요. 하루 동선은 대중교통이 경유지를 받지 않아 자동차 경로로 열고, 경유지는 5곳까지예요.
+- 국내 여행의 화면 지도는 OpenStreetMap(Leaflet)을 쓰고, Google 지도 미리보기와 경로 탭은 숨깁니다. `kr.yaml`에는 통화와 택시 카드가 없어서 환율 계산과 택시 카드 버튼도 숨겨져요.
 
 ## Google 지도
 

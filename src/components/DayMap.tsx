@@ -1,10 +1,10 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { GMAPS_KEY } from '../lib'
 import { onAuthFailure } from '../gmaps'
+import { useMaps } from '../context'
 import { GoogleMap } from './GoogleMap'
 import L from 'leaflet'
 import type { Kind, Place } from '../types'
-import { dirUrl, mapUrl } from '../lib'
+import type { mapLinks } from '../lib'
 
 export interface Pin {
   key: string
@@ -24,20 +24,23 @@ export const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '
 
 export type Focus = { key: string; n: number } | null
 
-export const popupHtml = (p: Pin) =>
+export type Links = Pick<ReturnType<typeof mapLinks>, 'mapUrl' | 'dirUrl'>
+
+export const popupHtml = (p: Pin, { mapUrl, dirUrl }: Links) =>
   `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.local)}</span>` +
   `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
   `<a href="${dirUrl(p.place)}" target="_blank" rel="noopener">길찾기</a></div></div>`
 
-/** API 키가 있으면 Google 지도, 없거나 인증에 실패하면 OpenStreetMap(Leaflet)으로 그립니다. */
+/** 해외 여행이고 API 키가 있으면 Google 지도, 국내 여행이거나 키가 없거나 인증에 실패하면 OpenStreetMap(Leaflet)으로 그립니다. */
 export function DayMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
+  const links = useMaps()
   const [failed, setFailed] = useState(false)
   const fail = useCallback(() => setFailed(true), [])
   useEffect(() => onAuthFailure(fail), [fail])
-  if (!GMAPS_KEY || failed) return <LeafletMap pins={pins} focus={focus} />
+  if (!links.gmaps || failed) return <LeafletMap pins={pins} focus={focus} links={links} />
   return (
-    <MapBoundary fallback={<LeafletMap pins={pins} focus={focus} />}>
-      <GoogleMap pins={pins} focus={focus} onFail={fail} />
+    <MapBoundary fallback={<LeafletMap pins={pins} focus={focus} links={links} />}>
+      <GoogleMap pins={pins} focus={focus} onFail={fail} links={links} />
     </MapBoundary>
   )
 }
@@ -53,7 +56,7 @@ class MapBoundary extends Component<{ fallback: ReactNode; children: ReactNode }
   }
 }
 
-function LeafletMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
+function LeafletMap({ pins, focus, links }: { pins: Pin[]; focus: Focus; links: Links }) {
   const el = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
   const markers = useRef<Record<string, L.Marker>>({})
@@ -85,7 +88,7 @@ function LeafletMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
         popupAnchor: [0, -14],
       })
       const m = L.marker([p.lat, p.lng], { icon, zIndexOffset: p.kind === 'hotel' ? -100 : 0 }).addTo(map)
-      m.bindPopup(popupHtml(p), { closeButton: false })
+      m.bindPopup(popupHtml(p, links), { closeButton: false })
       markers.current[p.key] = m
     }
 
@@ -102,7 +105,7 @@ function LeafletMap({ pins, focus }: { pins: Pin[]; focus: Focus }) {
       map.remove()
       mapRef.current = null
     }
-  }, [pins, touch])
+  }, [pins, touch, links])
 
   useEffect(() => {
     if (!focus || !mapRef.current) return

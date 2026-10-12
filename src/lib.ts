@@ -18,6 +18,32 @@ export const routeUrl = (hotel: Place, places: Place[]) => {
   return `${G}/dir/?api=1&origin=${enc(hotel.q)}&destination=${enc(dest.q)}${way.length ? `&waypoints=${enc(way.map((p) => p.q).join('|'))}` : ''}`
 }
 
+const K = 'https://map.kakao.com/link'
+const hasLL = (p: Place) => p.lat != null && p.lng != null
+// 카카오맵 링크는 "이름,위도,경도"를 /로 이어 붙여서 이름의 쉼표와 슬래시를 빼야 해요.
+const kpt = (p: Place) => `${enc(p.name.replace(/[,/]/g, ' '))},${p.lat},${p.lng}`
+const kakaoMapUrl = (p: Place) => (hasLL(p) ? `${K}/map/${kpt(p)}` : `${K}/search/${enc(p.q)}`)
+
+/** 카카오맵 길찾기는 좌표가 있어야 해서, 좌표가 없으면 검색 결과를 엽니다. */
+const kakaoDirUrl = (p: Place, from?: Place) => {
+  if (!hasLL(p)) return kakaoMapUrl(p)
+  return from && hasLL(from) ? `${K}/by/traffic/${kpt(from)}/${kpt(p)}` : `${K}/to/${kpt(p)}`
+}
+
+/** 대중교통은 경유지를 받지 않아 자동차 경로로 엽니다. 경유지는 최대 5곳이에요. */
+const kakaoRouteUrl = (hotel: Place, places: Place[]) => {
+  const stops = places.filter((p, i) => hasLL(p) && (i === 0 || p.q !== places[i - 1].q))
+  if (stops.length === 0) return kakaoMapUrl(hotel)
+  return `${K}/by/car/${[hotel, ...stops.slice(0, -1).slice(0, 5), stops[stops.length - 1]].map(kpt).join('/')}`
+}
+
+const LINKS = {
+  google: { mapUrl, dirUrl, routeUrl, mapName: 'Google 지도' },
+  kakao: { mapUrl: kakaoMapUrl, dirUrl: kakaoDirUrl, routeUrl: kakaoRouteUrl, mapName: '카카오맵' },
+}
+
+export const mapLinks = (maps: Trip['maps']) => LINKS[maps]
+
 /** 지정한 시간대의 날짜(YYYY-MM-DD)와 분 단위 시각 */
 export function nowIn(timeZone: string, d = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {

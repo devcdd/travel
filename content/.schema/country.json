@@ -17,6 +17,7 @@
       "description": "현지어 BCP 47 코드 (예: zh-TW). 현지어 글꼴 선택에 쓰여요"
     },
     "currency": {
+      "description": "생략하면 환율 계산과 원화 환산을 숨겨요",
       "type": "object",
       "properties": {
         "code": {
@@ -45,6 +46,7 @@
       "additionalProperties": false
     },
     "taxi": {
+      "description": "생략하면 택시 카드 버튼을 숨겨요",
       "type": "object",
       "properties": {
         "ask": {
@@ -272,9 +274,7 @@
   "required": [
     "name",
     "timeZone",
-    "lang",
-    "currency",
-    "taxi"
+    "lang"
   ],
   "additionalProperties": false
 }
