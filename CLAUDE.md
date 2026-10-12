@@ -80,6 +80,7 @@ pnpm schema      # scripts/content-schema.ts를 고친 뒤 VS Code용 JSON 스�
 
 - 계정 대표 사이트 저장소 `devcdd.github.io`에 커스텀 도메인 `blog.cdd.co.kr`(블로그)이 걸려 있어서, 이 프로젝트는 `blog.cdd.co.kr/travel/`로 서비스됩니다. `devcdd.github.io/travel`로 바꾸려면 블로그 도메인을 떼야 하므로 하지 않습니다.
 - `vite.config.ts`의 `base: './'`와 해시 라우팅(`#/…`) 덕분에 하위 경로에서도 동작합니다.
+- 링크 미리보기는 `#/` 뒤를 읽지 않아서, 빌드할 때 `content-plugin`이 여행마다 `dist/<여행 id>/index.html`을 만들어 제목과 설명(og 태그)을 넣어요. 앱은 여행을 열면 주소 경로를 `<여행 id>/`로 바꿔서, 주소창을 그대로 공유해도 그 여행 카드가 떠요.
 
 ## 확인 방법
 

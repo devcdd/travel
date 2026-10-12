@@ -288,12 +288,40 @@ export function loadContent(dir: string) {
   return { trips, files }
 }
 
+const escHtml = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!)
+
+/** 링크 미리보기는 #/ 뒤를 읽지 않아서, 여행마다 <id>/index.html을 만들어 제목과 설명을 따로 넣어요. */
+function writeTripPages(outDir: string, trips: Trip[]) {
+  const html = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8')
+  for (const t of trips) {
+    const title = escHtml(t.title)
+    const desc = escHtml(`${t.start.replaceAll('-', '.')}–${t.end.slice(5).replace('-', '.')} ${t.city} · ${t.summary}`)
+    const page = html
+      // ./assets 같은 상대 경로를 루트 기준으로 풀고, 해시가 없으면 이 여행을 열어요.
+      .replace('<head>', `<head>\n    <base href="../" />\n    <script>if (!location.hash) location.replace('#/${t.id}')</script>`)
+      .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+      .replace(/(name="description" content=")[^"]*/, `$1${desc}`)
+      .replace(/(property="og:title" content=")[^"]*/, `$1${title}`)
+      .replace(/(property="og:description" content=")[^"]*/, `$1${desc}`)
+      .replace(/(name="apple-mobile-web-app-title" content=")[^"]*/, `$1${escHtml(t.city)}`)
+    fs.mkdirSync(path.join(outDir, t.id), { recursive: true })
+    fs.writeFileSync(path.join(outDir, t.id, 'index.html'), page)
+  }
+}
+
 export function contentPlugin(rel = 'content'): Plugin {
   let dir = ''
+  let outDir = ''
+  let isBuild = false
   return {
     name: 'trip-content',
     configResolved(c) {
       dir = path.resolve(c.root, rel)
+      outDir = path.resolve(c.root, c.build.outDir)
+      isBuild = c.command === 'build'
+    },
+    closeBundle() {
+      if (isBuild) writeTripPages(outDir, loadContent(dir).trips)
     },
     resolveId(id) {
       if (id === VIRTUAL) return RESOLVED
