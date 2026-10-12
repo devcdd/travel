@@ -260,6 +260,8 @@ main { padding-block: 0 72px; min-height: 60vh }
 .tickets h3 { margin-top: 4px; font-size: 17px; font-weight: 600 }
 .tickets .stay { margin-top: 8px; border-top: 1px solid var(--line) }
 .tickets .pts { margin-top: 10px }
+/* 차 사진은 흰 배경이라 다크 테마에서도 둥근 흰 카드로 보여요. */
+.tk-img { display: block; width: 100%; max-width: 360px; margin-top: 10px; border-radius: 12px; background: #fff }
 .stay > div { display: grid; grid-template-columns: 7em minmax(0, 1fr); gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 14.5px }
 .stay dt { color: var(--muted) }
 .info-g, .check-g { margin-top: 26px }

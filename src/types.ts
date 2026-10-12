@@ -125,6 +125,9 @@ export interface Ticket {
   done: boolean
   facts: { k: string; v: string }[]
   points?: string[]
+  place?: Place
+  /** 사이트 루트 기준 경로 */
+  image?: string
 }
 
 export interface Line { name: string; color: string; text?: string }

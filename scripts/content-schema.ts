@@ -261,6 +261,8 @@ export const Trip = z
             done: z.boolean().describe('미리 끝낸 일이면 true, 현장에서 할 일이면 false'),
             facts: z.array(z.object({ label: text, value: text }).strict()).default([]),
             points: z.array(text).optional(),
+            place: placeId.optional().describe('찾아갈 곳이 있으면 places.yaml id. 지도와 길찾기 버튼이 붙어요'),
+            image: text.optional().describe('public/ 아래 사진 경로 (예: trips/pyeongchang-2026/car.jpg)'),
           })
           .strict(),
       )

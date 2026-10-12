@@ -151,6 +151,7 @@ export function TicketsView() {
                 <span className={`chip ${t.done ? 'ok' : 'idea'}`}>{t.status}</span>
               </div>
               <h3>{t.title}</h3>
+              {t.image && <img className="tk-img" src={t.image} alt={t.title} loading="lazy" />}
               {t.facts.length > 0 && (
                 <dl className="stay">
                   {t.facts.map((x) => (
@@ -172,6 +173,7 @@ export function TicketsView() {
                   ))}
                 </ul>
               )}
+              {t.place && <PlaceActions place={t.place} compact />}
             </li>
           ))}
       </ul>

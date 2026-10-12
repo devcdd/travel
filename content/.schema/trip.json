@@ -333,6 +333,16 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "place": {
+            "description": "찾아갈 곳이 있으면 places.yaml id. 지도와 길찾기 버튼이 붙어요",
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+          },
+          "image": {
+            "description": "public/ 아래 사진 경로 (예: trips/pyeongchang-2026/car.jpg)",
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [
