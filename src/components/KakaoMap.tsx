@@ -78,7 +78,8 @@ export function KakaoMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: F
             map,
             path: route.map((p) => new kakao.maps.LatLng(p.lat, p.lng)),
             strokeWeight: 2,
-            strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#14171b',
+            // 카카오 지도는 다크 모드에서도 밝은 지도라서 테마 색 대신 어두운 색으로 고정해요.
+            strokeColor: '#14171b',
             strokeOpacity: 0.6,
             strokeStyle: 'shortdash',
           })
@@ -152,7 +153,7 @@ export function KakaoMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: F
   return (
     <div className="map-wrap">
       <div ref={el} className="map" role="region" aria-label="지도" />
-      <button type="button" className="map-btn" onClick={locate} disabled={locating || !ready}>
+      <button type="button" className="map-btn kmap" onClick={locate} disabled={locating || !ready}>
         {locating ? '찾는 중…' : '내 위치'}
       </button>
       {ready && locked && <div className="map-hint">탭하면 지도를 움직일 수 있어요</div>}
