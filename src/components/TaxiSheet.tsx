@@ -16,7 +16,8 @@ export function TaxiSheet({ place, ask, lang, onClose }: { place: Place; ask: st
     }
   }, [onClose])
 
-  const text = place.address ? `${place.local}\n${place.address}` : place.local
+  const local = place.local || place.name
+  const text = place.address ? `${local}\n${place.address}` : local
 
   return (
     <div className="sheet" role="dialog" aria-modal="true" aria-label="택시 카드" onClick={onClose}>
@@ -26,7 +27,7 @@ export function TaxiSheet({ place, ask, lang, onClose }: { place: Place; ask: st
           {ask}
         </p>
         <p className="sheet-local" lang={lang}>
-          {place.local}
+          {local}
         </p>
         {place.address && (
           <p className="sheet-addr" lang={lang}>

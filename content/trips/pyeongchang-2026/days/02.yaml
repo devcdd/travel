@@ -1,0 +1,50 @@
+date: "2026-10-18"
+short: 귀가
+title: 카페 들렀다 집으로
+lead: 숙소에서 아침을 먹고 11시까지 체크아웃해요. 카페 후보 세 곳 중 한 곳에 들렀다가 서울로 돌아가요. 일요일 오후라 올라가는 길이 막힐 수 있으니 너무 늦지 않게 출발하세요.
+chips:
+  - tone: idea
+    text: 카페 3곳 중 고르기
+  - tone: warn
+    text: 일요일 상행 정체
+facts:
+  - label: 체크아웃
+    value: "11:00까지"
+  - label: 운전
+    value: 막히지 않으면 2시간 30분쯤
+stops:
+  - time: "오전"
+    kind: food
+    label: 아침
+    title: 숙소에서 아침
+    place: hotel
+    desc: 전날 장 봐 둔 걸로 간단히 먹어요.
+  - time: "11:00"
+    kind: free
+    label: 체크아웃
+    title: 모나용평 체크아웃
+    place: hotel
+  - time: "11:15"
+    kind: food
+    label: 카페
+    title: 카페 들르기
+    desc: 세 곳 중 한 곳을 골라요. A와 B는 숙소 가까이에 있고, C는 서울로 가는 길에 있는 진부라 들렀다가 바로 진부IC로 올라갈 수 있어요.
+    tips:
+      - 영업시간은 Google 지도 기준이에요. 가기 전에 한 번 더 확인하세요.
+    alts:
+      - title: 카페 6.55
+        place: cafe655
+        desc: 숙소에서 차로 7분쯤 걸려요. 일요일에는 10:00–18:00 열어요. Google 리뷰가 37개로 많지 않아서 분위기는 확인하지 못했어요.
+      - title: 7HUNDRED coffee roasters
+        place: sevenHundred
+        desc: 횡계 시내에 있는 로스터리 카페예요. 숙소에서 차로 9분쯤 걸리고 매일 08:00–20:00 열어요. Google 리뷰가 450개가 넘어요.
+      - title: 연월일
+        place: yeonwolil
+        desc: 진부면에 있는 카페로 숙소에서 차로 20분쯤 걸리고 매일 09:00–21:30 열어요. 서울로 가는 방향이라 들렀다 가기 좋아요.
+  - time: "13:00"
+    move: 카페에서 영동고속도로를 타고 봉천역으로 돌아가요. 막히지 않으면 2시간 30분쯤 걸리지만 일요일 오후 상행은 한두 시간 더 걸릴 수 있어요.
+  - time: "도착"
+    kind: meet
+    label: 해산
+    title: 봉천역 도착
+    place: bongcheon

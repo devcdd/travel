@@ -1,0 +1,37 @@
+# 여행 기본 정보. 폴더 이름(pyeongchang-2026)이 주소가 됩니다: #/pyeongchang-2026
+title: 개노답 서울 도기 여행
+country: kr              # content/countries/kr.yaml, 지도는 카카오맵으로 열려요
+city: 평창
+route: 서울 → 평창
+start: "2026-10-17"
+end: "2026-10-18"
+summary: 대관령 양떼목장, 모나용평 1박, 카페 들렀다 귀가
+
+hotel:
+  place: hotel
+  access: 대관령IC에서 차로 15분쯤 걸리고, 횡계 시내 마트에서는 10분 거리예요.
+  nights: 1
+
+stay:
+  - label: 체크인
+    value: "15:00부터"
+  - label: 체크아웃
+    value: "11:00까지"
+  - label: 취사
+    value: 콘도동(타워, 빌라, 그린피아)은 가능하고 호텔동은 안 돼요
+  - label: 문의
+    value: 033-330-7174
+
+# 예매해 둔 티켓. "예매" 탭에 보여요. 예약번호는 적지 않아요.
+tickets:
+  - title: 대관령 양떼목장 입장권
+    date: "2026-10-17"
+    status: 예매 완료
+    done: true
+    facts:
+      - label: 요금
+        value: 1인 9,000원
+      - label: 매표 마감
+        value: "16:30"
+    points:
+      - 매표가 16:30에 끝나니 그 전에 목장에 도착하세요. 입구에서 예매 내역을 보여 주면 돼요.

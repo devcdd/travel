@@ -1,0 +1,60 @@
+# 장소 목록. 일정 파일에서 왼쪽 id로 불러 써요.
+# 국내 여행이라 local은 생략했어요. 좌표는 Google Places 조회 결과예요.
+hotel:
+  name: 모나용평
+  q: 모나용평
+  lat: 37.6457252
+  lng: 128.6806395
+  address: 강원 평창군 대관령면 올림픽로 715
+bongcheon:
+  name: 봉천역
+  q: 봉천역 2호선
+  lat: 37.482476
+  lng: 126.941574
+hwangtae:
+  name: 황태회관
+  q: 황태회관 대관령
+  lat: 37.669874
+  lng: 128.709862
+  address: 강원 평창군 대관령면 눈마을길 19
+napjak:
+  name: 납작식당
+  q: 납작식당 평창
+  lat: 37.675459
+  lng: 128.700630
+  address: 강원 평창군 대관령면 올림픽로 35
+sheep:
+  name: 대관령 양떼목장
+  q: 대관령양떼목장
+  lat: 37.688488
+  lng: 128.752757
+  address: 강원 평창군 대관령면 대관령마루길 483-32
+hanaro:
+  name: 하나로마트 대관령농협
+  q: 하나로마트 대관령농협
+  lat: 37.673469
+  lng: 128.703666
+  address: 강원 평창군 대관령면 횡계리 369-1
+jmart:
+  name: 제이마트 대관령점
+  q: 제이마트 대관령점
+  lat: 37.667793
+  lng: 128.710385
+  address: 강원 평창군 대관령면 올림픽로 171
+cafe655:
+  name: 카페 6.55
+  q: 카페 6.55 평창 용산리
+  lat: 37.615592
+  lng: 128.646364
+sevenHundred:
+  name: 7HUNDRED coffee roasters
+  q: 7HUNDRED coffee roasters 평창
+  lat: 37.669736
+  lng: 128.709389
+  address: 강원 평창군 대관령면 강변길 93
+yeonwolil:
+  name: 연월일
+  q: 연월일 카페 진부
+  lat: 37.679211
+  lng: 128.596503
+  address: 강원 평창군 진부면 진고개로 129

@@ -14,7 +14,7 @@ export const Link = z.object({ label: text, href: z.url() }).strict()
 export const Place = z
   .object({
     name: text.describe('한국어 이름'),
-    local: text.optional().describe('현지어 이름. 택시 카드에 크게 표시돼요. 생략하면 name을 써요'),
+    local: text.optional().describe('현지어 이름. 택시 카드에 크게 표시돼요. 국내 여행이면 생략해요'),
     q: text.describe('지도 검색어'),
     lat: z.number().optional(),
     lng: z.number().optional(),

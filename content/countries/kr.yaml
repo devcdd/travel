@@ -1,5 +1,5 @@
 # 국내 여행 공통 정보. trip.yaml에 country: kr 로 연결하면 지도와 길찾기가 카카오맵으로 열려요.
-# 환율 계산(currency)과 택시 카드(taxi)는 국내에서 필요 없어서 넣지 않았어요. places.yaml의 local도 생략하면 이름을 그대로 써요.
+# 환율 계산(currency)과 택시 카드(taxi)는 국내에서 필요 없어서 넣지 않았어요. places.yaml의 local도 생략해요.
 name: 대한민국
 timeZone: Asia/Seoul
 lang: ko

@@ -67,7 +67,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
 
   const trip = readYaml(f('trip.yaml'), S.Trip, issues)
   const rawPlaces = readYaml(f('places.yaml'), S.Places, issues)
-  const places: Record<string, Place> | null = rawPlaces && Object.fromEntries(Object.entries(rawPlaces).map(([k, p]) => [k, { ...p, local: p.local ?? p.name }]))
+  const places: Record<string, Place> | null = rawPlaces && Object.fromEntries(Object.entries(rawPlaces).map(([k, p]) => [k, { ...p, local: p.local ?? '' }]))
   files.push(f('trip.yaml'), f('places.yaml'))
   if (!trip || !places) return null
 

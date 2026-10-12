@@ -3,7 +3,7 @@
 
 export interface Place {
   name: string
-  /** 현지어 이름 */
+  /** 현지어 이름. 생략하면 빈 문자열 */
   local: string
   /** 지도 검색어 */
   q: string

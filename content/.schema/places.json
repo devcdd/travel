@@ -15,7 +15,7 @@
         "description": "한국어 이름"
       },
       "local": {
-        "description": "현지어 이름. 택시 카드에 크게 표시돼요. 생략하면 name을 써요",
+        "description": "현지어 이름. 택시 카드에 크게 표시돼요. 국내 여행이면 생략해요",
         "type": "string",
         "minLength": 1
       },
