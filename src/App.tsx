@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { Place } from './types'
 import { TRIPS, findTrip } from './trips'
+import { ROOT } from './lib'
 import { ActionsContext } from './context'
 import { Home } from './components/Home'
 import { TaxiSheet } from './components/TaxiSheet'
 import { TripPage, defaultTab, isTab } from './components/TripPage'
-
-// 여행 페이지(<id>/index.html)는 <base href="../">가 있어서 어느 쪽으로 열어도 사이트 루트가 돼요. replaceState로 경로가 바뀌기 전에 한 번만 읽어요.
-const ROOT = document.baseURI
 
 type Route = { page: 'home' } | { page: 'trip'; tripId: string; tab: string }
 

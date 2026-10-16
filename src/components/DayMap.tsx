@@ -27,6 +27,11 @@ export type Focus = { key: string; n: number } | null
 
 export type Links = Pick<ReturnType<typeof mapLinks>, 'mapUrl' | 'dirUrl'>
 
+const HOUSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 7.5 8 3l5.5 4.5V13h-3.5V9.5h-4V13H2.5z" fill="currentColor"/></svg>'
+
+/** 물방울 핀. 바깥 상자의 아래 가운데가 뾰족한 끝이라 세 지도 모두 아래 가운데를 좌표에 맞춰요. */
+export const pinHtml = (p: Pin) => `<span class="pin pin-${p.kind}"><b>${p.kind === 'hotel' ? HOUSE : esc(p.label)}</b></span>`
+
 export const popupHtml = (p: Pin, { mapUrl, dirUrl }: Links) =>
   `<div class="pop"><strong>${esc(p.place.name)}</strong><span>${esc(p.place.local)}</span>` +
   `<div class="pop-a"><a href="${mapUrl(p.place)}" target="_blank" rel="noopener">지도</a>` +
@@ -88,11 +93,11 @@ function LeafletMap({ pins, focus, links }: { pins: Pin[]; focus: Focus; links: 
     markers.current = {}
     for (const p of pins) {
       const icon = L.divIcon({
-        className: '',
-        html: `<span class="pin pin-${p.kind}">${esc(p.label)}</span>`,
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
-        popupAnchor: [0, -14],
+        className: 'mk',
+        html: pinHtml(p),
+        iconSize: [30, 37],
+        iconAnchor: [15, 37],
+        popupAnchor: [0, -36],
       })
       const m = L.marker([p.lat, p.lng], { icon, zIndexOffset: p.kind === 'hotel' ? -100 : 0 }).addTo(map)
       m.bindPopup(popupHtml(p, links), { closeButton: false })

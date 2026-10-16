@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { copyText, fmtDate, load, save } from '../lib'
+import { ROOT, copyText, fmtDate, load, save } from '../lib'
 import { useActions, useMaps, useTrip } from '../context'
 import { Rich } from './Rich'
 import { useKrwRate } from '../rate'
@@ -151,7 +151,7 @@ export function TicketsView() {
                 <span className={`chip ${t.done ? 'ok' : 'idea'}`}>{t.status}</span>
               </div>
               <h3>{t.title}</h3>
-              {t.image && <img className="tk-img" src={t.image} alt={t.title} loading="lazy" />}
+              {t.image && <img className="tk-img" src={new URL(t.image, ROOT).href} alt={t.title} loading="lazy" />}
               {t.facts.length > 0 && (
                 <dl className="stay">
                   {t.facts.map((x) => (

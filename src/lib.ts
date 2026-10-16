@@ -1,5 +1,8 @@
 import type { Place, Trip } from './types'
 
+// 여행 페이지(<id>/index.html)는 <base href="../">가 있어서 어느 쪽으로 열어도 사이트 루트가 돼요. replaceState로 경로가 바뀌기 전에 한 번만 읽어요.
+export const ROOT = document.baseURI
+
 const G = 'https://www.google.com/maps'
 const enc = encodeURIComponent
 

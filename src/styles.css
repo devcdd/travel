@@ -136,13 +136,27 @@ main { padding-block: 0 72px; min-height: 60vh }
 .pop-a { display: flex; gap: 12px; margin-top: 6px; font-weight: 600 }
 .route-line { stroke: var(--fg); stroke-opacity: .55 }
 .me-dot { fill: var(--accent); fill-opacity: 1; stroke: var(--surface) }
-.pin, .num { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 5px; border-radius: 13px; font-family: var(--f-mono); font-size: 12px; font-weight: 600; line-height: 1; background: var(--fg); color: var(--bg); border: 2px solid var(--bg) }
+.num { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 5px; border-radius: 13px; font-family: var(--f-mono); font-size: 12px; font-weight: 600; line-height: 1; background: var(--fg); color: var(--bg); border: 2px solid var(--bg) }
+/* 지도 핀: 30px 정사각형을 -45° 돌린 물방울이라 끝이 상자 아래 7px 밖으로 나와요. 그래서 바깥 .mk를 37px로 잡고 아래 가운데에 맞춰요. */
+.mk { display: block; width: 30px; height: 37px; cursor: pointer }
+.mk .pin { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--fg); color: var(--bg); border: 2px solid #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .22); transition: transform .15s }
+.mk .pin b { display: grid; place-items: center; transform: rotate(45deg); font-family: var(--f-mono); font-size: 12px; font-weight: 700; line-height: 1; letter-spacing: -.02em }
+.mk .pin svg { width: 14px; height: 14px }
+.mk:hover .pin { transform: rotate(-45deg) scale(1.1) }
 .pin-food { background: var(--warn); color: var(--surface) }
 .pin-meet { background: var(--accent); color: var(--on-accent) }
 .pin-free { background: var(--muted); color: var(--surface) }
-.pin-hotel { background: var(--surface); color: var(--fg); border-color: var(--fg); font-family: var(--f-sans); font-size: 11px }
+.num.pin-hotel { background: var(--surface); color: var(--fg); border-color: var(--fg); font-family: var(--f-sans); font-size: 11px }
+.mk .pin-hotel { width: 26px; height: 26px; margin: 6px 2px 0; background: var(--surface); color: var(--fg); border-color: var(--fg) }
 
 /* timeline */
+.tl-bar { display: none; align-items: center; gap: 10px; margin-top: 18px }
+.tl-bar .seg { margin: 0 }
+.tl-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; font-size: 13px; color: var(--muted) }
+.tl-nav .mono { min-width: 64px; text-align: center }
+.tl-nav button { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer }
+.tl-nav button:disabled { opacity: .35; cursor: default }
+.tl-nav svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
 .tl { margin-top: 12px }
 .tl > li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 0 20px }
 .tl time { font-size: 14px; font-weight: 600; padding-top: 19px; text-align: right; white-space: nowrap }
@@ -291,7 +305,7 @@ main { padding-block: 0 72px; min-height: 60vh }
 .toast.show { opacity: 1; transform: translate(-50%, 0) }
 
 @media (prefers-reduced-motion: reduce) {
-  .toast, .bar i { transition: none }
+  .toast, .bar i, .mk .pin { transition: none }
 }
 
 @media (max-width: 560px) {
@@ -306,6 +320,19 @@ main { padding-block: 0 72px; min-height: 60vh }
   .tl time { font-size: 13px }
   .tl time.soft { font-size: 11.5px; white-space: normal }
   .st-b { padding-left: 22px }
+  .tl-bar { display: flex }
+  /* 카드 보기: 한 번에 한 단계씩 넘기고, 다음 카드가 오른쪽에 살짝 보여서 넘길 수 있다는 걸 알려줘요. */
+  .tl.cards { position: relative; display: flex; align-items: flex-start; gap: 10px; margin: 10px -16px 0; padding: 2px 16px 8px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; overscroll-behavior-x: contain; scrollbar-width: none }
+  .tl.cards::-webkit-scrollbar { display: none }
+  .tl.cards > li { position: relative; display: block; flex: 0 0 calc(100% - 36px); scroll-snap-align: start; scroll-snap-stop: always; padding: 14px 16px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface) }
+  .tl.cards > li.mv { flex-basis: 68%; background: none; border-style: dashed }
+  .tl.cards > li.is-now { border-color: var(--accent) }
+  .tl.cards time, .tl.cards time.soft { display: block; padding: 0 40px 0 0; text-align: left; font-size: 13px; color: var(--muted) }
+  .tl.cards .st.is-now time { color: var(--accent) }
+  .tl.cards .st-b, .tl.cards .st.is-now .st-b, .tl.cards .mv .st-b { position: static; margin: 4px 0 0; padding: 0; border: 0 }
+  .tl.cards .st-b .num { left: auto; right: 12px; top: 12px; min-width: 28px; height: 28px; font-size: 12.5px }
+  .tl.cards .st-b .dot { display: none }
+  .tl.cards .alt > div { background: var(--bg) }
   .check label { grid-template-columns: 22px minmax(0, 1fr) }
   .check .due { grid-column: 2; padding-top: 0 }
 }
@@ -333,7 +360,7 @@ main { padding-block: 0 72px; min-height: 60vh }
 }
 
 /* Google 지도: 정보창 배경은 항상 흰색이라 글자색을 고정합니다. */
-.kpop { margin-bottom: 18px; padding: 8px 10px; font-size: 13px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 8px }
+.kpop { margin-bottom: 44px; padding: 8px 10px; font-size: 13px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 8px }
 .embed-map { margin-top: 10px }
 .map-btn.kmap { right: auto; left: 10px }
 .gm-style .pop { color: #14171b }

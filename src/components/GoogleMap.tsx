@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { GMAPS_MAP_ID, loadGoogleMaps } from '../gmaps'
-import { esc, popupHtml, type Focus, type Links, type Pin } from './DayMap'
+import { pinHtml, popupHtml, type Focus, type Links, type Pin } from './DayMap'
 
 const cssVar = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#14171b'
 
@@ -48,8 +48,8 @@ export function GoogleMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: 
         const bounds = new google.maps.LatLngBounds()
         for (const p of pins) {
           const content = document.createElement('span')
-          content.className = `pin pin-${p.kind}`
-          content.innerHTML = esc(p.label)
+          content.className = 'mk'
+          content.innerHTML = pinHtml(p)
           const m = new google.maps.marker.AdvancedMarkerElement({
             map,
             position: { lat: p.lat, lng: p.lng },

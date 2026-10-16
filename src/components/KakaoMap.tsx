@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { KAKAO_KEY } from '../lib'
-import { esc, popupHtml, type Focus, type Links, type Pin } from './DayMap'
+import { pinHtml, popupHtml, type Focus, type Links, type Pin } from './DayMap'
 
 // 카카오 지도 SDK는 공식 타입 패키지가 없어서 쓰는 부분만 any로 다룹니다.
 type K = any
@@ -90,13 +90,13 @@ export function KakaoMap({ pins, focus, onFail, links }: { pins: Pin[]; focus: F
         const bounds = new kakao.maps.LatLngBounds()
         for (const p of pins) {
           const content = document.createElement('span')
-          content.className = `pin pin-${p.kind}`
-          content.innerHTML = esc(p.label)
+          content.className = 'mk'
+          content.innerHTML = pinHtml(p)
           content.title = p.place.name
           content.style.cursor = 'pointer'
           content.addEventListener('click', () => openPop(p))
           const ll = new kakao.maps.LatLng(p.lat, p.lng)
-          new kakao.maps.CustomOverlay({ map, position: ll, content, zIndex: p.kind === 'hotel' ? 0 : 10, clickable: true })
+          new kakao.maps.CustomOverlay({ map, position: ll, content, yAnchor: 1, zIndex: p.kind === 'hotel' ? 0 : 10, clickable: true })
           bounds.extend(ll)
         }
         if (pins.length > 1) {

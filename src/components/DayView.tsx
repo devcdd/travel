@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Day, Place, Stop } from '../types'
 import { useMaps, useTrip } from '../context'
 import { embedRouteUrl, load, save, toMinutes } from '../lib'
@@ -75,6 +75,33 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
   const [mapMode, setMapMode] = useState<'pins' | 'google'>('pins')
   const mapBox = useRef<HTMLDivElement>(null)
   const { cur, next } = today ? currentIndex(day.stops, nowMinutes) : { cur: -1, next: -1 }
+  const [cards, setCards] = useState(() => load('tl-cards', true))
+  const tl = useRef<HTMLOListElement>(null)
+  const [slide, setSlide] = useState(0)
+  const setView = (v: boolean) => {
+    setCards(v)
+    save('tl-cards', v)
+  }
+  const go = (i: number, smooth = true) => {
+    const el = tl.current
+    const li = el?.children[i] as HTMLElement | undefined
+    if (el && li) el.scrollTo({ left: li.offsetLeft - parseFloat(getComputedStyle(el).scrollPaddingLeft || '0'), behavior: smooth ? 'smooth' : 'instant' })
+  }
+  const onScroll = () => {
+    const el = tl.current
+    if (!el) return
+    const kids = [...el.children] as HTMLElement[]
+    // 끝까지 밀면 마지막 카드가 왼쪽에 붙지 못하니 마지막으로 봐요.
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) return setSlide(kids.length - 1)
+    const x = el.scrollLeft + parseFloat(getComputedStyle(el).scrollPaddingLeft || '0')
+    setSlide(kids.reduce((b, k, i) => (Math.abs(k.offsetLeft - x) < Math.abs(kids[b].offsetLeft - x) ? i : b), 0))
+  }
+  // 오늘이면 지금 하는 일정 카드부터 보여줘요. 시계가 바뀔 때마다 끌려가지 않게 날짜나 보기를 바꿀 때만 맞춰요.
+  useEffect(() => {
+    const start = cards && cur > 0 ? cur : 0
+    go(start, false)
+    setSlide(start)
+  }, [cards, day.id])
 
   const show = (key: string) => {
     setMapMode('pins')
@@ -157,7 +184,35 @@ export function DayView({ day, today, nowMinutes, weather }: { day: Day; today: 
         </div>
       </div>
 
-      <ol className="tl">
+      <div className="tl-bar">
+        <div className="seg" role="tablist" aria-label="일정 보기 방식">
+          <button type="button" role="tab" aria-selected={cards} onClick={() => setView(true)}>
+            카드
+          </button>
+          <button type="button" role="tab" aria-selected={!cards} onClick={() => setView(false)}>
+            목록
+          </button>
+        </div>
+        {cards && (
+          <div className="tl-nav">
+            <button type="button" onClick={() => go(slide - 1)} disabled={slide === 0} aria-label="이전 일정">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M10 3 5 8l5 5" />
+              </svg>
+            </button>
+            <span className="mono" aria-live="polite">
+              {slide + 1} / {day.stops.length}
+            </span>
+            <button type="button" onClick={() => go(slide + 1)} disabled={slide >= day.stops.length - 1} aria-label="다음 일정">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6 3 5 5-5 5" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+
+      <ol ref={tl} className={cards ? 'tl cards' : 'tl'} onScroll={cards ? onScroll : undefined}>
         {day.stops.map((s, i) =>
           s.kind === 'move' ? (
             <li key={i} className="mv">
