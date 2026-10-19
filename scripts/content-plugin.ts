@@ -210,11 +210,13 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     ids.add(c.id)
   }
 
-  let notes: string | undefined
-  if (fs.existsSync(f('notes.md'))) {
-    files.push(f('notes.md'))
-    notes = marked.parse(fs.readFileSync(f('notes.md'), 'utf8'), { async: false })
+  const md = (name: string) => {
+    if (!fs.existsSync(f(name))) return undefined
+    files.push(f(name))
+    return marked.parse(fs.readFileSync(f(name), 'utf8'), { async: false })
   }
+  const notes = md('notes.md')
+  const settle = md('settle.md')
 
   if (!hotelPlace) return null
   const apps: AppItem[] = [...country.apps, ...trip.apps]
@@ -250,6 +252,7 @@ function loadTrip(dir: string, id: string, countries: Map<string, z.output<typeo
     facilities: trip.facilities.map((x) => ({ k: x.label, v: x.value })),
     tickets: trip.tickets.map((x) => ({ ...x, place: x.place ? places[x.place] : undefined, facts: x.facts.map((f) => ({ k: f.label, v: f.value })) })),
     notes,
+    settle,
   }
 }
 

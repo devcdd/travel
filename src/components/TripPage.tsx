@@ -16,11 +16,12 @@ const EXTRA = [
   { id: 'info', label: '현지 정보' },
   { id: 'phrases', label: '회화' },
   { id: 'notes', label: '메모' },
+  { id: 'settle', label: '정산' },
 ]
 
-/** 메모, 항공·숙소, 예매, 명소 이야기, 회화 탭은 내용이 있는 여행에만 보여요. */
+/** 메모, 정산, 항공·숙소, 예매, 명소 이야기, 회화 탭은 내용이 있는 여행에만 보여요. */
 const extrasFor = (trip: Trip) =>
-  EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'flights' || trip.flights.length) && (e.id !== 'tickets' || trip.tickets.length) && (e.id !== 'phrases' || trip.phrases.length) && (e.id !== 'guide' || trip.guide.length))
+  EXTRA.filter((e) => (e.id !== 'notes' || trip.notes) && (e.id !== 'settle' || trip.settle) && (e.id !== 'flights' || trip.flights.length) && (e.id !== 'tickets' || trip.tickets.length) && (e.id !== 'phrases' || trip.phrases.length) && (e.id !== 'guide' || trip.guide.length))
 
 function useNow(timeZone: string) {
   const [now, setNow] = useState(() => ({ local: nowIn(timeZone), kst: nowIn('Asia/Seoul') }))
@@ -143,7 +144,8 @@ export function TripPage({ trip, tab }: { trip: Trip; tab: string }) {
         {tab === 'apps' && <AppsView />}
         {tab === 'info' && <InfoView />}
         {tab === 'phrases' && <PhrasesView />}
-        {tab === 'notes' && trip.notes && <NotesView />}
+        {tab === 'notes' && trip.notes && <NotesView title="메모" html={trip.notes} />}
+        {tab === 'settle' && trip.settle && <NotesView title="정산" html={trip.settle} />}
       </main>
     </TripContext.Provider>
   )

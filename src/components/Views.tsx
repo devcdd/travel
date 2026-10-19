@@ -565,13 +565,12 @@ export function PhrasesView() {
   )
 }
 
-export function NotesView() {
-  const { notes } = useTrip()
+export function NotesView({ title, html }: { title: string; html: string }) {
   return (
     <section className="ref">
-      <h2>메모</h2>
-      {/* content/trips/<id>/notes.md를 빌드할 때 HTML로 바꾼 것 */}
-      <div className="notes" dangerouslySetInnerHTML={{ __html: notes ?? '' }} />
+      <h2>{title}</h2>
+      {/* notes.md, settle.md를 빌드할 때 HTML로 바꾼 것 */}
+      <div className="notes" dangerouslySetInnerHTML={{ __html: html }} />
     </section>
   )
 }

@@ -176,4 +176,6 @@ export interface Trip {
   tickets: Ticket[]
   /** notes.md를 HTML로 바꾼 것 (없으면 메모 탭을 숨겨요) */
   notes?: string
+  /** settle.md를 HTML로 바꾼 것 (없으면 정산 탭을 숨겨요) */
+  settle?: string
 }
