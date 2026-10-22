@@ -1,55 +1,43 @@
-# 타이베이 3박 4일 (2026.10.07 – 10.10)
+# 여행
 
-Vite + React 19 정적 사이트. 배포 주소: https://blog.cdd.co.kr/travel/
+여행 일정을 한곳에서 관리하는 사이트입니다. 날짜별 동선과 지도, 예약할 것들, 현지 정보를 여행마다 모아 볼 수 있습니다.
 
-첫 화면에서 여행을 고르고(`#/`), 여행별 일정은 `#/<여행 id>/<탭>` 주소로 열립니다.
+https://blog.cdd.co.kr/travel/
 
-## 일정 관리
+## 기능
 
-일정은 코드가 아니라 `content/`의 YAML 파일로 관리합니다.
+### 여행 목록
 
-```
-content/
-  countries/tw.yaml          # 대만 공통: 앱, 현지 정보, 긴급 전화, 통화, 노선 색
-  trips/taipei-2026/
-    trip.yaml                # 제목, 기간, 숙소
-    places.yaml              # 장소 (id로 참조)
-    days/01.yaml … 04.yaml   # 하루 일정
-    food.yaml                # 먹을 것
-    checklist.yaml           # 예약·준비
-    notes.md                 # (선택) 메모 탭
-```
+- 다녀올 여행과 다녀온 여행을 한 화면에서 고를 수 있습니다.
+- 여행마다 기간, 몇 박 며칠인지, 진행 상태(예정, 여행 중, 다녀옴)를 보여줍니다.
 
-새 여행은 `content/trips/`에 폴더를 하나 만들면 자동으로 목록에 나타납니다. 빌드할 때 형식과 장소 id, 노선 코드를 검사해서, 틀린 곳이 있으면 파일과 위치를 알려 주고 배포를 멈춥니다. 자세한 작성 규칙은 `CLAUDE.md`에 있습니다.
+### 날짜별 일정
 
-VS Code에서 Red Hat YAML 확장을 설치하면 YAML 파일에서 자동완성과 검사가 됩니다.
+- 날짜마다 일정 수와 날씨(최고 기온, 강수 확률)를 요약해서 보여줍니다.
+- 일정을 타임라인으로 보여주고, 여행 당일에는 지금 하고 있는 일정과 다음 일정을 표시합니다.
+- 일정 순서대로 지도에 번호 핀을 찍어 하루 동선을 지도에서 바로 볼 수 있습니다.
+- 한 시간대에 고를 수 있는 곳이 여러 군데면 체크한 곳만 지도에 표시합니다.
+- 모바일에서는 일정을 카드로 넘기면서 볼 수 있습니다.
+- 현지 시각과 한국 시각을 함께 보여줍니다.
 
-## 실행
+### 장소
 
-```bash
-pnpm install
-pnpm dev         # http://localhost:5173
-pnpm check       # content/와 타입만 빠르게 검사
-pnpm build       # dist/ 생성
-```
+- 장소마다 길찾기, 지도, 숙소에서 가는 길 버튼이 붙어 있습니다.
+- 택시 카드: 기사님께 그대로 보여줄 수 있게 현지어 장소명과 주소를 크게 띄우고, 주소를 복사할 수 있습니다.
 
-## Google 지도 키 (선택)
+### 여행 정보 탭
 
-`.env.example`을 `.env`로 복사하고 `VITE_GOOGLE_MAPS_API_KEY`를 채우면 날짜별 지도가 Google 지도로 바뀌고, Google 경로 탭과 장소 미리보기가 켜집니다.
-키가 없거나 인증에 실패하면 OpenStreetMap 번호 지도로 자동 전환되고, Google 지도 길찾기 링크는 그대로 동작합니다.
+| 탭 | 내용 |
+| --- | --- |
+| 항공·숙소 | 항공편과 숙소 정보 |
+| 예매 | 미리 예매할 입장권과 투어 |
+| 명소 이야기 | 가볼 곳의 배경 이야기 |
+| 먹을 것 | 먹어볼 음식과 가게 |
+| 예약·준비 | 출발 전 할 일 체크리스트 (체크 상태 저장) |
+| 앱 | 현지에서 쓸 앱 |
+| 현지 정보 | 통화, 긴급 전화 같은 현지 정보 |
+| 회화 | 자주 쓰는 현지 표현 |
+| 메모 | 여행 메모 |
+| 정산 | 여행 경비 정산과 인당 금액 |
 
-Google Cloud Console에서 할 일:
-
-1. **Maps JavaScript API**, **Maps Embed API** 사용 설정
-2. 키 제한 → HTTP 리퍼러: `https://blog.cdd.co.kr/travel/*`, 로컬 개발용 `http://localhost:5173/*`
-3. API 제한 → 위 두 API
-
-키는 빌드 결과물에 들어가 브라우저에 노출되므로 리퍼러 제한이 필수입니다.
-
-## GitHub Pages 배포
-
-1. GitHub 저장소에 push (`main` 브랜치)
-2. Settings → Pages → Source: **GitHub Actions**
-3. Settings → Secrets and variables → Actions → `VITE_GOOGLE_MAPS_API_KEY` 등록 (선택)
-
-`.github/workflows/deploy.yml`이 push마다 빌드해서 배포합니다. 계정 대표 사이트(devcdd.github.io)에 커스텀 도메인 `blog.cdd.co.kr`이 걸려 있어서 이 프로젝트는 `blog.cdd.co.kr/travel/`로 서비스됩니다.
+탭은 내용이 있는 여행에만 보입니다.
