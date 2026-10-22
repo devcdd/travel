@@ -2,7 +2,7 @@
 
 여행 일정을 한곳에서 관리하는 사이트입니다. 날짜별 동선과 지도, 예약할 것들, 현지 정보를 여행마다 모아 볼 수 있습니다.
 
-https://blog.cdd.co.kr/travel/
+https://cdd.co.kr/travel/
 
 ## 기능
 
